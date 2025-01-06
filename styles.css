@@ -322,25 +322,13 @@ nav ul li a i {
     border-color: #64ffda;
 }
 
-.skill-card i {
-    font-size: 2.5rem; /* Slightly reduced icon size */
-    color: #64ffda;
-    margin-bottom: 1rem;
-}
-
 .skill-card span {
     font-size: 1.1rem; /* Slightly reduced font size */
     color: #ccd6f6;
     font-weight: 500;
 }
 
-.skill-card .skill-icon {
-    margin-bottom: 1rem;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
+/* Consolidate .skill-card icon styles */
 .skill-card i,
 .skill-card .skill-icon {
     font-size: 2.5rem;
@@ -386,7 +374,8 @@ nav ul li a i {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px),
+       (max-width: 480px) {
     header {
         padding: 0 20px;
         height: 60px;

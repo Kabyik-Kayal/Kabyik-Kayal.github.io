@@ -109,7 +109,7 @@ function initializeSkillBars() {
             const skillCard = document.createElement('div');
             skillCard.className = 'skill-card';
             skillCard.innerHTML = `
-                ${skill === 'Python' || skill === 'HTML' || skill === 'CSS' || skill === 'MLFlow' ? getSkillIcon(skill) : `<i class="fas ${getSkillIcon(skill)}"></i>`}
+                ${['Python', 'HTML', 'CSS', 'MLFlow'].includes(skill) ? getSkillIcon(skill) : `<i class="fas ${getSkillIcon(skill)}"></i>`}
                 <span>${skill}</span>
                 <div class="skill-level" style="width: ${level}%"></div>
             `;
@@ -172,10 +172,11 @@ function initializeMobileNav() {
         }
     });
 
-    // Show/hide mobile menu button based on screen width
+    // Simplify toggleMobileMenu function
     function toggleMobileMenu() {
-        mobileMenuBtn.style.display = window.innerWidth <= 768 ? 'block' : 'none';
-        if (window.innerWidth > 768) {
+        const isMobile = window.innerWidth <= 768;
+        mobileMenuBtn.style.display = isMobile ? 'block' : 'none';
+        if (!isMobile) {
             navList.classList.remove('show');
         }
     }
@@ -289,10 +290,10 @@ function initializeNetworkAnimation() {
     const isMobile = window.innerWidth <= 480;
     const performanceConfig = {
         mobile: {
-            particleCount: 35,          // Increased from 25
-            connectionDistance: 80,      // Increased from 60
+            particleCount: 50,          // Increased from 35
+            connectionDistance: 100,    // Increased from 80
             frameRate: 30,
-            particleSize: 2             // Increased from 1.5
+            particleSize: 3             // Increased from 2
         },
         desktop: {
             particleCount: 120,         // Increased from 100
