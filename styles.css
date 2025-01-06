@@ -448,6 +448,7 @@ nav ul li a i {
 }
 
 @media (max-width: 480px) {
+    /* Base settings */
     html {
         font-size: 14px;
     }
@@ -457,25 +458,30 @@ nav ul li a i {
         width: 100vw;
     }
 
-    .container, section {
-        width: 100%;
-        max-width: 100%;
-        padding: 10px;
+    /* Global spacing */
+    section {
+        padding: 40px 12px;
+        gap: 1.5rem;
+        min-height: auto;
+    }
+
+    .container {
+        padding: 8px;
+        width: 92%;
+        margin: 0 auto;
         overflow-x: hidden;
     }
 
+    /* Header */
     header {
-        height: 50px;
-        padding: 0 15px;
+        height: 56px;
+        padding: 0 12px;
     }
 
-    .logo {
-        font-size: 1.2em;
-    }
-
+    /* Hero section */
     .hero-content {
-        scale: 0.9;
-        padding: 20px 10px;
+        padding: 60px 12px 30px;
+        gap: 1.5rem;
     }
 
     .profile-container {
@@ -483,87 +489,89 @@ nav ul li a i {
         height: 140px;
     }
 
-    .card-section {
-        padding: 30px 10px;
+    /* About section */
+    .about-content {
+        padding: 0;
+        gap: 1.2rem;
     }
 
-    .card-section h2 {
-        font-size: 2.2em;
-        margin-bottom: 1.5rem;
+    .about-text, 
+    .resume-container {
+        padding: 1.2rem;
+        min-height: unset;
+    }
+
+    /* Projects section */
+    .projects-container {
+        padding: 0;
+        margin: 1rem 0;
+        height: 500px;
+        min-height: auto;
     }
 
     .project-card {
-        width: 260px;
-        height: 340px;
-        scale: 0.95;
+        width: 280px;
+        height: 380px;
+        padding: 0;
     }
 
-    .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-        padding: 0.75rem;
-        width: 85%;
-        max-width: 320px;
-        margin: 0 auto;
+    .project-header {
+        padding: 0.8rem;
     }
 
-    .skill-card {
-        aspect-ratio: 1;
-        height: auto;
-        padding: 0.6rem;
-        gap: 0.4rem;
-        border-radius: 10px;
+    .project-content {
+        padding: 0.8rem;
     }
 
-    .skill-card i,
-    .skill-card .skill-icon {
-        width: 40px;
-        height: 40px;
-        margin: 0 0 0.3rem 0;
-        font-size: 1.8rem;
-    }
-
-    .skill-card span {
-        font-size: 0.95rem;
-        font-weight: 500;
-        margin-top: -0.2rem;
+    .project-links {
+        padding: 0.8rem;
+        gap: 0.5rem;
     }
 
     .slider-btn {
         width: 36px;
         height: 36px;
         position: fixed;
-        background: rgba(17, 34, 64, 0.95);
-        backdrop-filter: blur(4px);
-        border: 1px solid rgba(100, 255, 218, 0.2);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        top: 50%;
+        z-index: 100;
     }
 
-    .slider-btn.prev-btn {
-        left: 0;
-        border-radius: 0 8px 8px 0;
+    /* Skills section */
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+        padding: 0.6rem;
+        width: 85%;
+        max-width: 320px;
     }
 
-    .slider-btn.next-btn {
-        right: 0;
-        border-radius: 8px 0 0 8px;
+    .skill-card {
+        padding: 0.8rem;
+        gap: 0.4rem;
+        min-height: unset;
+        aspect-ratio: 1;
     }
 
-    .project-links {
-        padding: 0.5rem;
-        gap: 0.5rem;
+    /* Contact section */
+    .contact-container {
+        padding: 1rem 0.8rem;
+    }
+
+    .social-row {
+        gap: 0.8rem;
     }
 
     .social-btn {
+        padding: 0 12px;
         width: 130px;
         height: 40px;
-        font-size: 0.9rem;
+    }
+
+    /* Footer */
+    footer {
+        padding: 20px 12px;
     }
 }
 
-/* Small Height Devices */
 @media (max-height: 600px) {
     .profile-container {
         width: 120px;
@@ -608,8 +616,10 @@ nav ul li a i {
     flex: 0 0 400px;
     height: 500px; /* Increased height for better content spacing */
     min-width: 400px;
-    background: rgba(17, 34, 64, 0.95);
-    border: 2px solid rgba(100, 255, 218, 0.08);
+    background: rgba(17, 34, 64, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(100, 255, 218, 0.1);
     border-radius: 16px;
     padding: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -617,11 +627,16 @@ nav ul li a i {
     display: flex;
     flex-direction: column;
     z-index: 1;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
 }
 
 .projects .project-card:hover {
-    transform: translateY(-10px);
-    border-color: #64ffda;
+    background: rgba(17, 34, 64, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-color: rgba(100, 255, 218, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(100, 255, 218, 0.1);
+    transform: translateY(-5px);
 }
 
 .project-image-container {
@@ -644,6 +659,10 @@ nav ul li a i {
 
 .project-header {
     padding: 1.5rem 1.5rem 0.75rem;
+    background: rgba(17, 34, 64, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
 }
 
 .project-header h3 {
@@ -658,6 +677,9 @@ nav ul li a i {
     flex: 1;
     display: flex;
     flex-direction: column;
+    background: rgba(17, 34, 64, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .project-content p {
@@ -694,6 +716,9 @@ nav ul li a i {
     gap: 1rem;
     margin-top: auto;
     border-top: 1px solid rgba(100, 255, 218, 0.1);
+    background: rgba(17, 34, 64, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .project-links .btn {
@@ -1694,10 +1719,6 @@ section#projects h2 {
         background: rgba(100, 255, 218, 0.1);
     }
 
-    .slider-btn i {
-        font-size: 1rem;
-    }
-
     /* Optimized Skill Cards for Mobile */
     .skills-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1707,9 +1728,8 @@ section#projects h2 {
 
     .skill-card {
         min-height: 60px;
-        padding: 0.4rem;
-        width: calc(100% - 4px);
-        margin: 0;
+        padding: 8px;
+        scale: 0.95;
     }
 
     .skill-card i {
@@ -2051,7 +2071,6 @@ section#projects h2 {
         justify-content: center;
     }
 
-    /* Convert Skills Grid to Social Card Style */
     .skills-grid {
         display: flex;
         flex-direction: column;
@@ -2092,8 +2111,6 @@ section#projects h2 {
 }
 
 @media (max-width: 480px) {
-    /* ...existing mobile styles... */
-
     /* Convert Skills Grid to Social Card Style */
     .skills-grid {
         display: flex;
@@ -2144,7 +2161,6 @@ section#projects h2 {
 }
 
 @media (max-width: 480px) {
-    /* ...existing mobile styles... */
 
     .about-text {
         text-align: left; /* Changed from center to left */
@@ -2156,8 +2172,6 @@ section#projects h2 {
         padding-left: 1rem; /* Add padding for the border */
         text-align: left;
     }
-
-    /* ...existing mobile styles... */
 }
 
 @media (max-width: 480px) {
@@ -2224,11 +2238,7 @@ section#projects h2 {
     }
 }
 
-/* ...existing code... */
-
 @media (max-width: 480px) {
-    /* ...existing mobile styles... */
-
     /* Mobile Navigation Button Enhancements */
     .mobile-menu-btn {
         width: 40px;
@@ -2271,8 +2281,6 @@ section#projects h2 {
         color: #64ffda;
     }
 }
-
-/* ...existing code... */
 
 @media (max-width: 480px) {
     /* ...existing mobile styles... */
@@ -2318,8 +2326,6 @@ section#projects h2 {
     /* ...existing mobile styles... */
 }
 
-/* ...existing code... */
-
 @media (max-width: 480px) {
     /* ...existing mobile styles... */
     .skills-grid {
@@ -2358,6 +2364,97 @@ section#projects h2 {
         height: 44px;
         margin-bottom: 0.2rem;
     }
+}
+
+/* ...existing code... */
+
+@media (max-width: 480px) {
     /* ...existing mobile styles... */
+    
+    /* Global spacing adjustments */
+    section {
+        padding: 40px 12px;
+        gap: 1.5rem;
+    }
+
+    .container {
+        padding: 8px;
+        width: 92%;
+    }
+
+    /* Header adjustments */
+    header {
+        padding: 0 12px;
+        height: 56px;
+    }
+
+    /* Hero section spacing */
+    .hero-content {
+        padding: 60px 12px 30px;
+        gap: 1.5rem;
+    }
+
+    /* About section spacing */
+    .about-content {
+        padding: 0;
+        gap: 1.2rem;
+    }
+
+    .about-text, 
+    .resume-container {
+        padding: 1.2rem;
+    }
+
+    /* Projects section spacing */
+    .projects-container {
+        padding: 0;
+        margin: 1rem 0;
+    }
+
+    .project-card {
+        padding: 0;
+    }
+
+    .project-header {
+        padding: 0.8rem;
+    }
+
+    .project-content {
+        padding: 0.8rem;
+    }
+
+    .project-links {
+        padding: 0.8rem;
+        gap: 0.5rem;
+    }
+
+    /* Skills section spacing */
+    .skills-grid {
+        padding: 0.6rem;
+        gap: 0.6rem;
+    }
+
+    .skill-card {
+        padding: 0.8rem;
+        gap: 0.4rem;
+    }
+
+    /* Contact section spacing */
+    .contact-container {
+        padding: 1rem 0.8rem;
+    }
+
+    .social-row {
+        gap: 0.8rem;
+    }
+
+    .social-btn {
+        padding: 0 12px;
+    }
+
+    /* Footer spacing */
+    footer {
+        padding: 20px 12px;
+    }
 }
 /* ...existing code... */

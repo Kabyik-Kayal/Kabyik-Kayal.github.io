@@ -93,13 +93,14 @@ function initializeSkillBars() {
     const skills = {
         'Python': 90,
         'Machine Learning': 85,
+        'MLOps': 83,
         'Data Analysis': 88,
         'Deep Learning': 80,
         'SQL': 85,
-        'Data Visualization': 87,
+        'MLFlow': 82,        // Replaced 'Data Visualization' with 'MLFlow'
         'PowerBI': 85,
-        'HTML': 88,        // Added HTML skill
-        'CSS': 85         // Added CSS skill
+        'HTML': 88,       
+        'CSS': 85         
     };
 
     const skillsContainer = document.querySelector('.skills-grid');
@@ -108,7 +109,7 @@ function initializeSkillBars() {
             const skillCard = document.createElement('div');
             skillCard.className = 'skill-card';
             skillCard.innerHTML = `
-                ${skill === 'Python' || skill === 'HTML' || skill === 'CSS' ? getSkillIcon(skill) : `<i class="fas ${getSkillIcon(skill)}"></i>`}
+                ${skill === 'Python' || skill === 'HTML' || skill === 'CSS' || skill === 'MLFlow' ? getSkillIcon(skill) : `<i class="fas ${getSkillIcon(skill)}"></i>`}
                 <span>${skill}</span>
                 <div class="skill-level" style="width: ${level}%"></div>
             `;
@@ -128,11 +129,14 @@ function getSkillIcon(skill) {
         'CSS': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="40" height="40" fill="#64ffda" class="skill-icon">
             <path d="M0 32l34.9 395.8L192 480l157.1-52.2L384 32H0zm313.1 80l-4.8 47.3L193 208.6l-.3.1h111.5l-12.8 146.6-98.2 28.7-98.8-29.2-6.4-73.9h48.9l3.2 38.3 52.6 13.3 54.7-15.4 3.7-61.6-166.3-.5v-.1l-.2.1-3.6-46.3L193.1 162l6.5-2.7H76.7L70.9 112h242.2z"/>
         </svg>`,
+        'MLFlow': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="40" height="40" fill="#64ffda" class="skill-icon">
+            <path d="M544 280.9c0-89.17-61.83-165.4-139.6-197.4L352 174.2V49.78C336.6 47.39 321.3 46 305.7 46c-28.11 0-55.11 4.238-80.72 11.88L176 174.2v106.6L123.8 303.7c-5.867 2.531-11.5 5.445-16.89 8.672L96 318.9v93.14C96 493.5 158.5 556 240 556s144-62.5 144-144V318.9l-10.89-6.555c-5.393-3.227-11.02-6.141-16.89-8.672L304 280.9V174.2l52.4-116.7C429.2 89.88 480 178.3 480 280.9v1.568c-3.01-.3145-6.197-.5703-9.316-.5703c-35.2 0-63.1 28.8-63.1 64s28.8 63.1 63.1 63.1s63.1-28.8 63.1-63.1c0-1.26-.3867-2.434-.5006-3.674C541.1 325.6 544 303.5 544 280.9zM287.1 510.9c-70.59 0-127.1-57.41-127.1-127.1v-79.1l9.697 4.195c12.65 5.469 25.89 9.043 39.4 10.84l14.29 1.904v62.16c0 35.2 28.8 63.1 63.1 63.1s63.1-28.8 63.1-63.1V321.7l14.29-1.904c13.5-1.801 26.75-5.375 39.4-10.84l9.697-4.195v79.1C415.1 453.5 358.6 510.9 287.1 510.9z"/>
+        </svg>`,
         'Machine Learning': 'fa-brain',
+        'MLOps': 'fa-gears',
         'Data Analysis': 'fa-chart-line',
         'Deep Learning': 'fa-network-wired',
         'SQL': 'fa-database',
-        'Data Visualization': 'fa-chart-bar',
         'PowerBI': 'fa-chart-pie'
     };
     return icons[skill] || 'fa-code';
