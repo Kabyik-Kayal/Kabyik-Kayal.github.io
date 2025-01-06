@@ -72,14 +72,12 @@ window.addEventListener('scroll', updateActiveSection);
 // Initialize site functionality
 document.addEventListener('DOMContentLoaded', () => {
     initializeYear();
-    initializeTheme();
     initializeRole();
-    initializeProjectFilters();
-    initializeSkillBars();
-    initializeMobileNav();
     initializeProjectSlider();
     initializeNetworkAnimation();
     initializeMobileOptimizations();
+    initializeSkillBars();
+    initializeMobileNav();
 });
 
 // Dynamic year in footer
@@ -90,49 +88,6 @@ function initializeYear() {
     }
 }
 
-// Enhanced theme toggle with localStorage persistence
-function initializeTheme() {
-    const themeToggle = document.getElementById('theme-toggle');
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    
-    if (themeToggle) {
-        document.body.classList.toggle('light-mode', savedTheme === 'light');
-        updateThemeButton(themeToggle, savedTheme === 'light');
-        
-        themeToggle.addEventListener('click', () => {
-            const isLightMode = document.body.classList.toggle('light-mode');
-            localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
-            updateThemeButton(themeToggle, isLightMode);
-        });
-    }
-}
-
-// Project filtering system
-function initializeProjectFilters() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projects = document.querySelectorAll('.project-card');
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const filter = button.dataset.filter;
-            filterProjects(projects, filter);
-        });
-    });
-}
-
-// Helper functions
-function updateThemeButton(button, isLight) {
-    button.textContent = isLight ? 'Dark Mode' : 'Light Mode';
-    button.setAttribute('aria-label', `Switch to ${isLight ? 'dark' : 'light'} mode`);
-}
-
-function filterProjects(projects, filter) {
-    projects.forEach(project => {
-        const shouldShow = filter === 'all' || project.dataset.category === filter;
-        project.style.display = shouldShow ? 'block' : 'none';
-    });
-}
-
 // Add skill progress visualization
 function initializeSkillBars() {
     const skills = {
@@ -141,7 +96,10 @@ function initializeSkillBars() {
         'Data Analysis': 88,
         'Deep Learning': 80,
         'SQL': 85,
-        'Data Visualization': 87
+        'Data Visualization': 87,
+        'PowerBI': 85,
+        'HTML': 88,        // Added HTML skill
+        'CSS': 85         // Added CSS skill
     };
 
     const skillsContainer = document.querySelector('.skills-grid');
@@ -150,7 +108,7 @@ function initializeSkillBars() {
             const skillCard = document.createElement('div');
             skillCard.className = 'skill-card';
             skillCard.innerHTML = `
-                <i class="fas ${getSkillIcon(skill)}"></i>
+                ${skill === 'Python' || skill === 'HTML' || skill === 'CSS' ? getSkillIcon(skill) : `<i class="fas ${getSkillIcon(skill)}"></i>`}
                 <span>${skill}</span>
                 <div class="skill-level" style="width: ${level}%"></div>
             `;
@@ -161,12 +119,21 @@ function initializeSkillBars() {
 
 function getSkillIcon(skill) {
     const icons = {
-        'Python': 'fa-python',
+        'Python': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="40" height="40" fill="#64ffda" class="skill-icon">
+            <path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/>
+        </svg>`,
+        'HTML': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="40" height="40" fill="#64ffda" class="skill-icon">
+            <path d="M0 32l34.9 395.8L191.5 480l157.6-52.2L384 32H0zm308.2 127.9H124.4l4.1 49.4h175.6l-13.6 148.4-97.9 27v.3h-1.1l-98.7-27.3-6-75.8h47.7L138 320l53.5 14.5 53.7-14.5 6-62.2H84.3L71.5 112.2h241.1l-4.4 47.7z"/>
+        </svg>`,
+        'CSS': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="40" height="40" fill="#64ffda" class="skill-icon">
+            <path d="M0 32l34.9 395.8L192 480l157.1-52.2L384 32H0zm313.1 80l-4.8 47.3L193 208.6l-.3.1h111.5l-12.8 146.6-98.2 28.7-98.8-29.2-6.4-73.9h48.9l3.2 38.3 52.6 13.3 54.7-15.4 3.7-61.6-166.3-.5v-.1l-.2.1-3.6-46.3L193.1 162l6.5-2.7H76.7L70.9 112h242.2z"/>
+        </svg>`,
         'Machine Learning': 'fa-brain',
         'Data Analysis': 'fa-chart-line',
         'Deep Learning': 'fa-network-wired',
         'SQL': 'fa-database',
-        'Data Visualization': 'fa-chart-bar'
+        'Data Visualization': 'fa-chart-bar',
+        'PowerBI': 'fa-chart-pie'
     };
     return icons[skill] || 'fa-code';
 }
@@ -318,16 +285,16 @@ function initializeNetworkAnimation() {
     const isMobile = window.innerWidth <= 480;
     const performanceConfig = {
         mobile: {
-            particleCount: 25,
-            connectionDistance: 60,
+            particleCount: 35,          // Increased from 25
+            connectionDistance: 80,      // Increased from 60
             frameRate: 30,
-            particleSize: 1.5
+            particleSize: 2             // Increased from 1.5
         },
         desktop: {
-            particleCount: 100,
-            connectionDistance: 100,
+            particleCount: 120,         // Increased from 100
+            connectionDistance: 150,     // Increased from 100
             frameRate: 60,
-            particleSize: 2
+            particleSize: 2.5           // Increased from 2
         }
     };
 
@@ -340,7 +307,7 @@ function initializeNetworkAnimation() {
     let particles = [];
     const particleCount = config.particleCount;
     const connectionDistance = config.connectionDistance;
-    const mouseRadius = 120;
+    const mouseRadius = 150;            // Increased from 120
     let mouse = { x: null, y: null };
 
     function resizeCanvas() {
@@ -414,7 +381,7 @@ function initializeNetworkAnimation() {
 
                 if (distance < connectionDistance) {
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(100, 255, 218, ${(connectionDistance - distance) / connectionDistance * 0.15})`;
+                    ctx.strokeStyle = `rgba(100, 255, 218, ${(connectionDistance - distance) / connectionDistance * 0.2})`; // Increased from 0.15
                     ctx.lineWidth = 1;
                     ctx.moveTo(particle.x, particle.y);
                     ctx.lineTo(otherParticle.x, otherParticle.y);
@@ -441,65 +408,17 @@ function initializeNetworkAnimation() {
     animate();
 }
 
+// Consolidate mobile optimizations
 function initializeMobileOptimizations() {
     if (window.innerWidth <= 480) {
-        // Prevent zoom on iOS
-        document.addEventListener('gesturestart', function(e) {
-            e.preventDefault();
-        });
-
-        // Fix 100vh issue on mobile
+        document.addEventListener('gesturestart', (e) => e.preventDefault());
         const vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-        // Adjust scroll behavior
         document.body.style.overscrollBehaviorY = 'none';
-
-        // Wrap skill cards in rows
-        const skillsGrid = document.querySelector('.skills-grid');
-        if (skillsGrid) {
-            const skillCards = Array.from(skillsGrid.querySelectorAll('.skill-card'));
-            skillsGrid.innerHTML = '';
-            
-            for (let i = 0; i < skillCards.length; i += 2) {
-                const row = document.createElement('div');
-                row.className = 'skills-grid-row';
-                
-                // Add first card
-                row.appendChild(skillCards[i]);
-                
-                // Add second card if it exists
-                if (skillCards[i + 1]) {
-                    row.appendChild(skillCards[i + 1]);
-                } else {
-                    // If odd number of cards, add placeholder to maintain layout
-                    const placeholder = document.createElement('div');
-                    placeholder.className = 'skill-card placeholder';
-                    placeholder.style.visibility = 'hidden';
-                    row.appendChild(placeholder);
-                }
-                
-                skillsGrid.appendChild(row);
-            }
-        }
     }
 }
 
-// Add resize handler to manage skill cards layout
-window.addEventListener('resize', () => {
-    if (window.innerWidth <= 480) {
-        initializeMobileOptimizations();
-    } else {
-        // Reset skills grid layout for desktop
-        const skillsGrid = document.querySelector('.skills-grid');
-        if (skillsGrid) {
-            const skillCards = Array.from(document.querySelectorAll('.skill-card'));
-            skillsGrid.innerHTML = '';
-            skillCards.forEach(card => skillsGrid.appendChild(card));
-        }
-    }
-});
-
+// Remove unused event listeners and keep only essential ones
 window.addEventListener('resize', () => {
     if (window.innerWidth <= 480) {
         const vh = window.innerHeight * 0.01;

@@ -13,7 +13,7 @@
     <canvas id="network-bg"></canvas>
     <script src="script.js"></script>
     <!-- Header Section -->
-    <header class="glass-nav">
+    <header>
         <nav>
             <div class="logo"><span class="k-left">K</span><span class="k-right">K</span></div>
             <ul>
@@ -26,9 +26,9 @@
         </nav>
     </header>
 
-    <main class="snap-container">
+    <main>
         <!-- Hero Section -->
-        <section id="hero" class="parallax">
+        <section id="hero">
             <div class="hero-content">
                 <div class="profile-container">
                     <img src="assets/portfolio.jpg" alt="Kabyik" class="profile-image">
@@ -214,32 +214,7 @@
         <!-- Skills Section -->
         <section id="skills" class="card-section">
             <h2><i class="fas fa-laptop-code"></i> Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fab fa-python"></i>
-                    <span>Python</span>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-brain"></i>
-                    <span>Machine Learning</span>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>Data Visualization</span>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-database"></i>
-                    <span>SQL</span>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-network-wired"></i>
-                    <span>Deep Learning</span>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Data Analysis</span>
-                </div>
-            </div>
+            <div class="skills-grid"></div>
         </section>
 
         <!-- Contact Section -->
@@ -274,8 +249,8 @@
     </main>
 
     <!-- Footer -->
-    <footer class="glass-footer">
-        <p>&copy; 2025 Kabyik. All rights reserved.</p>
+    <footer>
+        <p>&copy; <span id="year"></span> Kabyik. All rights reserved.</p>
     </footer>
 </body>
 </html>
