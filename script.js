@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeMobileNav();
     initializeProjectSlider();
     initializeNetworkAnimation();
+    initializeMobileOptimizations();
 });
 
 // Dynamic year in footer
@@ -228,23 +229,23 @@ function initializeProjectSlider() {
         if (isAnimating) return;
         isAnimating = true;
 
-        // Remove all classes
+        const isMobile = window.innerWidth <= 480;
         cards.forEach(card => card.classList.remove('active', 'prev', 'next'));
 
         // Set active card
         cards[currentIndex].classList.add('active');
 
-        // Set prev card
-        const prevIndex = (currentIndex - 1 + cards.length) % cards.length;
-        cards[prevIndex].classList.add('prev');
-
-        // Set next card
-        const nextIndex = (currentIndex + 1) % cards.length;
-        cards[nextIndex].classList.add('next');
+        if (!isMobile) {
+            // Set prev/next cards only on desktop
+            const prevIndex = (currentIndex - 1 + cards.length) % cards.length;
+            const nextIndex = (currentIndex + 1) % cards.length;
+            cards[prevIndex].classList.add('prev');
+            cards[nextIndex].classList.add('next');
+        }
 
         setTimeout(() => {
             isAnimating = false;
-        }, 500);
+        }, isMobile ? 300 : 500);
     }
 
     function nextSlide() {
@@ -271,6 +272,39 @@ function initializeProjectSlider() {
         if (e.key === 'ArrowLeft') prevSlide();
         if (e.key === 'ArrowRight') nextSlide();
     });
+
+    if (window.innerWidth <= 480) {
+        // Reduce animation duration for mobile
+        const transitionDuration = '0.3s';
+        cards.forEach(card => {
+            card.style.transition = `all ${transitionDuration} cubic-bezier(0.4, 0.0, 0.2, 1)`;
+        });
+
+        // Optimize touch handling
+        let touchStartX, touchStartY;
+        
+        slider.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        slider.addEventListener('touchend', e => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = Math.abs(touchEndY - touchStartY);
+            
+            // Only handle horizontal swipes
+            if (Math.abs(deltaX) > 50 && deltaY < 50) {
+                if (deltaX > 0) {
+                    prevSlide();
+                } else {
+                    nextSlide();
+                }
+            }
+        }, { passive: true });
+    }
 }
 
 function initializeRole() {
@@ -281,11 +315,31 @@ function initializeRole() {
 }
 
 function initializeNetworkAnimation() {
+    const isMobile = window.innerWidth <= 480;
+    const performanceConfig = {
+        mobile: {
+            particleCount: 25,
+            connectionDistance: 60,
+            frameRate: 30,
+            particleSize: 1.5
+        },
+        desktop: {
+            particleCount: 100,
+            connectionDistance: 100,
+            frameRate: 60,
+            particleSize: 2
+        }
+    };
+
+    const config = isMobile ? performanceConfig.mobile : performanceConfig.desktop;
+    const frameInterval = 1000 / config.frameRate;
+    let lastFrameTime = 0;
+
     const canvas = document.getElementById('network-bg');
     const ctx = canvas.getContext('2d');
     let particles = [];
-    const particleCount = 100;
-    const connectionDistance = 100;
+    const particleCount = config.particleCount;
+    const connectionDistance = config.connectionDistance;
     const mouseRadius = 120;
     let mouse = { x: null, y: null };
 
@@ -300,7 +354,7 @@ function initializeNetworkAnimation() {
             this.y = Math.random() * canvas.height;
             this.vx = (Math.random() - 0.5) * 0.5;
             this.vy = (Math.random() - 0.5) * 0.5;
-            this.radius = 2;
+            this.radius = config.particleSize;
         }
 
         update() {
@@ -340,7 +394,13 @@ function initializeNetworkAnimation() {
         }
     }
 
-    function animate() {
+    function animate(currentTime) {
+        if (isMobile && currentTime - lastFrameTime < frameInterval) {
+            requestAnimationFrame(animate);
+            return;
+        }
+        
+        lastFrameTime = currentTime;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         particles.forEach(particle => {
@@ -380,3 +440,69 @@ function initializeNetworkAnimation() {
     init();
     animate();
 }
+
+function initializeMobileOptimizations() {
+    if (window.innerWidth <= 480) {
+        // Prevent zoom on iOS
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
+
+        // Fix 100vh issue on mobile
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+        // Adjust scroll behavior
+        document.body.style.overscrollBehaviorY = 'none';
+
+        // Wrap skill cards in rows
+        const skillsGrid = document.querySelector('.skills-grid');
+        if (skillsGrid) {
+            const skillCards = Array.from(skillsGrid.querySelectorAll('.skill-card'));
+            skillsGrid.innerHTML = '';
+            
+            for (let i = 0; i < skillCards.length; i += 2) {
+                const row = document.createElement('div');
+                row.className = 'skills-grid-row';
+                
+                // Add first card
+                row.appendChild(skillCards[i]);
+                
+                // Add second card if it exists
+                if (skillCards[i + 1]) {
+                    row.appendChild(skillCards[i + 1]);
+                } else {
+                    // If odd number of cards, add placeholder to maintain layout
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'skill-card placeholder';
+                    placeholder.style.visibility = 'hidden';
+                    row.appendChild(placeholder);
+                }
+                
+                skillsGrid.appendChild(row);
+            }
+        }
+    }
+}
+
+// Add resize handler to manage skill cards layout
+window.addEventListener('resize', () => {
+    if (window.innerWidth <= 480) {
+        initializeMobileOptimizations();
+    } else {
+        // Reset skills grid layout for desktop
+        const skillsGrid = document.querySelector('.skills-grid');
+        if (skillsGrid) {
+            const skillCards = Array.from(document.querySelectorAll('.skill-card'));
+            skillsGrid.innerHTML = '';
+            skillCards.forEach(card => skillsGrid.appendChild(card));
+        }
+    }
+});
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth <= 480) {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+});
