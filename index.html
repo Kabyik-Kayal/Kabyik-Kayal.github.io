@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabyik Kayal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+</head>
+<body>
+    <canvas id="network-bg"></canvas>
+    <script src="script.js"></script>
+    <!-- Header Section -->
+    <header class="glass-nav">
+        <nav>
+            <div class="logo"><span class="k-left">K</span><span class="k-right">K</span></div>
+            <ul>
+                <li><a href="#hero"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="#about"><i class="fas fa-user"></i>About</a></li>
+                <li><a href="#projects"><i class="fas fa-code"></i>Projects</a></li>
+                <li><a href="#skills"><i class="fas fa-cogs"></i>Skills</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i>Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="snap-container">
+        <!-- Hero Section -->
+        <section id="hero" class="parallax">
+            <div class="hero-content">
+                <div class="profile-container">
+                    <img src="assets/portfolio.jpg" alt="Kabyik" class="profile-image">
+                </div>
+                <div class="hero-text">
+                    <h1>Hi, I'm <span>Kabyik</span></h1>
+                    <p id="role" class="role"></p>
+                </div>
+            </div>
+            <div class="hero-cta">
+                <a href="#projects" class="btn glow-btn">View My Work</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="card-section">
+            <h2><i class="fas fa-user-circle"></i> About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hi there! Welcome to my little corner of the web. I'm passionate about <strong>Data Science</strong>, <strong>Web Development</strong>, and exploring new ideas. My journey has taken me through 3 different schools in West Bengal and currently at <strong>IIT Madras</strong>, where I developed a strong foundation in <strong>Problem-Solving</strong>, <strong>Data Science</strong> and <strong>Computer Science</strong> and continuously improving. I'm also fascinated by Photography, Music, Astronomy and learning different languages. I'm always eager to learn and grow, and I'm excited to share a bit of my world with you here. Feel free to explore! If you are having problem with your data related tasks, don't hesitate to connect.</p>
+                </div>
+                <div class="resume-container">
+                    <div class="resume-download">
+                        <i class="fas fa-file-pdf resume-icon"></i>
+                        <h3>My Resume</h3>
+                        <p>Download my resume to learn more about my experiences.</p>
+                        <a href="assets/resume.pdf" class="download-resume" download>
+                            <i class="fas fa-download"></i>
+                            <span>Download Resume</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="card-section">
+            <h2><i class="fas fa-project-diagram"></i> Projects</h2>
+            <div class="projects-container">
+                <div class="slider-nav">
+                    <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="project1.jpg" alt="AI Image Recognition" class="project-image">
+                        </div>
+                        <div class="project-header">
+                            <h3>AI Image Recognition System</h3>
+                        </div>
+                        <div class="project-content">
+                            <p>Deep learning-based image recognition system capable of identifying objects in real-time with high accuracy.</p>
+                            <div class="project-tech-stack">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">TensorFlow</span>
+                                <span class="tech-tag">OpenCV</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn" title="View Code">
+                                <i class="fab fa-github"></i>
+                                <span>Code</span>
+                            </a>
+                            <a href="#" class="btn" title="Live Demo">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Demo</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="project2.jpg" alt="Analytics Dashboard" class="project-image">
+                        </div>
+                        <div class="project-header">
+                            <h3>Data Analytics Dashboard</h3>
+                        </div>
+                        <div class="project-content">
+                            <p>Interactive dashboard for visualizing complex datasets with real-time filtering and analysis capabilities.</p>
+                            <div class="project-tech-stack">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Streamlit</span>
+                                <span class="tech-tag">Pandas</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn" title="View Code">
+                                <i class="fab fa-github"></i>
+                                <span>Code</span>
+                            </a>
+                            <a href="#" class="btn" title="Live Demo">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Demo</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="project3.jpg" alt="NLP Project" class="project-image">
+                        </div>
+                        <div class="project-header">
+                            <h3>NLP Text Analyzer</h3>
+                        </div>
+                        <div class="project-content">
+                            <p>Natural Language Processing tool for sentiment analysis and text classification using advanced ML models.</p>
+                            <div class="project-tech-stack">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">NLTK</span>
+                                <span class="tech-tag">Scikit-learn</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn" title="View Code">
+                                <i class="fab fa-github"></i>
+                                <span>Code</span>
+                            </a>
+                            <a href="#" class="btn" title="Live Demo">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Demo</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="project4.jpg" alt="Time Series Project" class="project-image">
+                        </div>
+                        <div class="project-header">
+                            <h3>Time Series Forecasting</h3>
+                        </div>
+                        <div class="project-content">
+                            <p>Advanced time series forecasting model for predicting market trends using state-of-the-art algorithms.</p>
+                            <div class="project-tech-stack">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Prophet</span>
+                                <span class="tech-tag">PyTorch</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn" title="View Code">
+                                <i class="fab fa-github"></i>
+                                <span>Code</span>
+                            </a>
+                            <a href="#" class="btn" title="Live Demo">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Demo</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="project5.jpg" alt="Recommendation System" class="project-image">
+                        </div>
+                        <div class="project-header">
+                            <h3>Recommendation Engine</h3>
+                        </div>
+                        <div class="project-content">
+                            <p>Collaborative filtering-based recommendation system for personalized content delivery.</p>
+                            <div class="project-tech-stack">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Spark</span>
+                                <span class="tech-tag">AWS</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn" title="View Code">
+                                <i class="fab fa-github"></i>
+                                <span>Code</span>
+                            </a>
+                            <a href="#" class="btn" title="Live Demo">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Demo</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-dots"></div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="card-section">
+            <h2><i class="fas fa-laptop-code"></i> Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fab fa-python"></i>
+                    <span>Python</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-brain"></i>
+                    <span>Machine Learning</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Data Visualization</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <span>SQL</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Deep Learning</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Data Analysis</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="card-section">
+            <h2><i class="fas fa-envelope"></i> Contact Me</h2>
+            <div class="contact-container">
+                <div class="social-links">
+                    <div class="social-row">
+                        <a href="#" class="social-btn" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="#" class="social-btn" title="GitHub">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                    <div class="social-row">
+                        <a href="#" class="social-btn" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                        <a href="mailto:your.email@domain.com" class="social-btn" title="Email">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-footer">
+        <p>&copy; 2025 Kabyik. All rights reserved.</p>
+    </footer>
+</body>
+</html>
