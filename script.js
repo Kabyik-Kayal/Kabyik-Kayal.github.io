@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeProjectSlider();
     initializeNetworkAnimation();
     initializeMobileOptimizations();
-    initializeSkillBars();
+    // initializeSkillBars(); // Commented out as it's no longer needed
     initializeMobileNav();
     applyMobileSkillCards();
 });
@@ -90,33 +90,33 @@ function initializeYear() {
 }
 
 // Add skill progress visualization
-function initializeSkillBars() {
-    const skills = {
-        'Python': 90,
-        'Machine Learning': 85,
-        'MLOps': 83,
-        'Data Analysis': 88,
-        'Deep Learning': 80,
-        'SQL': 85,
-        'MLFlow': 82,        // Replaced 'Data Visualization' with 'MLFlow'
-        'PowerBI': 85,
-        'HTML': 88,       
-        'CSS': 85         
-    };
+// function initializeSkillBars() {
+//     const skills = {
+//         'Python': 90,
+//         'Machine Learning': 85,
+//         'MLOps': 83,
+//         'Data Analysis': 88,
+//         'Deep Learning': 80,
+//         'SQL': 85,
+//         'MLFlow': 82,        // Replaced 'Data Visualization' with 'MLFlow'
+//         'PowerBI': 85,
+//         'HTML': 88,       
+//         'CSS': 85         
+//     };
 
-    const skillsContainer = document.querySelector('.skills-grid');
-    if (skillsContainer) {
-        Object.entries(skills).forEach(([skill, level]) => {
-            const skillCard = document.createElement('div');
-            skillCard.className = 'skill-card';
-            skillCard.innerHTML = `
-                ${['Python', 'HTML', 'CSS', 'MLFlow'].includes(skill) ? getSkillIcon(skill) : `<i class="fas ${getSkillIcon(skill)}"></i>`}
-                <span>${skill}</span>
-            `;
-            skillsContainer.appendChild(skillCard);
-        });
-    }
-}
+//     const skillsContainer = document.querySelector('.skills-grid');
+//     if (skillsContainer) {
+//         Object.entries(skills).forEach(([skill, level]) => {
+//             const skillCard = document.createElement('div');
+//             skillCard.className = 'skill-card';
+//             skillCard.innerHTML = `
+//                 ${['Python', 'HTML', 'CSS', 'MLFlow'].includes(skill) ? getSkillIcon(skill) : `<i class="fas ${getSkillIcon(skill)}"></i>`}
+//                 <span>${skill}</span>
+//             `;
+//             skillsContainer.appendChild(skillCard);
+//         });
+//     }
+// }
 
 function getSkillIcon(skill) {
     const icons = {
