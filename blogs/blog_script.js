@@ -64,26 +64,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeYear();
     initializeMobileOptimizations();
     initializeMobileNav();
-    
-    // Initialize blog pagination
-    changePage(1);
-    
-    // Add hover effects for pagination buttons
-    document.querySelectorAll('.page-number, .nav-btn').forEach(button => {
-        button.addEventListener('mouseover', function() {
-            if (!this.disabled && !this.classList.contains('active')) {
-                this.style.background = 'rgba(100, 255, 218, 0.1)';
-                this.style.borderColor = '#64ffda';
-                this.style.transform = 'translateY(-2px)';
-            }
-        });
-
-        button.addEventListener('mouseout', function() {
-            if (!this.disabled && !this.classList.contains('active')) {
-                this.style.background = 'rgba(17, 34, 64, 0.9)';
-                this.style.borderColor = 'rgba(100, 255, 218, 0.3)';
-                this.style.transform = 'translateY(0)';
-            }
-        });
-    });
 });

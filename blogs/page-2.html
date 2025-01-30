@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabyik Kayal - Blogs</title>
+    <!-- Update CSS links to include both main and blog styles -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="blog_styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+</head>
+<body>
+    <canvas id="network-bg"></canvas>
+    
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <a href="../index.html" class="logo"><span class="k-left">K</span><span class="k-right">K</span></a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul>
+                <li><a href="../index.html#hero"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="../index.html#about"><i class="fas fa-user"></i>About</a></li>
+                <li><a href="../index.html#projects"><i class="fas fa-code"></i>Projects</a></li>
+                <li><a href="#" class="active"><i class="fas fa-blog"></i>Blogs</a></li>
+                <li><a href="../index.html#skills"><i class="fas fa-cogs"></i>Skills</a></li>
+                <li><a href="../index.html#contact"><i class="fas fa-envelope"></i>Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Blog Section -->
+        <section id="blogs" class="card-section">
+            
+            <div class="blogs-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px;">
+                <div style="text-align: center; padding: 2rem;">
+                    <i class="fas fa-clock" style="font-size: 4rem; color: #64ffda; margin-bottom: 1.5rem;"></i>
+                    <h3 style="font-size: 2rem; color: #64ffda; margin-bottom: 1rem;">More Blogs Coming Soon!</h3>
+                    <p style="color: #8892b0; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+                        Stay tuned for more exciting content about Data Science, Machine Learning, and Technology.
+                    </p>
+                </div>
+            </div>
+            <div class="blog-navigation">
+                <a href="page-1.html" class="blog-nav-btn">
+                    <i class="fas fa-arrow-left"></i> Previous Blogs
+                </a>
+                <span></span> <!-- Empty span to maintain space-between -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="year"></span> Kabyik. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../script.js"></script>
+    <script src="blog_script.js"></script>
+</body>
+</html>

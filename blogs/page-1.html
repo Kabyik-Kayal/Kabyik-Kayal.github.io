@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabyik Kayal - Blogs</title>
+    <!-- Update CSS links to include both main and blog styles -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="blog_styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+</head>
+<body>
+    <canvas id="network-bg"></canvas>
+    
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo"><span class="k-left">K</span><span class="k-right">K</span></a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul>
+                <li><a href="index.html#hero"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="index.html#about"><i class="fas fa-user"></i>About</a></li>
+                <li><a href="index.html#projects"><i class="fas fa-code"></i>Projects</a></li>
+                <li><a href="#" class="active"><i class="fas fa-blog"></i>Blogs</a></li>
+                <li><a href="index.html#skills"><i class="fas fa-cogs"></i>Skills</a></li>
+                <li><a href="index.html#contact"><i class="fas fa-envelope"></i>Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Blog Section -->
+        <section id="blogs" class="card-section">
+            <h2><i class="fas fa-blog"></i> My Blogs</h2>
+            
+            <div class="blogs-container">
+                <!-- First 6 blog cards remain the same -->
+                <div class="blog-content" style="flex-direction: column; height: 400px; max-width: 300px; margin: 0 auto;">
+                    <div class="blog-image-container" style="width: 100%; height: 200px;">
+                        <img src="../assets/blog1.jpg" alt="MLOps Blog" class="blog-image" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="blog-text" style="padding: 1rem; flex: 1;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Understanding MLOps With a ZenML Project</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">A comprehensive guide to understand MLOps using ZenML, an open-source MLOps Framework, while creating a Production Grade MLOps Project.</p>
+                        <div class="blog-meta" style="font-size: 0.8rem; margin-bottom: 0.5rem;">
+                            <span><i class="far fa-calendar"></i> Jan 22, 2025</span>
+                            <span><i class="far fa-clock"></i> 13 min read</span>
+                        </div>
+                        <div class="blog-tags" style="margin-bottom: 0.5rem;">
+                            <span class="tech-tag">MLOps</span>
+                            <span class="tech-tag">DataScience</span>
+                        </div>
+                        <a href="https://www.analyticsvidhya.com/blog/2025/01/mlops-with-zenml-project/" class="read-more-btn" style="position: static; display: inline-flex; margin-top: 0.5rem;">
+                            <i class="fas fa-book-reader"></i>
+                            <span>Read Article</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="blog-content" style="flex-direction: column; height: 400px; max-width: 300px; margin: 0 auto;">
+                    <div class="blog-image-container" style="width: 100%; height: 200px;">
+                        <img src="../assets/comingsoon.png" alt="Data Science Blog" class="blog-image" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="blog-text" style="padding: 1rem; flex: 1;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Utilizing Perplexity Pro To The Fullest</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">Learn How to Leverage Perplexity Pro to it's Full Potential. Learn about Pro Search, Spaces, Pages, etc.</p>
+                        <div class="blog-meta" style="font-size: 0.8rem; margin-bottom: 0.5rem;">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 10 min read</span>
+                        </div>
+                        <div class="blog-tags" style="margin-bottom: 0.5rem;">
+                            <span class="tech-tag">Perplexity</span>
+                            <span class="tech-tag">AI Tools</span>
+                        </div>
+                        <a href="#" class="read-more-btn" style="position: static; display: inline-flex; margin-top: 0.5rem;">
+                            <i class="fas fa-book-reader"></i>
+                            <span>Coming Soon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="blog-content" style="flex-direction: column; height: 400px; max-width: 300px; margin: 0 auto;">
+                    <div class="blog-image-container" style="width: 100%; height: 200px;">
+                        <img src="../assets/comingsoon.png" alt="ML Deployment Blog" class="blog-image" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="blog-text" style="padding: 1rem; flex: 1;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Automated EDA with Python Libraries</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">Now Automate The EDA Process with these Python Libraries.</p>
+                        <div class="blog-meta" style="font-size: 0.8rem; margin-bottom: 0.5rem;">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 10 min read</span>
+                        </div>
+                        <div class="blog-tags" style="margin-bottom: 0.5rem;">
+                            <span class="tech-tag">MLOps</span>
+                            <span class="tech-tag">Deployment</span>
+                        </div>
+                        <a href="#" class="read-more-btn" style="position: static; display: inline-flex; margin-top: 0.5rem;">
+                            <i class="fas fa-book-reader"></i>
+                            <span>Coming Soon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="blog-content" style="flex-direction: column; height: 400px; max-width: 300px; margin: 0 auto;">
+                    <div class="blog-image-container" style="width: 100%; height: 200px;">
+                        <img src="../assets/comingsoon.png" alt="AI Ethics Blog" class="blog-image" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="blog-text" style="padding: 1rem; flex: 1;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">AI Ethics and Responsible ML</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">A deep dive into ethical considerations in AI development and deployment.</p>
+                        <div class="blog-meta" style="font-size: 0.8rem; margin-bottom: 0.5rem;">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 12 min read</span>
+                        </div>
+                        <div class="blog-tags" style="margin-bottom: 0.5rem;">
+                            <span class="tech-tag">AI</span>
+                            <span class="tech-tag">Ethics</span>
+                        </div>
+                        <a href="#" class="read-more-btn" style="position: static; display: inline-flex; margin-top: 0.5rem;">
+                            <i class="fas fa-book-reader"></i>
+                            <span>Coming Soon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="blog-content" style="flex-direction: column; height: 400px; max-width: 300px; margin: 0 auto;">
+                    <div class="blog-image-container" style="width: 100%; height: 200px;">
+                        <img src="../assets/comingsoon.png" alt="Data Visualization Blog" class="blog-image" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="blog-text" style="padding: 1rem; flex: 1;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Advanced Data Visualization</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">Mastering data storytelling through effective visualization techniques.</p>
+                        <div class="blog-meta" style="font-size: 0.8rem; margin-bottom: 0.5rem;">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                        </div>
+                        <div class="blog-tags" style="margin-bottom: 0.5rem;">
+                            <span class="tech-tag">Visualization</span>
+                            <span class="tech-tag">PowerBI</span>
+                        </div>
+                        <a href="#" class="read-more-btn" style="position: static; display: inline-flex; margin-top: 0.5rem;">
+                            <i class="fas fa-book-reader"></i>
+                            <span>Coming Soon</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="blog-content" style="flex-direction: column; height: 400px; max-width: 300px; margin: 0 auto;">
+                    <div class="blog-image-container" style="width: 100%; height: 200px;">
+                        <img src="../assets/comingsoon.png" alt="Deep Learning Blog" class="blog-image" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="blog-text" style="padding: 1rem; flex: 1;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Deep Learning Fundamentals</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">Understanding neural networks and their applications in modern AI.</p>
+                        <div class="blog-meta" style="font-size: 0.8rem; margin-bottom: 0.5rem;">
+                            <span><i class="far fa-calendar"></i> Coming Soon</span>
+                            <span><i class="far fa-clock"></i> 15 min read</span>
+                        </div>
+                        <div class="blog-tags" style="margin-bottom: 0.5rem;">
+                            <span class="tech-tag">DeepLearning</span>
+                            <span class="tech-tag">AI</span>
+                        </div>
+                        <a href="#" class="read-more-btn" style="position: static; display: inline-flex; margin-top: 0.5rem;">
+                            <i class="fas fa-book-reader"></i>
+                            <span>Coming Soon</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-navigation">
+                <span></span> <!-- Empty span to maintain space-between -->
+                <a href="page-2.html" class="blog-nav-btn">
+                    More Blogs <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="year"></span> Kabyik. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../script.js"></script>
+    <script src="blog_script.js"></script>
+</body>
+</html>

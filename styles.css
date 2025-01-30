@@ -2811,3 +2811,34 @@ section#projects h2 {
 }
 
 /* ...existing code... */
+
+/* ...existing code... */
+
+.view-all-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 1rem 2.5rem;
+    margin-top: 2rem;
+    background: rgba(17, 34, 64, 0.9);
+    border: 1px solid rgba(100, 255, 218, 0.3);
+    border-radius: 8px;
+    color: #64ffda;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+    background: rgba(100, 255, 218, 0.1);
+    border-color: #64ffda;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+    .view-all-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+        margin-top: 1.5rem;
+    }
+}
