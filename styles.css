@@ -292,11 +292,6 @@ nav ul li a i {
     margin: 0 auto; /* Added to center the button */
 }
 
-/* Remove old resume viewer styles */
-.resume-viewer {
-    display: none;
-}
-
 /* Skills Section Enhancement */
 .skills-grid {
     display: grid;
@@ -1629,10 +1624,6 @@ section#projects h2 {
 
     .about-text, .resume-container {
         width: 100%;
-    }
-
-    .resume-viewer {
-        height: 300px;
     }
 }
 
