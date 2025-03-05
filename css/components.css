@@ -1,0 +1,48 @@
+/* components.css */
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.card-section {
+    padding: 0 20px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-section h2 {
+    font-size: 4.2em;
+    margin-bottom: 3rem;
+    background: linear-gradient(45deg, #64ffda, #00b4d8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    padding-bottom: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.card-section h2 i {
+    font-size: 0.7em;
+    margin-right: 0.8rem;
+    vertical-align: middle;
+}
+
+.card-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(to right, #64ffda, #00b4d8);
+    border-radius: 3px;
+}

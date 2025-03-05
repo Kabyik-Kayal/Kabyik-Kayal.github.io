@@ -1,0 +1,20 @@
+/* footer.css */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    background: #112240;
+    color: #8892b0;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+footer a {
+    color: #64ffda;
+}
+
+footer a:hover {
+    color: #00b4d8;
+}

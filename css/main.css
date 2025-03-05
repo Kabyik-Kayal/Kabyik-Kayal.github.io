@@ -1,0 +1,13 @@
+/* main.css */
+@import 'scrolling.css';
+@import 'base.css';
+@import 'header.css';
+@import 'hero.css';
+@import 'about.css';
+@import 'skills.css';
+@import 'projects.css';
+@import 'blog.css';
+@import 'contact.css';
+@import 'footer.css';
+@import 'components.css';
+@import 'responsive.css';
