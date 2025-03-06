@@ -381,6 +381,24 @@ section {
         max-width: 100%;
     }
 
+    /* Section Headers - Reduced size for mobile */
+    .card-section h2 {
+        font-size: 2.8em; /* Reduced from 4.2em */
+        margin-bottom: 2rem; /* Reduced from 3rem */
+        padding-bottom: 1rem; /* Reduced from 1.5rem */
+        letter-spacing: -0.5px; /* Adjusted for smaller size */
+    }
+    
+    .card-section h2::after {
+        width: 80px; /* Reduced from 120px */
+        height: 3px; /* Reduced from 4px */
+    }
+
+    .card-section h2 i {
+        font-size: 0.8em; /* Adjusted icon size */
+        margin-right: 0.6rem; /* Reduced from 0.8rem */
+    }
+
     /* Footer */
     footer {
         padding: 20px 12px;
