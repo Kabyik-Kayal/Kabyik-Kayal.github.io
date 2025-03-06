@@ -383,7 +383,7 @@ section {
 
     /* Section Headers - Reduced size for mobile */
     .card-section h2 {
-        font-size: 2.8em; /* Reduced from 4.2em */
+        font-size: 2.7em; /* Reduced from 4.2em */
         margin-bottom: 2rem; /* Reduced from 3rem */
         padding-bottom: 1rem; /* Reduced from 1.5rem */
         letter-spacing: -0.5px; /* Adjusted for smaller size */

@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Global event listeners
-window.addEventListener('resize', () => {
+window.addEventListener('load', () => {
     if (window.innerWidth <= 480) {
         const vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
