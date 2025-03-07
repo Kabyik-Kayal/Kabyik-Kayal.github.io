@@ -6,13 +6,17 @@ export function initializeNetworkAnimation() {
             particleCount: 50,
             connectionDistance: 100,
             frameRate: 30,
-            particleSize: 3
+            particleSize: 3,
+            glow: false
         },
         desktop: {
             particleCount: 120,
             connectionDistance: 150,
             frameRate: 60,
-            particleSize: 2.5
+            particleSize: 2.5,
+            glow: true,
+            glowSize: 5,
+            glowAlpha: 0.6
         }
     };
 
@@ -37,8 +41,8 @@ export function initializeNetworkAnimation() {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.vx = (Math.random() - 0.5) * 0.5;
-            this.vy = (Math.random() - 0.5) * 0.5;
+            this.vx = (Math.random() - 0.5) * (isMobile ? 0.5 : 0.3);
+            this.vy = (Math.random() - 0.5) * (isMobile ? 0.5 : 0.3);
             this.radius = config.particleSize;
         }
 
@@ -64,6 +68,24 @@ export function initializeNetworkAnimation() {
         }
 
         draw() {
+            if (config.glow) {
+                // Create glow effect with shadow
+                ctx.shadowBlur = config.glowSize;
+                ctx.shadowColor = '#64ffda';
+                ctx.globalAlpha = config.glowAlpha;
+                
+                // Draw larger glowing circle
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius * 1.5, 0, Math.PI * 2);
+                ctx.fillStyle = '#64ffda';
+                ctx.fill();
+                
+                // Reset shadow and alpha for main particle
+                ctx.shadowBlur = 0;
+                ctx.globalAlpha = 1;
+            }
+            
+            // Draw the main particle
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
             ctx.fillStyle = '#64ffda';
@@ -86,6 +108,10 @@ export function initializeNetworkAnimation() {
         
         lastFrameTime = currentTime;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Reset shadow for performance when drawing connections
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
 
         particles.forEach(particle => {
             particle.update();

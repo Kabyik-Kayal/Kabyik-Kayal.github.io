@@ -53,27 +53,27 @@
 }
 
 .social-btn {
-    width: 160px;
-    height: 50px;
-    border-radius: 8px;
+    width: 200px;  /* Increased from 160px */
+    height: 60px;  /* Increased from 50px */
+    border-radius: 10px;  /* Slightly increased for better proportion */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;  /* Increased from 10px */
     background: rgba(17, 34, 64, 0.8);
     border: 1px solid rgba(100, 255, 218, 0.1);
-    padding: 0 20px;
+    padding: 0 25px;  /* Increased from 20px */
     transition: all 0.3s ease;
 }
 
 .social-btn i {
-    font-size: 1.2rem;
+    font-size: 1.4rem;  /* Increased from 1.2rem */
     color: #64ffda;
 }
 
 .social-btn span {
     color: #ccd6f6;
-    font-size: 1rem;
+    font-size: 1.2rem;  /* Increased from 1rem */
     font-weight: 500;
 }
 

@@ -19,7 +19,15 @@ section {
 .card-section h2 {
     font-size: 4.2em;
     margin-bottom: 3rem;
-    background: linear-gradient(45deg, #64ffda, #00b4d8);
+    background: linear-gradient(
+        to right,
+        #64ffda,
+        #00b4d8,
+        #64ffda,
+        #00b4d8,
+        #64ffda
+    );
+    background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -27,6 +35,38 @@ section {
     padding-bottom: 1.5rem;
     font-weight: 800;
     letter-spacing: -1px;
+    animation: gradient-shift 5s ease-in-out infinite alternate;
+    text-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card-section h2:hover {
+    animation-play-state: paused;
+    text-shadow: 0 0 30px rgba(100, 255, 218, 0.2);
+    transform: translateY(-2px);
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes text-glow {
+    from {
+        text-shadow: 0 0 20px rgba(100, 255, 218, 0.1),
+                     0 0 40px rgba(0, 180, 216, 0.1);
+    }
+    to {
+        text-shadow: 0 0 30px rgba(100, 255, 218, 0.2),
+                     0 0 50px rgba(0, 180, 216, 0.2);
+    }
 }
 
 .card-section h2 i {
@@ -43,6 +83,30 @@ section {
     transform: translateX(-50%);
     width: 120px;
     height: 4px;
-    background: linear-gradient(to right, #64ffda, #00b4d8);
+    background: linear-gradient(
+        to right,
+        #64ffda,
+        #00b4d8,
+        #64ffda,
+        #00b4d8
+    );
+    background-size: 200% 100%;
     border-radius: 3px;
+    animation: line-shift 6s ease infinite;
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+}
+
+@keyframes line-shift {
+    0% {
+        background-position: 100% 0%;
+        width: 100px;
+    }
+    50% {
+        background-position: 0% 0%;
+        width: 140px;
+    }
+    100% {
+        background-position: 100% 0%;
+        width: 100px;
+    }
 }

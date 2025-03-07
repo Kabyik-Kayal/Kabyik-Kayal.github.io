@@ -101,14 +101,46 @@ nav ul li a i {
     background: transparent;
     border: 1px solid rgba(100, 255, 218, 0.3);
     color: #64ffda;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1001;
 }
 
-.mobile-menu-btn:hover {
+.mobile-menu-btn i {
+    font-size: 1.2rem;
+    pointer-events: none; /* Prevents icon from intercepting clicks */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.mobile-menu-btn:hover,
+.mobile-menu-btn:active {
     background: rgba(100, 255, 218, 0.1);
     border-color: #64ffda;
+}
+
+/* Ensure touch target is large enough on mobile */
+@media (max-width: 968px) {
+    .mobile-menu-btn {
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-menu-btn {
+        width: 40px;
+        height: 40px;
+        /* Add tap highlight color for better mobile feedback */
+        -webkit-tap-highlight-color: rgba(100, 255, 218, 0.2);
+    }
 }
