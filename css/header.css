@@ -134,6 +134,50 @@ nav ul li a i {
     .mobile-menu-btn {
         display: flex;
     }
+
+    nav ul {
+        position: absolute;
+        top: -250px;
+        right: 0;
+        background: rgba(1, 12, 29, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        width: 100px;
+        padding: 10px 0;
+        border-radius: 0 0 0 10px;
+        transform: translateY(0);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease, top 0.3s ease;
+        border: 1px solid rgba(100, 255, 218, 0.1);
+        box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+        transform-origin: top right;
+        text-align: right;
+    }
+
+    nav ul.show {
+        top: 80px;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 8px 20px; /* Decreased from 12px 25px */
+        text-align: right; /* Right align text */
+        font-size: 0.9rem; /* Added smaller font size */
+    }
+
+    /* Adjust the underline animation for right-aligned menu */
+    nav ul li a::after {
+        left: auto;
+        right: 0;
+        transform-origin: right;
+    }
 }
 
 @media (max-width: 480px) {

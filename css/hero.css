@@ -27,6 +27,7 @@ section#hero {
 .hero-text {
     text-align: left;
     max-width: 600px;
+    perspective: 1000px;
 }
 
 .hero-text h1 {
@@ -37,6 +38,13 @@ section#hero {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+/* Removed the gradient background as it will be applied by fluid-text class */
+.hero-text h1.fluid-text {
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero-text h1 span {
