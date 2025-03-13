@@ -108,8 +108,8 @@ section#hero {
 .hero-cta {
     position: absolute;
     bottom: 5rem; /* Increased distance from bottom */
-    left: 50%;    /* Center horizontally */
-    transform: translateX(-50%); /* Center alignment fix */
+    left: 14%;    /* Center horizontally */
+    transform: translateX(-40%); /* Center alignment fix */
     width: auto;
     text-align: center;
 }
