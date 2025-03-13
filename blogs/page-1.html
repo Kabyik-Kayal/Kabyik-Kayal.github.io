@@ -4,12 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kabyik Kayal - Blogs</title>
-    <!-- Update CSS links to include both main and blog styles -->
+    <meta name="description" content="Technical blogs by Kabyik Kayal about MLOps, Data Science, AI, and more.">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../css/main.css" as="style">
+    <link rel="preload" href="blog_styles.css" as="style">
+    
+    <!-- CSS links -->
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="blog_styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+    
+    <!-- DNS prefetching -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 </head>
 <body>
     <canvas id="network-bg"></canvas>
@@ -186,7 +198,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="../script.js"></script>
-    <script src="blog_script.js"></script>
+    <script src="../script.js" defer></script>
+    <script src="blog_script.js" defer></script>
 </body>
 </html>
