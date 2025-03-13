@@ -1,6 +1,6 @@
 // navigation.js
 export function initializeNavigation() {
-    // Scrolling without animation
+    // Scrolling with smooth animation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -13,7 +13,8 @@ export function initializeNavigation() {
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
                 window.scrollTo({
-                    top: offsetPosition
+                    top: offsetPosition,
+                    behavior: 'smooth'
                 });
             }
         });

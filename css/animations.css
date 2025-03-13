@@ -1,0 +1,334 @@
+/* ===== Scroll Animation Classes ===== */
+
+/* Base animation classes */
+.fade-in, .slide-up, .slide-right, .slide-left, .scale-in {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+/* Prevent animations on page load - they'll be triggered by JavaScript */
+.preload * {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+}
+
+/* Animation states */
+.fade-in.animate {
+    opacity: 1;
+}
+
+.slide-up {
+    transform: translateY(60px);
+}
+
+.slide-up.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-right {
+    transform: translateX(-60px);
+}
+
+.slide-right.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-left {
+    transform: translateX(60px);
+}
+
+.slide-left.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scale-in {
+    transform: scale(0.85);
+}
+
+.scale-in.animate {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Staggered container styling */
+.staggered-container > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.staggered-container > *.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Parallax effect */
+.parallax {
+    will-change: transform;
+    transition: transform 0.2s linear;
+}
+
+/* Fancy gradient text animation */
+.gradient-text {
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 8s ease infinite alternate;
+    background-image: linear-gradient(to right, #64ffda, #00b4d8, #64ffda, #00b4d8);
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Special animations for hero section */
+.hero .hero-text h1,
+.hero .hero-text .role,
+.hero .hero-text p {
+    opacity: 0;
+    animation: fadeSlideUp 1.2s forwards;
+}
+
+.hero .hero-text h1 {
+    animation-delay: 0.5s;
+}
+
+.hero .hero-text .role {
+    animation-delay: 1s;
+}
+
+.hero .hero-text p {
+    animation-delay: 1.5s;
+}
+
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    30% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide in animation for cards */
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(70px);
+        opacity: 0;
+    }
+    30% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Enhanced pulse animation for CTA buttons */
+.pulse-animation {
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4);
+    }
+    30% {
+        box-shadow: 0 0 0 15px rgba(100, 255, 218, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
+    }
+}
+
+/* Animated underline animation for links */
+.animated-link {
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.animated-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #64ffda, #00b4d8);
+    transition: width 0.5s ease;
+}
+
+.animated-link:hover::after {
+    width: 100%;
+}
+
+/* New spotlight hover effect for cards */
+.spotlight-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.spotlight-effect::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    opacity: 0;
+    transition: opacity 1.2s;
+    pointer-events: none;
+    transform: translate(-100%, -100%);
+}
+
+.spotlight-effect:hover::before {
+    opacity: 1;
+    transform: translate(0, 0);
+    animation: spotlightMove 2s infinite alternate;
+}
+
+@keyframes spotlightMove {
+    0% {
+        transform: translate(-30%, -30%);
+    }
+    100% {
+        transform: translate(-70%, -70%);
+    }
+}
+
+/* Typing cursor animation enhancement */
+.typed-cursor {
+    animation: typingBlink 1.2s infinite !important; 
+}
+
+@keyframes typingBlink {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* 3D tilt effect for cards */
+.tilt-effect {
+    transition: transform 0.8s ease;
+    transform-style: preserve-3d;
+}
+
+.tilt-effect:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(10deg) scale3d(1.03, 1.03, 1.03);
+}
+
+/* Floating animation for profile image */
+.floating-animation {
+    animation: floating 6s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Shimmer effect for gradient borders */
+.shimmer-border {
+    position: relative;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.shimmer-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #64ffda, #00b4d8, #64ffda, #00b4d8);
+    background-size: 400% 400%;
+    z-index: -1;
+    border-radius: inherit;
+    animation: shimmerAnimation 4s ease infinite;
+}
+
+@keyframes shimmerAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .fade-in, .slide-up, .slide-right, .slide-left, .scale-in,
+    .staggered-container > *, .parallax, .hero .hero-text h1,
+    .hero .hero-text .role, .hero .hero-text p {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+    
+    .pulse-animation, .floating-animation, .shimmer-border::before, 
+    .spotlight-effect::before, .gradient-text, .typed-cursor {
+        animation: none !important;
+    }
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+    /* Smaller transforms for mobile to prevent overflow issues */
+    .slide-up, .slide-right, .slide-left, .scale-in,
+    .staggered-container > * {
+        transform: translateY(30px);
+    }
+    
+    .slide-right {
+        transform: translateX(-30px);
+    }
+    
+    .slide-left {
+        transform: translateX(30px);
+    }
+    
+    /* Slightly faster animations on mobile but still visible */
+    .fade-in, .slide-up, .slide-right, .slide-left, .scale-in,
+    .staggered-container > * {
+        transition-duration: 0.6s;
+    }
+}
