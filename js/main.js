@@ -1,6 +1,6 @@
 // main.js
 import { CONFIG } from './config.js';
-import { initializeNavigation, initializeMobileNav, initializeScrollAnimations } from './navigation.js';
+import { initializeNavigation, initializeMobileNav } from './navigation.js';
 import { initializeProjectSlider } from './projectSlider.js';
 import { initializeNetworkAnimation } from './networkAnimation.js';
 import { initializeYear, initializeRole } from './utils.js';
@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeMobileNav();
     initializeMobileOptimizations();
     applyMobileSkillCards();
-    initializeScrollAnimations();
 });
 
 // Global event listeners

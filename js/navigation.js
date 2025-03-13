@@ -1,6 +1,6 @@
 // navigation.js
 export function initializeNavigation() {
-    // Smooth scrolling
+    // Scrolling without animation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -13,8 +13,7 @@ export function initializeNavigation() {
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
                 window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
+                    top: offsetPosition
                 });
             }
         });
@@ -71,26 +70,4 @@ export function initializeMobileNav() {
             });
         });
     }
-}
-
-export function initializeScrollAnimations() {
-    const options = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Only animate once
-            }
-        });
-    }, options);
-
-    // Observe all sections and elements with fade-in class
-    document.querySelectorAll('section, .fade-in').forEach(element => {
-        element.classList.add('fade-in');
-        observer.observe(element);
-    });
 }

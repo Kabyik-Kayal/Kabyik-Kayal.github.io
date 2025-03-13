@@ -11,6 +11,7 @@ section#hero {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative; 
 }
 
 .hero-content {
@@ -106,8 +107,11 @@ section#hero {
 
 .hero-cta {
     position: absolute;
-    bottom: 3rem;
-    right: 5%;
+    bottom: 5rem; /* Increased distance from bottom */
+    left: 50%;    /* Center horizontally */
+    transform: translateX(-50%); /* Center alignment fix */
+    width: auto;
+    text-align: center;
 }
 
 .hero-cta .glow-btn {
@@ -128,4 +132,24 @@ section#hero {
     box-shadow: 0 6px 16px rgba(100, 255, 218, 0.2);
     background: rgba(17, 34, 64, 0.8);
     border-color: #64ffda;
+}
+
+/* Desktop-specific positioning */
+@media (min-width: 769px) {
+    .hero-cta {
+        left: auto;     
+        right: 5%;      
+        bottom: 3rem;   
+        transform: none; 
+    }
+}
+
+/* Desktop-specific positioning */
+@media (min-width: 969px) {
+    .hero-cta {
+        left: auto;
+        right: 10%;
+        bottom: 10rem;
+        transform: none;
+    }
 }
