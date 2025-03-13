@@ -5,7 +5,7 @@ export function initializeNetworkAnimation() {
     // Enhanced mobile configuration with tiered performance levels
     const performanceConfig = {
         mobile: {
-            particleCount: 80,           
+            particleCount: 100,           
             connectionDistance: 100,       
             frameRate: 60,              
             particleSize: 2.5,             
