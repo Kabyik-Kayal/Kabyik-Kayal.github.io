@@ -5,7 +5,7 @@ export function initializeNetworkAnimation() {
     // Enhanced mobile configuration with tiered performance levels
     const performanceConfig = {
         mobile: {
-            particleCount: 60,           
+            particleCount: 80,           
             connectionDistance: 100,       
             frameRate: 60,              
             particleSize: 2.5,             
@@ -17,14 +17,14 @@ export function initializeNetworkAnimation() {
         },
         desktop: {
             particleCount: 150,
-            connectionDistance: 100,
+            connectionDistance: 130,
             frameRate: 60,
-            particleSize: 3,
+            particleSize: 2.75,
             glow: true,
-            glowSize: 5,
+            glowSize: 4,
             glowAlpha: 0.6,
             maxConnectionsPerParticle: 0, // 0 means no limit
-            movementSpeed: 0.5,
+            movementSpeed: 0.25,
             skipFrames: 0,
             adaptiveFPS: false
         }
