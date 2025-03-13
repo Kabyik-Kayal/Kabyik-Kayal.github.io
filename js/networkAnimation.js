@@ -16,17 +16,17 @@ export function initializeNetworkAnimation() {
             adaptiveFPS: true
         },
         desktop: {
-            particleCount: 150,
-            connectionDistance: 130,
+            particleCount: 120,
+            connectionDistance: 110,
             frameRate: 60,
             particleSize: 2.75,
             glow: true,
             glowSize: 4,
             glowAlpha: 0.6,
             maxConnectionsPerParticle: 0, // 0 means no limit
-            movementSpeed: 0.25,
+            movementSpeed: 0.35,
             skipFrames: 0,
-            adaptiveFPS: false
+            adaptiveFPS: true
         }
     };
 
