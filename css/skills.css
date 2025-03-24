@@ -98,3 +98,45 @@
     font-weight: 500;
     opacity: 0.7;
 }
+
+/* SVG Icon Styles */
+.svg-icon {
+    width: 30px;
+    height: 30px;
+    fill: #64ffda;
+    margin-bottom: 0.4rem;
+}
+
+.skill-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    margin-bottom: 0.3rem;
+}
+
+#tensorflow-icon img, 
+#mlflow-icon img,
+#machine-learning-icon img,
+#zenml-icon img,
+#dvc-icon img,
+#keras-icon img,
+#scikit-learn-icon img,
+#SVM-icon img,
+#mlops-icon img {
+    filter: invert(81%) sepia(90%) saturate(300%) hue-rotate(110deg) brightness(88%) contrast(90%);
+}
+
+/* Adding specific size for scikit-learn icon */
+#scikit-learn-icon img {
+    width: 47px;
+    height: 47px;
+}
+#SVM-icon img {
+    width: 24px;
+    height: 24px;
+}
+#keras-icon img {
+    width: 24px;
+    height: 24px;
+}
