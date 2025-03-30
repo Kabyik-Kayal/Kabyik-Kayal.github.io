@@ -12,7 +12,7 @@ export function initializeProjectSlider() {
     let isAnimating = false;
     let autoRotateInterval;
     const autoRotateDelay = 5000; // 5 seconds between slides
-    const transitionDuration = isMobile ? 300 : 600;
+    const transitionDuration = isMobile ? 300 : 850;
 
     // Add the desktop-specific class for enhanced animations if not mobile
     if (!isMobile) {
@@ -24,63 +24,74 @@ export function initializeProjectSlider() {
         }
     }
 
+    // Initialize all cards with visibility for continuous slider
+    if (!isMobile) {
+        cards.forEach((card) => {
+            card.style.visibility = 'visible';
+            card.style.opacity = '1';
+        });
+    }
+
     function updateCards() {
         if (isAnimating) return;
         isAnimating = true;
 
         if (isMobile) {
-            // Original mobile implementation
-            // Apply animation class to container during transition
+            // Improved mobile implementation
             slider.classList.add('animating');
             
-            // Add transition class to each card
+            // Hide all cards first with opacity transition
             cards.forEach(card => {
                 card.style.opacity = '0';
-                card.style.transform = 'scale(0.95)';
-                card.style.transition = `opacity ${transitionDuration/2}ms ease-out, transform ${transitionDuration/2}ms ease-out`;
+                card.style.transform = 'translate(-50%, -50%) scale(0.85)';
+                card.style.visibility = 'hidden';
+                card.style.position = 'absolute';
+                card.style.pointerEvents = 'none';
+                card.style.transition = `all ${transitionDuration}ms ease-out`;
+                card.classList.remove('active');
             });
-
-            // Wait for opacity transition to complete before changing positions
+            
+            // Wait for fade out to complete before showing active card
             setTimeout(() => {
-                // Remove all classes and hide cards
-                cards.forEach(card => {
-                    card.classList.remove('active', 'prev', 'next');
-                    card.style.visibility = 'hidden';
-                });
+                // Make the current card active and visible
+                const activeCard = cards[currentIndex];
+                activeCard.classList.add('active');
+                activeCard.style.visibility = 'visible';
+                activeCard.style.zIndex = '10';
+                activeCard.style.left = '50%';
+                activeCard.style.top = '50%';
                 
-                // Set up the new positions
-                cards[currentIndex].classList.add('active');
+                // Ensure card is properly sized and positioned on mobile - adjusted scale
+                activeCard.style.transform = 'translate(-50%, -50%) scale(1)'; // Full scale for better visibility
+                activeCard.style.width = '250px';  // Slightly smaller width
+                activeCard.style.height = '330px'; // Slightly smaller height
+                activeCard.style.pointerEvents = 'auto';
+                activeCard.style.opacity = '0'; // Start with opacity 0 for fade-in effect
                 
-                // Additional classes for continuous effect
-                cards[currentIndex].classList.add('slide-to-center');
-
-                // Slight delay before making cards visible again
+                // Ensure the card is properly positioned relative to the container
+                activeCard.style.display = 'flex';
+                activeCard.style.flexDirection = 'column';
+                activeCard.style.overflow = 'hidden'; // Prevent content overflow
+                
+                // Position card contents properly
+                const imageContainer = activeCard.querySelector('.project-image-container');
+                if (imageContainer) {
+                    imageContainer.style.height = '140px';
+                }
+                
+                // Fade in the active card
                 setTimeout(() => {
-                    // Make the positioned cards visible
-                    cards.forEach(card => {
-                        if (card.classList.contains('active')) {
-                            card.style.visibility = 'visible';
-                            // Fade in the visible cards with transform
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'scale(1)';
-                            }, 20);
-                        }
-                    });
-
-                    // Reset animation flag after full transition completes
+                    activeCard.style.opacity = '1';
+                    
+                    // Reset animation flag after transition completes
                     setTimeout(() => {
                         isAnimating = false;
                         slider.classList.remove('animating');
-                        // Remove the temporary animation classes
-                        cards.forEach(card => {
-                            card.classList.remove('slide-from-center', 'slide-to-center');
-                        });
                     }, transitionDuration);
                 }, 50);
             }, transitionDuration / 2);
         } else {
-            // Fixed desktop implementation for proper card alignment
+            // Improved desktop implementation for continuous slider
             slider.classList.add('sliding');
             
             // Calculate positions for each card
@@ -107,75 +118,55 @@ export function initializeProjectSlider() {
                     card.classList.add('far-prev');
                 }
                 
-                // Ensure proper positioning
-                const perspective = 1500;
-                const cardWidth = 340; // Standard card width
+                // Consistent style application for continuous slider
                 const baseZIndex = 100;
                 
                 // Reset all style properties first for clean application
                 card.style.position = 'absolute';
-                card.style.visibility = 'visible';
+                card.style.visibility = 'visible'; // Always visible for continuous effect
                 card.style.zIndex = baseZIndex - Math.abs(diff) * 10;
-                card.style.width = '340px'; 
+                card.style.width = '340px';
                 card.style.height = '420px';
                 card.style.top = '50%';
                 card.style.left = '50%';
                 
-                // Apply different transforms based on position
+                // Apply transforms without any sudden changes in position
                 if (diff === 0) {
                     // Center (active) card
-                    card.style.transform = `translate(-50%, -50%) scale(1) perspective(${perspective}px)`;
+                    card.style.transform = `translate(-50%, -50%) scale(0.95)`;
                     card.style.opacity = '1';
-                    card.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.3)';
-                    card.style.filter = 'brightness(1)';
+                    card.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.2)';
                 } else if (Math.abs(diff) === 1) {
                     // Adjacent cards (prev/next)
                     const direction = diff < 0 ? 1 : -1;
-                    // Position cards to the sides with less overlap
-                    const offset = direction * 55; // Percentage offset
-                    card.style.transform = `translate(calc(-50% + ${offset}%), -50%) 
-                                           scale(0.85) 
-                                           perspective(${perspective}px) 
-                                           rotateY(${-direction * 15}deg)`;
-                    card.style.opacity = '0.8';
-                    card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
-                    card.style.filter = 'brightness(0.9) blur(0.5px)';
+                    const offset = direction * 65;
+                    card.style.transform = `translate(calc(-50% + ${offset}%), -50%) scale(0.85)`;
+                    card.style.opacity = '0.85';
+                    card.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.15)';
                 } else if (Math.abs(diff) === 2) {
-                    // Far side cards
+                    // Far side cards - keep visible for continuous carousel
                     const direction = diff < 0 ? 1 : -1;
-                    const offset = direction * 95; // Farther offset
-                    card.style.transform = `translate(calc(-50% + ${offset}%), -50%) 
-                                           scale(0.7) 
-                                           perspective(${perspective}px) 
-                                           rotateY(${-direction * 25}deg)`;
-                    card.style.opacity = '0.5';
-                    card.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.15)';
-                    card.style.filter = 'brightness(0.8) blur(1px)';
+                    const offset = direction * 110;
+                    card.style.transform = `translate(calc(-50% + ${offset}%), -50%) scale(0.75)`;
+                    card.style.opacity = '0.6';
+                    card.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
                 } else {
-                    // Hidden cards
+                    // More distant cards - fading out but still slightly visible
                     const direction = diff < 0 ? 1 : -1;
-                    const offset = direction * 130;
-                    card.style.transform = `translate(calc(-50% + ${offset}%), -50%) 
-                                           scale(0.5) 
-                                           perspective(${perspective}px) 
-                                           rotateY(${-direction * 35}deg)`;
-                    card.style.opacity = '0';
+                    const offset = direction * 145;
+                    card.style.transform = `translate(calc(-50% + ${offset}%), -50%) scale(0.65)`;
+                    card.style.opacity = '0.3'; // Not completely invisible
                 }
                 
-                // Apply smooth transition with slight delay based on position
+                // Apply smooth transition easing for continuous slider
                 card.style.transition = `
-                    transform ${transitionDuration}ms cubic-bezier(0.19, 1, 0.22, 1) ${Math.abs(diff) * 10}ms, 
-                    opacity ${transitionDuration}ms ease-in-out,
-                    box-shadow ${transitionDuration}ms ease,
-                    filter ${transitionDuration}ms ease
+                    transform ${transitionDuration}ms cubic-bezier(0.25, 0.1, 0.25, 1), 
+                    opacity ${transitionDuration}ms cubic-bezier(0.25, 0.1, 0.25, 1),
+                    box-shadow ${transitionDuration}ms ease
                 `;
                 
                 // Make sure pointer events are only enabled on visible cards
-                if (Math.abs(diff) <= 2) {
-                    card.style.pointerEvents = 'auto';
-                } else {
-                    card.style.pointerEvents = 'none';
-                }
+                card.style.pointerEvents = Math.abs(diff) <= 1 ? 'auto' : 'none';
             });
             
             // Position the slider buttons properly
@@ -190,7 +181,7 @@ export function initializeProjectSlider() {
             setTimeout(() => {
                 isAnimating = false;
                 slider.classList.remove('sliding');
-            }, transitionDuration + 100);
+            }, transitionDuration);
         }
     }
 
@@ -255,36 +246,6 @@ export function initializeProjectSlider() {
     slider.addEventListener('mouseenter', stopAutoRotate);
     slider.addEventListener('mouseleave', startAutoRotate);
     
-    // For touch devices
-    if (isMobile) {
-        cards.forEach(card => {
-            card.style.transition = `all ${transitionDuration}ms cubic-bezier(0.4, 0.0, 0.2, 1)`;
-        });
-
-        let touchStartX, touchStartY;
-        
-        slider.addEventListener('touchstart', e => {
-            touchStartX = e.touches[0].clientX;
-            touchStartY = e.touches[0].clientY;
-            stopAutoRotate();
-        }, { passive: true });
-
-        slider.addEventListener('touchend', e => {
-            const touchEndX = e.changedTouches[0].clientX;
-            const touchEndY = e.changedTouches[0].clientY;
-            const deltaX = touchEndX - touchStartX;
-            const deltaY = Math.abs(touchEndY - touchStartY);
-            
-            if (Math.abs(deltaX) > 50 && deltaY < 50) {
-                if (deltaX > 0) prevSlide();
-                else nextSlide();
-            }
-            
-            // Resume auto-rotation after touch interaction
-            setTimeout(startAutoRotate, autoRotateDelay * 2);
-        }, { passive: true });
-    }
-
     // Handle window resize to update desktop/mobile mode
     window.addEventListener('resize', () => {
         const newIsMobile = window.innerWidth <= 768;
