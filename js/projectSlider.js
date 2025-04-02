@@ -12,7 +12,7 @@ export function initializeProjectSlider() {
     let isAnimating = false;
     let autoRotateInterval;
     const autoRotateDelay = 5000; // 5 seconds between slides
-    const transitionDuration = isMobile ? 300 : 850;
+    const transitionDuration = isMobile ? 300 : 800; // Adjusted desktop duration to 800ms
 
     // Add the desktop-specific class for enhanced animations if not mobile
     if (!isMobile) {
@@ -139,34 +139,36 @@ export function initializeProjectSlider() {
                 } else if (Math.abs(diff) === 1) {
                     // Adjacent cards (prev/next)
                     const direction = diff < 0 ? 1 : -1;
-                    const offset = direction * 65;
-                    card.style.transform = `translate(calc(-50% + ${offset}%), -50%) scale(0.85)`;
+                    const offset = direction * 60; // Reduced offset from 65
+                    card.style.transform = `translate(calc(-50% + ${offset}%), -50%) scale(0.88)`; // Increased scale from 0.85
                     card.style.opacity = '0.85';
                     card.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.15)';
                 } else if (Math.abs(diff) === 2) {
-                    // Far side cards - keep visible for continuous carousel
-                    const direction = diff < 0 ? 1 : -1;
-                    const offset = direction * 110;
+                    // Far side cards (visible)
+                    const direction = diff < 0 ? 1 : -1; // Determine direction based on diff sign
+                    const offset = direction * 110; // Adjust offset as needed
                     card.style.transform = `translate(calc(-50% + ${offset}%), -50%) scale(0.75)`;
                     card.style.opacity = '0.6';
                     card.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+                    card.style.visibility = 'visible'; // Ensure visibility
                 } else {
-                    // More distant cards - fading out but still slightly visible
-                    const direction = diff < 0 ? 1 : -1;
-                    const offset = direction * 145;
+                    // More distant cards (invisible)
+                    const direction = diff < 0 ? 1 : -1; // Determine direction based on diff sign
+                    const offset = direction * 145; // Keep them positioned off-screen
                     card.style.transform = `translate(calc(-50% + ${offset}%), -50%) scale(0.65)`;
-                    card.style.opacity = '0.3'; // Not completely invisible
+                    card.style.opacity = '0'; // Make completely transparent (transition handles hiding)
+                    // card.style.visibility = 'hidden'; // Removed: Rely on opacity transition
                 }
                 
-                // Apply smooth transition easing for continuous slider
+                // Apply smooth transition easing for continuous slider using ease-out
                 card.style.transition = `
-                    transform ${transitionDuration}ms cubic-bezier(0.25, 0.1, 0.25, 1), 
-                    opacity ${transitionDuration}ms cubic-bezier(0.25, 0.1, 0.25, 1),
-                    box-shadow ${transitionDuration}ms ease
+                    transform ${transitionDuration}ms ease-out,
+                    opacity ${transitionDuration}ms ease-out,
+                    box-shadow ${transitionDuration}ms ease-out
                 `;
                 
                 // Make sure pointer events are only enabled on visible cards
-                card.style.pointerEvents = Math.abs(diff) <= 1 ? 'auto' : 'none';
+                card.style.pointerEvents = Math.abs(diff) <= 2 ? 'auto' : 'none'; // Allow interaction with the 5 visible cards
             });
             
             // Position the slider buttons properly
