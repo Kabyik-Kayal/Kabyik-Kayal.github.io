@@ -1,4 +1,164 @@
-html {
-    scroll-behavior: smooth;
-    overflow-y: auto;
+/* ===== Scroll Animation Classes ===== */
+
+/* Base animation classes */
+.fade-in, .slide-up, .slide-right, .slide-left, .scale-in {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+/* Prevent animations on page load - they'll be triggered by JavaScript */
+.preload * {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+}
+
+/* Animation states */
+.fade-in.animate {
+    opacity: 1;
+}
+
+.slide-up {
+    transform: translateY(60px);
+}
+
+.slide-up.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-right {
+    transform: translateX(-60px);
+}
+
+.slide-right.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-left {
+    transform: translateX(60px);
+}
+
+.slide-left.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scale-in {
+    transform: scale(0.85);
+}
+
+.scale-in.animate {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Staggered container styling */
+.staggered-container > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.staggered-container > *.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Parallax effect */
+.parallax {
+    will-change: transform;
+    transition: transform 0.2s linear;
+}
+
+/* Fancy gradient text animation */
+.gradient-text {
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 8s ease infinite alternate;
+    background-image: linear-gradient(to right, #64ffda, #00b4d8, #64ffda, #00b4d8);
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Special animations for hero section */
+.hero .hero-text h1,
+.hero .hero-text .role,
+.hero .hero-text p {
+    opacity: 0;
+    animation: fadeSlideUp 1.2s forwards;
+}
+
+.hero .hero-text h1 {
+    animation-delay: 0.5s;
+}
+
+.hero .hero-text .role {
+    animation-delay: 1s;
+}
+
+.hero .hero-text p {
+    animation-delay: 1.5s;
+}
+
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    30% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide in animation for cards */
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(70px);
+        opacity: 0;
+    }
+    30% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Enhanced pulse animation for CTA buttons */
+.pulse-animation {
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4);
+    }
+    30% {
+        box-shadow: 0 0 0 15px rgba(100, 255, 218, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
+    }
 }
