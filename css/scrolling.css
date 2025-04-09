@@ -146,19 +146,4 @@
     }
 }
 
-/* Enhanced pulse animation for CTA buttons */
-.pulse-animation {
-    animation: pulse 3s infinite;
-}
-
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4);
-    }
-    30% {
-        box-shadow: 0 0 0 15px rgba(100, 255, 218, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
-    }
-}
+/* Additional scroll effects can be added here */

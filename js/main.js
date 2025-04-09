@@ -39,12 +39,6 @@ window.addEventListener('load', () => {
         document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
     
-    // Add pulse animation to CTA button
-    const ctaButton = document.querySelector('.hero-cta .glow-btn');
-    if (ctaButton) {
-        ctaButton.classList.add('pulse-animation');
-    }
-    
     // Add animated link class to nav items
     document.querySelectorAll('nav ul li a').forEach(link => {
         link.classList.add('animated-link');

@@ -5,9 +5,9 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .social-links {
@@ -15,8 +15,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    padding: 2rem;
+    gap: 1.5rem;
+    padding: 1rem;
 }
 
 .social-links a {
@@ -53,27 +53,27 @@
 }
 
 .social-btn {
-    width: 200px;  /* Increased from 160px */
-    height: 60px;  /* Increased from 50px */
-    border-radius: 10px;  /* Slightly increased for better proportion */
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;  /* Increased from 10px */
+    gap: 15px;
     background: rgba(17, 34, 64, 0.8);
     border: 1px solid rgba(100, 255, 218, 0.1);
-    padding: 0 25px;  /* Increased from 20px */
+    padding: 0 25px;
     transition: all 0.3s ease;
 }
 
 .social-btn i {
-    font-size: 1.4rem;  /* Increased from 1.2rem */
+    font-size: 1.4rem;
     color: #64ffda;
 }
 
 .social-btn span {
     color: #ccd6f6;
-    font-size: 1.2rem;  /* Increased from 1rem */
+    font-size: 1.2rem;
     font-weight: 500;
 }
 
@@ -87,10 +87,156 @@
     color: #64ffda;
 }
 
+/* Form container adjustments */
 .glass-form {
     background: rgba(17, 34, 64, 0.8);
     backdrop-filter: blur(10px);
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 15px;
     border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.contact-form-container {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.contact-form-container h3 {
+    display: none;
+}
+
+/* Make form more compact */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.form-group label {
+    color: #8892b0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.form-group input {
+    background: rgba(17, 34, 64, 0.6);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    border-radius: 5px;
+    padding: 0.6rem;
+    height: 38px;
+    color: #ccd6f6;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group textarea {
+    background: rgba(17, 34, 64, 0.6);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    border-radius: 5px;
+    padding: 0.6rem;
+    color: #ccd6f6;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    height: 85px;
+    resize: none;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: #64ffda;
+    box-shadow: 0 0 5px rgba(100, 255, 218, 0.3);
+}
+
+/* Make send button smaller and more compact */
+.submit-btn {
+    background: transparent;
+    border: none;
+    color: #64ffda;
+    padding: 0.4rem 0.9rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    align-self: flex-end;
+    height: 32px;
+}
+
+.submit-btn:hover {
+    background: rgba(100, 255, 218, 0.1);
+    transform: translateY(-3px);
+}
+
+/* Desktop layout - form on right, social links on left */
+@media (min-width: 768px) {
+    .contact-container {
+        max-width: 950px;
+        padding: 0.4rem;
+    }
+    
+    .social-links {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+    
+    /* Container for all social buttons */
+    .social-links > div:not(.contact-form-container) {
+        display: flex;
+        flex-direction: column;
+        width: 28%;
+    }
+    
+    /* Remove any space between social rows */
+    .social-links > div.social-row {
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Force all social rows into a single column */
+    .social-row {
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+        margin: 0;
+    }
+    
+    /* Arrange the first and second social-row to be in a single column */
+    .social-links > div:first-child {
+        margin-bottom: 0;
+    }
+    
+    /* Keep contact form on the right */
+    .contact-form-container {
+        width: 68%;
+        margin-top: 0;
+        padding: 1rem;
+    }
+    
+    /* Social buttons stacked vertically */
+    .social-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    /* Further reduce form element spacing */
+    .contact-form {
+        gap: 0.8rem;
+    }
 }

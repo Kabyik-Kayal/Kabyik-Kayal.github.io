@@ -104,4 +104,59 @@
     font-size: 1rem;
     transition: all 0.3s ease;
     margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.download-resume:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(100, 255, 218, 0.15);
+    z-index: -1;
+    transform: translateX(-100%) translateY(100%) rotate(45deg);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.download-resume:hover:before {
+    transform: translateX(0) translateY(0) rotate(45deg) scale(1.5);
+}
+
+.download-resume:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(100, 255, 218, 0.05);
+    z-index: -2;
+    transform: translateX(100%) translateY(-100%) rotate(45deg);
+    transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.download-resume:hover:after {
+    transform: translateX(0) translateY(0) rotate(45deg) scale(1.5);
+}
+
+.download-resume:hover {
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.5);
+    text-shadow: 0 0 5px rgba(100, 255, 218, 0.3);
+}
+
+.download-resume i {
+    transition: transform 0.4s ease;
+}
+
+.download-resume:hover i {
+    transform: translateY(-3px);
+}
+
+.download-resume span {
+    position: relative;
+    z-index: 2;
 }

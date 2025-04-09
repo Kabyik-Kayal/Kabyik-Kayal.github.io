@@ -114,7 +114,7 @@ section#hero {
     text-align: center;
 }
 
-.hero-cta .glow-btn {
+.hero-cta .static-btn {
     padding: 0.75rem 1.5rem;
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -122,16 +122,96 @@ section#hero {
     background: rgba(17, 34, 64, 0.95);
     border: 1.5px solid rgba(100, 255, 218, 0.3);
     border-radius: 6px;
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
     display: inline-block;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: #64ffda;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.1);
 }
 
-.hero-cta .glow-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(100, 255, 218, 0.2);
+/* Glowing effect */
+.hero-cta .static-btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #64ffda, #0a192f, #00b4d8, #0a192f, #64ffda);
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+    animation: glowingAnimation 8s linear infinite;
+}
+
+/* Line border animation */
+.hero-cta .static-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.4), transparent);
+    transition: 0.5s;
+    transform: translateX(-100%);
+}
+
+/* Liquid fill effect */
+.hero-cta .static-btn .liquid {
+    position: absolute;
+    top: 120%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(100, 255, 218, 0.15);
+    z-index: -1;
+    transition: all 0.5s ease;
+    border-radius: 6px;
+}
+
+.hero-cta .static-btn:hover {
     background: rgba(17, 34, 64, 0.8);
     border-color: #64ffda;
+    color: #64ffda;
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.4);
+}
+
+/* Activate glowing effect on hover */
+.hero-cta .static-btn:hover::before {
+    opacity: 1;
+}
+
+/* Activate line animation on hover */
+.hero-cta .static-btn:hover::after {
+    transform: translateX(0);
+}
+
+/* Animate liquid fill on hover */
+.hero-cta .static-btn:hover .liquid {
+    top: 0;
+}
+
+/* Pressable effect */
+.hero-cta .static-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.6);
+}
+
+.hero-cta .static-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes glowingAnimation {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
 }
 
 /* Desktop-specific positioning */

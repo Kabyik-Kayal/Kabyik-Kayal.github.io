@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
     <title>Kabyik Kayal</title>
     <meta name="description" content="Portfolio website of Kabyik Kayal, a Data Scientist and ML Engineer specializing in MLOps, data analysis, and AI Agentic Workflows.">
     <meta name="keywords" content="Data Scientist, ML Engineer, MLOps, Python, Data Analysis">
@@ -45,6 +45,7 @@
     <link rel="stylesheet" href="css/projects.css">
     <link rel="stylesheet" href="css/mobile-projects.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/toast.css">
 </head>
 <body>
     <canvas id="network-bg"></canvas>
@@ -80,7 +81,10 @@
                 </div>
             </div>
             <div class="hero-cta">
-                <a href="#projects" class="btn glow-btn">View My Work</a>
+                <a href="#projects" class="btn static-btn">
+                    <span>View My Work</span>
+                    <div class="liquid"></div>
+                </a>
             </div>
         </section>
 
@@ -493,10 +497,46 @@
                             <i class="fab fa-twitter"></i>
                             <span>Twitter</span>
                         </a>
-                        <a href="mailto:scientistk001@gmail.com" class="social-btn" title="Email">
-                            <i class="fas fa-envelope"></i>
-                            <span>Email</span>
+                        <a href="https://www.kaggle.com/kabyik" class="social-btn" title="Kaggle">
+                            <i class="fab fa-kaggle"></i>
+                            <span>Kaggle</span>
                         </a>
+                    </div>
+                    <div class="social-row">
+                        <a href="https://medium.com/@scientistk001" class="social-btn" title="Medium">
+                            <i class="fab fa-medium"></i>
+                            <span>Medium</span>
+                        </a>
+                    </div>
+                    <div class="contact-form-container glass-form">
+                        <h3><i class="fas fa-envelope"> Send me a Mail</i></h3>
+                        <form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                            <!-- Web3Forms access key -->
+                            <input type="hidden" name="access_key" value="737fbc30-869e-4292-96ee-473a65130833">
+                            
+                            <!-- Honeypot Spam Protection -->
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                            
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -508,5 +548,41 @@
     <footer>
         <p>&copy; <span id="year"></span> Kabyik. All rights reserved.</p>
     </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toast-notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Message sent successfully!</span>
+    </div>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var form = event.target;
+            var formData = new FormData(form);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', form.action, true);
+            xhr.setRequestHeader('Accept', 'application/json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        form.reset();
+                        showToastNotification();
+                    } else {
+                        console.error('Form submission failed:', xhr.responseText);
+                    }
+                }
+            };
+            xhr.send(formData);
+        });
+
+        function showToastNotification() {
+            var toast = document.getElementById('toast-notification');
+            toast.classList.add('show');
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
