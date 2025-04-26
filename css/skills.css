@@ -140,3 +140,24 @@
     width: 24px;
     height: 24px;
 }
+#Jenkins-icon img {
+    width: 50px;
+    height: 50px;
+    filter: invert(81%) sepia(90%) saturate(300%) hue-rotate(110deg) brightness(88%) contrast(90%);
+}
+#AWS-icon img {
+    width: 35px;
+    height: 35px;
+    filter: invert(81%) sepia(90%) saturate(300%) hue-rotate(110deg) brightness(88%) contrast(90%);
+}
+#GCP-icon img {
+    width: 35px;
+    height: 35px;
+    filter: invert(81%) sepia(90%) saturate(300%) hue-rotate(110deg) brightness(88%) contrast(80%);
+}
+
+@media screen and (min-width: 769px) {
+    .mlops-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
