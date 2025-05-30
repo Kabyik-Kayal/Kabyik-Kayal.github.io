@@ -1,8 +1,9 @@
 // networkAnimation.js
 export function initializeNetworkAnimation() {
     const isMobile = window.innerWidth <= 480;
+    const isLowResDesktop = window.innerWidth > 480 && window.innerWidth <= 1366; // Target 720p and similar resolutions
     
-    // Enhanced mobile configuration with tiered performance levels
+    // Enhanced configuration with tiered performance levels including low-res desktop optimization
     const performanceConfig = {
         mobile: {
             particleCount: 100,           
@@ -13,6 +14,20 @@ export function initializeNetworkAnimation() {
             maxConnectionsPerParticle: 0, 
             movementSpeed: 0.5,
             skipFrames: 2,
+            adaptiveFPS: true        },
+        lowResDesktop: {
+            // Optimized settings for lower resolution desktops (720p, 1366x768, etc.)
+            // Reduces connections and particle count for better performance
+            particleCount: 80,              // Reduced from 120
+            connectionDistance: 90,         // Reduced from 110
+            frameRate: 60,
+            particleSize: 2.5,              // Slightly smaller
+            glow: true,
+            glowSize: 3,                    // Reduced glow
+            glowAlpha: 0.5,                 // Reduced glow opacity
+            maxConnectionsPerParticle: 3,   // Limit connections per particle for stability
+            movementSpeed: 0.4,             // Slightly faster movement
+            skipFrames: 0,
             adaptiveFPS: true
         },
         desktop: {
@@ -30,7 +45,9 @@ export function initializeNetworkAnimation() {
         }
     };
 
-    const config = isMobile ? performanceConfig.mobile : performanceConfig.desktop;
+    const config = isMobile ? performanceConfig.mobile : 
+                   isLowResDesktop ? performanceConfig.lowResDesktop : 
+                   performanceConfig.desktop;
     const frameInterval = 1000 / config.frameRate;
     let lastFrameTime = 0;
     let rafId;
@@ -40,15 +57,12 @@ export function initializeNetworkAnimation() {
     let batteryStatus = {
         charging: true,
         level: 1.0
-    };
-
-    const canvas = document.getElementById('network-bg');
+    };    const canvas = document.getElementById('network-bg');
     const ctx = canvas.getContext('2d');
-    let particles = [];
-    const particleCount = isMobile ? 
+    let particles = [];    let particleCount = isMobile ? 
         Math.min(config.particleCount, Math.floor(devicePerformanceScore * 2)) : 
         config.particleCount;
-    const connectionDistance = config.connectionDistance;
+    let connectionDistance = config.connectionDistance;
     const mouseRadius = 150;
     let mouse = { x: null, y: null };
     
@@ -126,11 +140,24 @@ export function initializeNetworkAnimation() {
         if (isInViewport && !rafId) {
             rafId = requestAnimationFrame(animate);
         }
-    }
-
-    function resizeCanvas() {
+    }    function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        
+        // Update configuration based on new window size
+        const newIsMobile = window.innerWidth <= 480;
+        const newIsLowResDesktop = window.innerWidth > 480 && window.innerWidth <= 1366;
+        
+        // Re-evaluate config if screen type changed
+        const newConfig = newIsMobile ? performanceConfig.mobile : 
+                         newIsLowResDesktop ? performanceConfig.lowResDesktop : 
+                         performanceConfig.desktop;
+          // Update global config values
+        Object.assign(config, newConfig);
+        
+        // Update connection distance
+        connectionDistance = config.connectionDistance;
+        
         init();
     }
 
@@ -171,17 +198,19 @@ export function initializeNetworkAnimation() {
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
             ctx.fillStyle = '#64ffda';
             ctx.fill();
-            
-            // Glow effect only for desktop
+              // Glow effect only for desktop, with optimized settings for low-res
             if (!isMobile && config.glow) {
-                ctx.shadowBlur = config.glowSize;
+                ctx.shadowBlur = config.glowSize || 4;
                 ctx.shadowColor = '#64ffda';
             }
         }
-    }
-
-    function init() {
+    }    function init() {
         particles = [];
+        // Recalculate particle count based on current config
+        particleCount = isMobile ? 
+            Math.min(config.particleCount, Math.floor(devicePerformanceScore * 2)) : 
+            config.particleCount;
+            
         for (let i = 0; i < particleCount; i++) {
             particles.push(new Particle());
         }
@@ -260,8 +289,7 @@ export function initializeNetworkAnimation() {
         particles.forEach(particle => {
             particle.update();
             particle.draw();
-            
-            // Draw connections with limits for mobile
+              // Draw connections with limits for mobile and low-res desktop
             let connectionsDrawn = 0;
             const maxConnections = config.maxConnectionsPerParticle > 0 ? 
                 config.maxConnectionsPerParticle : particles.length;
@@ -277,10 +305,9 @@ export function initializeNetworkAnimation() {
                 if (distance < connectionDistance) {
                     // Use optimized alpha calculation for performance
                     const alpha = 0.2 * (1 - distance / connectionDistance);
-                    
-                    ctx.beginPath();
+                      ctx.beginPath();
                     ctx.strokeStyle = `rgba(100, 255, 218, ${alpha})`;
-                    ctx.lineWidth = isMobile ? 0.5 : 1; // Thinner lines on mobile
+                    ctx.lineWidth = isMobile ? 0.5 : (isLowResDesktop ? 0.8 : 1); // Optimized line width
                     ctx.moveTo(particle.x, particle.y);
                     ctx.lineTo(otherParticle.x, otherParticle.y);
                     ctx.stroke();
