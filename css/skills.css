@@ -156,8 +156,37 @@
     filter: invert(81%) sepia(90%) saturate(300%) hue-rotate(110deg) brightness(88%) contrast(80%);
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 969px) {
     .mlops-grid {
         grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+@media screen and (max-width: 968px) and (min-width: 481px) {
+    .mlops-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 15px !important;
+        justify-items: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .mlops-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        justify-items: center;
+        align-items: center;
+        width: 90% !important;
+        max-width: 300px !important;
+        margin: 0 auto !important;
+    }
+    
+    .skill-category {
+        padding: 1rem;
+    }
+    
+    .skill-category h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
     }
 }

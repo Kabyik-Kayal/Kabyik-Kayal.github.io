@@ -31,6 +31,10 @@ section {
         gap: 20px;
     }
     
+    .mlops-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
     .projects-container {
         padding: 0 80px;
     }
@@ -97,11 +101,17 @@ section {
     .about-text p {
         font-size: 1rem;
         padding-left: 1rem;
-    }
-
-    /* Skills */
+    }    /* Skills */
     .skills-row {
         flex-direction: column;
+    }
+    
+    /* MLOps Grid - 3 columns for tablet view */
+    .mlops-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 15px !important;
+        justify-items: center;
+        align-items: center;
     }
 }
 
@@ -176,9 +186,7 @@ section {
         right: auto;
         margin-top: 2rem;
         text-align: center;
-    }
-
-    /* Skills */
+    }    /* Skills */
     .skills-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
@@ -188,6 +196,14 @@ section {
         width: 80px;
         height: 80px;
         padding: 0.8rem;
+    }
+
+    /* MLOps Grid - Force 2 columns for better symmetry */
+    .mlops-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+        justify-items: center;
+        align-items: center;
     }
 
     /* Projects */
@@ -316,9 +332,7 @@ section {
         padding-left: 1rem;
         border-left: 2px solid #64ffda;
         margin: 0;
-    }
-
-    /* Skills */
+    }    /* Skills */
     .skills-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
@@ -331,6 +345,35 @@ section {
         padding: 0.6rem;
         gap: 0.4rem;
         border-radius: 10px;
+    }
+
+    /* MLOps Grid - Ensure consistent 2-column layout on small screens */
+    .mlops-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        justify-items: center;
+        align-items: center;
+        width: 90% !important;
+        max-width: 300px !important;
+        margin: 0 auto !important;
+    }
+
+    /* Adjust skill cards in MLOps section for small screens */
+    .mlops-grid .skill-card {
+        width: 70px;
+        height: 70px;
+        padding: 0.5rem;
+        font-size: 0.7rem;
+    }
+
+    .mlops-grid .skill-card i,
+    .mlops-grid .skill-card .skill-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.3rem;
+    }
+
+    .mlops-grid .skill-card span {
+        font-size: 0.65rem;
     }
 
     /* Projects */
