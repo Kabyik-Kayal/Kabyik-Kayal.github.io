@@ -136,29 +136,31 @@ nav ul li a i {
     }
 
     nav ul {
-        position: absolute;
-        top: -250px;
-        right: 0;
-        background: rgba(1, 12, 29, 0.95);
+        position: fixed;
+        top: 0;
+        right: -200px;
+        height: 100vh;
+        background: rgba(10, 25, 47, 0.95);
         backdrop-filter: blur(10px);
         flex-direction: column;
-        width: 100px;
-        padding: 10px 0;
-        border-radius: 0 0 0 10px;
-        transform: translateY(0);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease, top 0.3s ease;
-        border: 1px solid rgba(100, 255, 218, 0.1);
-        box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
-        transform-origin: top right;
-        text-align: right;
+        width: 200px;
+        padding: 80px 20px 20px 20px;
+        border-radius: 0;
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+        transition: right 0.3s ease;
+        border: none;
+        border-left: 1px solid rgba(100, 255, 218, 0.1);
+        box-shadow: -10px 0 30px rgba(2, 12, 27, 0.7);
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 30px;
+        z-index: 999;
     }
 
     nav ul.show {
-        top: 80px;
-        opacity: 1;
-        visibility: visible;
+        right: 0;
     }
 
     nav ul li {
@@ -167,16 +169,28 @@ nav ul li a i {
 
     nav ul li a {
         display: block;
-        padding: 8px 20px; /* Decreased from 12px 25px */
-        text-align: right; /* Right align text */
-        font-size: 0.9rem; /* Added smaller font size */
+        padding: 12px 20px;
+        text-align: left;
+        font-size: 0.9rem;
+        width: 100%;
     }
 
-    /* Adjust the underline animation for right-aligned menu */
+    /* Adjust underline animation for mobile menu */
     nav ul li a::after {
-        left: auto;
-        right: 0;
-        transform-origin: right;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 20px;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(to right, #64ffda, #00b4d8);
+        transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+        transform-origin: left;
+    }
+
+    nav ul li a:hover::after,
+    nav ul li a.active::after {
+        width: calc(100% - 40px);
     }
 }
 
