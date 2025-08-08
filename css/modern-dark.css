@@ -1,0 +1,137 @@
+/* modern-dark.css — site-wide dark canvas + grain theme overrides */
+
+/* Theme variables */
+:root {
+    --bg-0: #090b12;
+    --bg-1: #0b1018;
+    --surface-0: rgba(13, 16, 24, 0.62);
+    --surface-1: rgba(18, 22, 32, 0.58);
+    --border-0: rgba(100, 255, 218, 0.10);
+    --border-1: rgba(100, 255, 218, 0.16);
+    --text-0: #e6f1ff;
+    --text-1: #a7b0c6;
+    --accent-0: #64ffda;
+    --accent-1: #00b4d8;
+
+    /* Network canvas colors (read by JS) */
+    --network-node: rgba(100, 255, 218, 0.28);
+    --network-link: rgba(0, 180, 216, 0.13);
+}
+
+/* Rich dark background with subtle vignettes */
+html, body {
+    background: radial-gradient(1000px 600px at 20% 10%, rgba(13, 20, 32, 0.9), transparent 60%),
+                radial-gradient(900px 600px at 85% -10%, rgba(10, 16, 28, 0.8), transparent 60%),
+                linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+    color: var(--text-0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Put the procedural grain under the network canvas but above the page background */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2; /* under #network-bg (-1) */
+    opacity: 0.05; /* subtle grain */
+    /* SVG fractal noise for crisp, lightweight grain */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 220px 220px;
+    image-rendering: pixelated;
+    animation: grainShift 8s steps(8) infinite;
+}
+
+@keyframes grainShift {
+    0% { background-position: 0 0; }
+    100% { background-position: 220px 220px; }
+}
+
+/* Enhance the existing network canvas appearance */
+#network-bg {
+    opacity: 0.28 !important; /* more visible */
+    mix-blend-mode: normal; /* avoid blending that can dim on some backgrounds */
+    z-index: 0; /* above body::before grain (-2), below content (1) */
+}
+
+/* Ensure content paints above the canvas */
+header, main, footer, section {
+    position: relative;
+    z-index: 1;
+}
+
+/* Glassy surfaces with unified tone */
+.about-text,
+.resume-container,
+.skill-category,
+.blog-content,
+.glass-form,
+.social-links a,
+.social-btn,
+.project-card,
+.project-header,
+.project-content,
+.project-links,
+.project-links .btn,
+.read-more-btn,
+.view-all-btn {
+    background: var(--surface-0) !important;
+    border: 1px solid var(--border-0) !important;
+    backdrop-filter: blur(12px) saturate(110%);
+    -webkit-backdrop-filter: blur(12px) saturate(110%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Slightly stronger emphasis for active/hovered pieces */
+.project-card.active,
+.skill-category:hover,
+.blog-content:hover,
+.social-links a:hover,
+.social-btn:hover {
+    border-color: var(--border-1) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Header refinement */
+header {
+    background: rgba(9, 12, 18, 0.78) !important;
+    border-bottom: 1px solid var(--border-0) !important;
+    backdrop-filter: blur(10px) saturate(120%);
+}
+
+nav ul li a { color: #c9d5f3; }
+nav ul li a:hover, nav ul li a.active { color: var(--accent-0); }
+
+/* Buttons and tags */
+.tech-tag {
+    background: rgba(100, 255, 218, 0.12) !important;
+    color: var(--accent-0) !important;
+}
+
+.project-links .btn,
+.read-more-btn,
+.view-all-btn {
+    background: rgba(18, 22, 32, 0.85) !important;
+    border-color: var(--border-0) !important;
+    color: var(--accent-0) !important;
+}
+
+.project-links .btn:hover,
+.read-more-btn:hover,
+.view-all-btn:hover {
+    background: rgba(100, 255, 218, 0.08) !important;
+    border-color: var(--accent-0) !important;
+}
+
+/* Footer tone */
+footer {
+    background: #0f1724 !important;
+    color: var(--text-1) !important;
+}
+
+/* Hero tweaks */
+section#hero .hero-cta .static-btn {
+    background: rgba(14, 18, 26, 0.92) !important;
+    border-color: var(--border-0) !important;
+}

@@ -136,20 +136,20 @@ nav ul li a i {
     }
 
     nav ul {
-        position: fixed;
-        top: 0;
-        right: -200px;
-        height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100dvh;
         background: rgba(10, 25, 47, 0.95);
         backdrop-filter: blur(10px);
         flex-direction: column;
-        width: 200px;
-        padding: 80px 20px 20px 20px;
+    width: clamp(240px, 75vw, 360px);
+    padding: 80px 20px 20px 20px;
         border-radius: 0;
-        transform: translateX(0);
+    transform: translateX(100%);
         opacity: 1;
         visibility: visible;
-        transition: right 0.3s ease;
+    transition: transform 0.3s ease;
         border: none;
         border-left: 1px solid rgba(100, 255, 218, 0.1);
         box-shadow: -10px 0 30px rgba(2, 12, 27, 0.7);
@@ -160,7 +160,7 @@ nav ul li a i {
     }
 
     nav ul.show {
-        right: 0;
+    transform: translateX(0);
     }
 
     nav ul li {

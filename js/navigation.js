@@ -8,7 +8,9 @@ export function initializeNavigation() {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
-                const headerOffset = 80;
+                // Compute dynamic header offset (varies across breakpoints)
+                const header = document.querySelector('header');
+                const headerOffset = header ? header.getBoundingClientRect().height : 80;
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -50,24 +52,40 @@ export function initializeMobileNav() {
     const navList = document.querySelector('nav ul');
 
     if (mobileMenuBtn && navList) {
-        mobileMenuBtn.addEventListener('click', () => {
-            navList.classList.toggle('show');
-            mobileMenuBtn.innerHTML = navList.classList.contains('show') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+        const openMenu = () => {
+            navList.classList.add('show');
+            document.body.classList.add('nav-open');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+        };
+        const closeMenu = () => {
+            navList.classList.remove('show');
+            document.body.classList.remove('nav-open');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        };
+        const toggleMenu = (e) => {
+            e.stopPropagation();
+            if (navList.classList.contains('show')) closeMenu(); else openMenu();
+        };
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        // Close on outside click
+        document.addEventListener('click', (e) => {
+            if (navList.classList.contains('show') && !e.target.closest('nav')) {
+                closeMenu();
+            }
         });
 
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('nav')) {
-                navList.classList.remove('show');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navList.classList.contains('show')) {
+                closeMenu();
             }
         });
 
         navList.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                navList.classList.remove('show');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                closeMenu();
             });
         });
     }
