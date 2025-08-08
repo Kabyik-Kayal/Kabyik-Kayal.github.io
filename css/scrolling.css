@@ -147,3 +147,30 @@
 }
 
 /* Additional scroll effects can be added here */
+
+/* Skill cards: appear from nothing (fade + scale + deblur) */
+.skills-grid.staggered-container > .skill-card {
+    opacity: 0;
+    transform: translateY(26px) scale(0.82);
+    filter: blur(8px);
+    transition: opacity 0.4s ease-out,
+                transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.4s ease-out;
+    will-change: opacity, transform, filter;
+}
+
+.skills-grid.staggered-container > .skill-card.animate {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skills-grid.staggered-container > .skill-card,
+    .skills-grid.staggered-container > .skill-card.animate {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+    }
+}

@@ -63,6 +63,17 @@ export function convertToLazyImages() {
     document.querySelectorAll('img:not([data-src]):not(.loaded)').forEach(img => {
         // Skip images that are already processed or don't have a src
         if (!img.src || img.classList.contains('loaded')) return;
+        // Skip critical/above-the-fold images to preserve LCP
+        if (
+            img.hasAttribute('data-skip-lazy') ||
+            img.classList.contains('profile-image') ||
+            img.closest('#hero') ||
+            img.closest('header')
+        ) {
+            // Ensure native lazy attribute isn't forced on critical ones
+            if (img.getAttribute('loading') === 'lazy') img.removeAttribute('loading');
+            return;
+        }
         
         // Store the original src in data-src attribute
         img.setAttribute('data-src', img.src);

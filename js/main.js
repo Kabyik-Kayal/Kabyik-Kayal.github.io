@@ -6,6 +6,11 @@ import { initializeNetworkAnimation } from './networkAnimation.js';
 import { initializeYear, initializeRole } from './utils.js';
 import { initializeMobileOptimizations, applyMobileSkillCards } from './mobileOptimizations.js';
 import { initializeScrollAnimations, addScrollAnimations, initializeSmoothScroll } from './scrollAnimations.js';
+// Ensure lazy loading is active and convert existing <img> to lazy-loaded variants
+import { convertToLazyImages } from './image-lazy-loader.js';
+
+// Convert images to lazy-loaded as soon as DOM is parsed (defer ensures this runs before DOMContentLoaded)
+convertToLazyImages();
 
 // Initialize all features
 document.addEventListener('DOMContentLoaded', () => {
