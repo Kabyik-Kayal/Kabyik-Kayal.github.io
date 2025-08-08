@@ -55,8 +55,8 @@ body::before {
     z-index: 0; /* above body::before grain (-2), below content (1) */
 }
 
-/* Ensure content paints above the canvas */
-header, main, footer, section {
+/* Ensure content paints above the canvas (exclude header so it stays fixed from header.css) */
+main, footer, section {
     position: relative;
     z-index: 1;
 }

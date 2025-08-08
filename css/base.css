@@ -26,6 +26,27 @@ a:hover {
     color: #00b4d8;
 }
 
+.skip-to-content {
+    position: absolute;
+    left: -9999px;
+}
+
+.skip-to-content:focus {
+    left: 16px;
+    top: 88px;
+    z-index: 1001;
+}
+
+/* Account for fixed header height */
+main {
+    padding-top: 80px; /* header height from header.css */
+}
+
+/* Smooth anchor jumps with fixed header */
+section[id] {
+    scroll-margin-top: 90px;
+}
+
 .container {
     width: 85%;
     max-width: 1400px;

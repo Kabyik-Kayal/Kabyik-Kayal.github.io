@@ -53,6 +53,9 @@ section {
         align-items: center;
         justify-content: center;
     }
+    
+    /* Reduce top padding to match shorter header on tablet */
+    main { padding-top: 60px; }
 
     /* Mobile menu styles are handled in header.css */
 
@@ -137,6 +140,8 @@ section {
         height: 60px;
         width: 100%;
     }
+
+    main { padding-top: 60px; }
 
     .logo {
         font-size: 1.5em;
@@ -249,6 +254,8 @@ section {
         padding: 0 10px;
         width: 100%;
     }
+
+    main { padding-top: 56px; }
 
     .logo {
         font-size: 1.2em;

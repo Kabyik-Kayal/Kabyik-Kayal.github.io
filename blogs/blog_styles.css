@@ -267,8 +267,4 @@
 }
 
 /* Add smooth top margin for header compensation */
-@media (max-width: 480px) {
-    section#blogs {
-        padding-top: calc(56px + 1.5rem);  /* header height + some spacing */
-    }
-}
+/* Header offset handled globally in base/responsive CSS */
