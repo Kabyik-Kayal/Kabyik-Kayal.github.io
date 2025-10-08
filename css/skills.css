@@ -68,6 +68,10 @@
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
+    /* Performance: isolate grid and skip offscreen rendering */
+    contain: content;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 260px; /* approximate row height to avoid reflow */
 }
 
 .skill-card {
@@ -92,11 +96,15 @@
     -webkit-backdrop-filter: blur(10px) saturate(115%);
     transition: transform 280ms ease, box-shadow 280ms ease, border-color 200ms ease, background 300ms ease;
     overflow: hidden;
-    will-change: transform;
-    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    /* Contain paints and skip offscreen rendering for perf without visual change */
+    contain: paint;
+    content-visibility: auto;
+    contain-intrinsic-size: var(--skill-size) var(--skill-size);
 }
 
 /* Neon ring glow */
+/* Defer heavy glow layer creation until interaction */
 .skill-card::after {
     content: "";
     position: absolute;
@@ -107,6 +115,7 @@
     opacity: 0;
     transition: opacity 280ms ease;
     pointer-events: none;
+    display: none; /* not rendered until hover/focus */
 }
 
 /* Glossy top highlight */
@@ -128,10 +137,14 @@
     transform: translateY(-6px) scale(1.04);
     border-color: #64ffda;
     box-shadow: var(--skill-shadow), var(--skill-glow);
+    will-change: transform, box-shadow; /* hint only during interaction */
 }
 
 .skill-card:hover::after,
-.skill-card:focus-visible::after { opacity: 1; }
+.skill-card:focus-visible::after {
+    display: block;
+    opacity: 1;
+}
 
 .skill-card i,
 .skill-card .skill-icon {
@@ -253,9 +266,7 @@
 .skill-card .sheen { display: none; }
 .skill-card:hover .sheen { display: block; }
 
-.skill-card:hover::before {
-    animation: sheenSlide 1200ms ease forwards;
-}
+.skill-card:hover::before { animation: sheenSlide 900ms ease forwards; }
 
 @keyframes sheenSlide {
     0% { transform: translateX(-20%) rotate(-8deg); opacity: 1; }
@@ -267,3 +278,6 @@
 @media (prefers-reduced-motion: reduce) {
     .skill-card, .skill-card::after, .skill-card::before { transition: none; animation: none; }
 }
+
+/* Avoid persistent will-change from generic animation classes on cards */
+.skills-grid .skill-card.scale-in { will-change: auto; }
