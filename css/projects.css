@@ -1,6 +1,7 @@
 /* projects.css */
 .projects {
     padding: 100px 0;
+    background-color: #FDFBF7;
 }
 
 section#projects {
@@ -9,89 +10,72 @@ section#projects {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 40px 0;
+    padding: 60px 0;
+    z-index: 1;
 }
 
 .projects-container {
     width: 100%;
     max-width: 1400px;
-    height: calc(100vh - 200px);
-    margin: -20px auto 0;
+    margin: 0 auto;
+    padding: 2rem;
     position: relative;
-    padding: 0 120px;
+    height: 650px; /* Increased height to show full cards */
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    overflow: visible; /* Allow full card visibility */
+}
+
+/* Remove scrollbar styles as we use slider */
+.projects-container::-webkit-scrollbar {
+    display: none;
 }
 
 .project-grid {
     position: relative;
     width: 100%;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform-style: preserve-3d;
-    margin-top: -60px;
+    height: 100%;
 }
 
 .project-card {
     position: absolute;
     width: 340px;
-    height: 420px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 2px solid #000;
+    box-shadow: 6px 6px 0px #000;
+    transition: all 0.8s ease-out; /* Match JS transition */
+    opacity: 0;
+    visibility: hidden;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
-    background: rgba(17, 34, 64, 0.5);
-    border: 2px solid rgba(100, 255, 218, 0.08);
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    pointer-events: none; /* Disable interaction with inactive cards */
-    z-index: 1;
 }
 
 .project-card.active {
+    z-index: 10;
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, -50%) scale(1);
-    z-index: 3;
-    border: 2px solid rgba(100, 255, 218, 0.15);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-    pointer-events: auto; /* Enable interaction with active card */
-}
-
-.project-card.prev {
-    opacity: 0.7;
-    visibility: visible;
-    transform: translate(-160%, -50%) scale(0.85);
-    z-index: 2;
-    border: 2px solid rgba(100, 255, 218, 0.05);
-}
-
-.project-card.next {
-    opacity: 0.7;
-    visibility: visible;
-    transform: translate(60%, -50%) scale(0.85);
-    z-index: 2;
-    border: 2px solid rgba(100, 255, 218, 0.05);
 }
 
 .project-card:hover {
-    border: 2px solid rgba(100, 255, 218, 0.3);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+    /* Hover effect handled by JS or only on active card */
+    border: 2px solid #000;
+}
+
+/* Only hover effect on the active card */
+.project-card.active:hover {
+    box-shadow: 8px 8px 0px #000;
 }
 
 .project-image-container {
     width: 100%;
-    height: 140px;
-    border-radius: 14px 14px 0 0;
+    height: 220px;
+    border-bottom: 2px solid #000;
     overflow: hidden;
+    border-radius: 0;
 }
 
 .project-image {
@@ -99,144 +83,161 @@ section#projects {
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+    filter: grayscale(100%);
 }
 
 .project-card:hover .project-image {
     transform: scale(1.1);
+    filter: grayscale(0%);
 }
 
 .project-header {
-    padding: 1rem 1rem 0.5rem;
-    background: rgba(17, 34, 64, 0.6);
-    backdrop-filter: blur(8px);
+    padding: 1rem;
+    background: #fff;
+    border-bottom: 2px solid #000;
 }
 
 .project-header h3 {
-    font-size: 1.1em;
-    margin: 0 0 0.5rem;
-    color: #64ffda;
-    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 0;
+    color: #000;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
 }
 
 .project-content {
-    padding: 0 1rem;
+    padding: 1rem;
     flex: 1;
     display: flex;
     flex-direction: column;
-    background: rgba(17, 34, 64, 0.4);
+    background: #fff;
 }
 
 .project-content p {
-    color: #8892b0;
-    font-size: 0.9em;
-    line-height: 1.5;
-    margin: 0 0 0.75rem;
+    color: #000;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+    font-family: 'Courier New', monospace;
 }
 
 .project-tech-stack {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
-    margin: 0.75rem 0;
+    gap: 0.5rem;
+    margin-top: auto;
 }
 
 .tech-tag {
-    padding: 0.25rem 0.6rem;
-    background: rgba(100, 255, 218, 0.1);
-    border-radius: 15px;
-    font-size: 0.75rem;
-    color: #64ffda;
-    transition: all 0.3s ease;
+    padding: 0.4rem 0.8rem;
+    background: #fff;
+    border: 2px solid #000;
+    font-size: 0.8rem;
+    color: #000;
+    font-weight: 600;
+    border-radius: 0;
+    box-shadow: 3px 3px 0px #000;
 }
 
 .tech-tag:hover {
-    background: rgba(100, 255, 218, 0.2);
-    transform: translateY(-2px);
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px #000;
+    background: #000;
+    color: #fff;
 }
 
 .project-links {
-    padding: 0.75rem 1rem;
+    padding: 1.5rem;
     display: flex;
-    gap: 0.75rem;
-    margin-top: auto;
-    border-top: 1px solid rgba(100, 255, 218, 0.1);
-    background: rgba(17, 34, 64, 0.6);
+    gap: 1rem;
+    background: #fff;
+    border-top: 2px solid #000;
 }
 
 .project-links .btn {
     flex: 1;
-    padding: 0.4rem 0.8rem;
+    padding: 0.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    border: 1px solid rgba(100, 255, 218, 0.3);
-    border-radius: 8px;
-    font-size: 0.85rem;
-    background: rgba(17, 34, 64, 0.9);
-    color: #64ffda;
-    transition: all 0.3s ease;
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    border-radius: 0;
+    box-shadow: 6px 6px 0px #000;
+    transition: all 0.2s ease;
 }
 
 .project-links .btn:hover {
-    background: rgba(100, 255, 218, 0.1);
-    border-color: #64ffda;
-    transform: translateY(-2px);
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #000;
+    background: #000;
+    color: #fff;
 }
 
-/* Improved button styles for better visibility */
 .slider-btn {
-    width: 54px;
-    height: 54px;
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border: 2px solid #000;
+    box-shadow: 6px 6px 0px #000;
+    cursor: pointer;
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #112240;
-    border: 2px solid rgba(100, 255, 218, 0.3);
-    color: #64ffda;
-    border-radius: 50%;
-    cursor: pointer;
-    pointer-events: auto;
-    transition: all 0.3s ease;
-    z-index: 5; /* Ensure buttons are always on top */
-}
-
-.slider-btn.prev-btn {
-    left: 40px;
-}
-
-.slider-btn.next-btn {
-    right: 40px;
+    font-size: 1.2rem;
+    color: #000;
+    transition: all 0.2s ease;
 }
 
 .slider-btn:hover {
-    background: rgba(100, 255, 218, 0.1);
-    border-color: #64ffda;
-    transform: scale(1.1);
+    transform: translateY(-50%) translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #000;
+    background: #000;
+    color: #fff;
 }
 
-/* Desktop view solid styling for project cards */
+.slider-btn:active {
+    transform: translateY(-50%) translate(2px, 2px);
+    box-shadow: 3px 3px 0px #000;
+}
+
+.prev-btn {
+    left: 2rem;
+}
+
+.next-btn {
+    right: 2rem;
+}
+
+/* Remove desktop specific overrides that conflict */
 @media screen and (min-width: 1024px) {
     .project-card {
-        background: #0a192f; /* Solid background color */
-        border: 2px solid rgba(100, 255, 218, 0.08);
+        background: #fff;
+        border: 2px solid #000;
     }
     
     .project-header {
-        background: #112240; /* Solid header background */
-        backdrop-filter: none; /* Remove blur effect */
+        background: #fff;
+        backdrop-filter: none;
     }
     
     .project-content {
-        background: #0a192f; /* Solid content background */
+        background: #fff;
     }
     
     .project-links {
-        background: #112240; /* Solid footer background */
+        background: #fff;
     }
     
     .project-card.active {
-        border: 2px solid rgba(100, 255, 218, 0.15);
+        border: 2px solid #000;
     }
 }

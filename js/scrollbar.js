@@ -198,8 +198,8 @@ function setScrollbarStyles(styleElement) {
             position: absolute;
             width: 6px;
             right: 2px;
-            border-radius: 3px;
-            background-color: #64ffda;
+            border-radius: 0;
+            background-color: #000000;
             opacity: 0.7;
             transition: width 0.3s ease, opacity 0.3s ease, right 0.3s ease;
             cursor: grab;

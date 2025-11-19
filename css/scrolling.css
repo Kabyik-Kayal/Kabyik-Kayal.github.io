@@ -75,26 +75,12 @@
     transition: transform 0.2s linear;
 }
 
-/* Fancy gradient text animation */
+/* Fancy gradient text animation - Removed for Brutalist */
 .gradient-text {
-    background-size: 200% auto;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientFlow 8s ease infinite alternate;
-    background-image: linear-gradient(to right, #64ffda, #00b4d8, #64ffda, #00b4d8);
-}
-
-@keyframes gradientFlow {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    background: none;
+    -webkit-text-fill-color: #000;
+    color: #000;
+    animation: none;
 }
 
 /* Special animations for hero section */
@@ -148,21 +134,20 @@
 
 /* Additional scroll effects can be added here */
 
-/* Skill cards: appear from nothing (fade + scale + deblur) */
+/* Skill cards: appear from nothing (fade + scale) */
 .skills-grid.staggered-container > .skill-card {
     opacity: 0;
     transform: translateY(26px) scale(0.82);
-    filter: blur(8px);
+    filter: none;
     transition: opacity 0.4s ease-out,
-                transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                filter 0.4s ease-out;
-    will-change: opacity, transform, filter;
+                transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
 }
 
 .skills-grid.staggered-container > .skill-card.animate {
     opacity: 1;
     transform: translateY(0) scale(1);
-    filter: blur(0);
+    filter: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

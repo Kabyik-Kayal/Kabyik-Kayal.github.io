@@ -1,8 +1,7 @@
 /* header.css */
 header {
     padding: 0 50px;
-    backdrop-filter: blur(10px);
-    background: rgba(10, 25, 47, 0.95);
+    background: #FDFBF7; /* Cream White */
     position: fixed;
     top: 0;
     left: 0;
@@ -12,7 +11,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.3);
+    border-bottom: 3px solid #000;
+    box-shadow: none;
 }
 
 nav {
@@ -26,26 +26,27 @@ nav {
 header .logo {
     font-size: 2em;
     font-weight: 700;
-    color: #64ffda;
-    letter-spacing: -0.5px;
+    color: #000;
+    letter-spacing: -1px;
     display: flex;
     align-items: center;
     gap: 2px;
     text-decoration: none;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 header .logo:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 header .logo .k-left {
-    transform: rotate(-10deg);
+    transform: none;
     display: inline-block;
 }
 
 header .logo .k-right {
-    transform: rotate(10deg);
+    transform: none;
     display: inline-block;
 }
 
@@ -55,40 +56,47 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 50px;
+    gap: 40px;
 }
 
 nav ul li a {
-    font-weight: 500;
+    font-weight: 700;
     position: relative;
-    padding: 10px 0;
-    color: #ccd6f6;
-    transition: color 0.3s ease;
+    padding: 10px 15px;
+    color: #000;
+    text-transform: uppercase;
+    font-family: 'Courier New', Courier, monospace;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
 }
 
 nav ul li a::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
-    background: linear-gradient(to right, #64ffda, #00b4d8);
-    transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1);
-    transform-origin: left;
-}
-
-nav ul li a:hover::after,
-nav ul li a.active::after {
-    width: 100%;
-}
-
-nav ul li a.active {
-    color: #64ffda;
+    height: 3px;
+    background: #000;
+    transition: width 0.3s ease;
 }
 
 nav ul li a:hover {
-    color: #64ffda;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+    transform: translate(-2px, -2px);
+}
+
+nav ul li a.active {
+    color: #000;
+    border-bottom: 3px solid #000;
+}
+
+nav ul li a.active::after {
+    width: 100%;
 }
 
 nav ul li a i {
@@ -99,23 +107,24 @@ nav ul li a i {
 .mobile-menu-btn {
     display: none;
     background: transparent;
-    border: 1px solid rgba(100, 255, 218, 0.3);
-    color: #64ffda;
+    border: 2px solid #000;
+    color: #000;
     width: 44px;
     height: 44px;
-    border-radius: 8px;
+    border-radius: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     padding: 0;
     justify-content: center;
     align-items: center;
     position: relative;
     z-index: 1001;
+    box-shadow: 4px 4px 0px #000;
 }
 
 .mobile-menu-btn i {
     font-size: 1.2rem;
-    pointer-events: none; /* Prevents icon from intercepting clicks */
+    pointer-events: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -125,8 +134,34 @@ nav ul li a i {
 
 .mobile-menu-btn:hover,
 .mobile-menu-btn:active {
-    background: rgba(100, 255, 218, 0.1);
-    border-color: #64ffda;
+    background: #000;
+    color: #fff;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000;
+}
+
+/* Mobile menu backdrop blur */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 998;
+    pointer-events: none;
+}
+
+body.nav-open::after {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 /* Ensure touch target is large enough on mobile */
@@ -136,31 +171,30 @@ nav ul li a i {
     }
 
     nav ul {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100dvh;
-        background: rgba(10, 25, 47, 0.95);
-        backdrop-filter: blur(10px);
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100dvh;
+        background: #FDFBF7;
         flex-direction: column;
-    width: clamp(240px, 75vw, 360px);
-    padding: 80px 20px 20px 20px;
+        width: clamp(240px, 75vw, 360px);
+        padding: 100px 20px 20px 20px;
         border-radius: 0;
-    transform: translateX(100%);
+        transform: translateX(100%);
         opacity: 1;
         visibility: visible;
-    transition: transform 0.3s ease;
+        transition: transform 0.3s ease;
         border: none;
-        border-left: 1px solid rgba(100, 255, 218, 0.1);
-        box-shadow: -10px 0 30px rgba(2, 12, 27, 0.7);
+        border-left: 3px solid #000;
+        box-shadow: none;
         justify-content: flex-start;
         align-items: flex-start;
-        gap: 30px;
+        gap: 20px;
         z-index: 999;
     }
 
     nav ul.show {
-    transform: translateX(0);
+        transform: translateX(0);
     }
 
     nav ul li {
@@ -169,28 +203,34 @@ nav ul li a i {
 
     nav ul li a {
         display: block;
-        padding: 12px 20px;
+        padding: 15px 20px;
         text-align: left;
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         width: 100%;
+        border: 2px solid transparent;
+    }
+    
+    nav ul li a:hover {
+        border: 2px solid #000;
+        background: #fff;
+        color: #000;
     }
 
     /* Adjust underline animation for mobile menu */
     nav ul li a::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 20px;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(to right, #64ffda, #00b4d8);
-        transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1);
-        transform-origin: left;
+        display: none;
     }
+    
+    /* Ensure backdrop blur only applies on mobile */
+    body::after {
+        display: block;
+    }
+}
 
-    nav ul li a:hover::after,
-    nav ul li a.active::after {
-        width: calc(100% - 40px);
+@media (min-width: 969px) {
+    /* Hide backdrop on desktop */
+    body::after {
+        display: none !important;
     }
 }
 

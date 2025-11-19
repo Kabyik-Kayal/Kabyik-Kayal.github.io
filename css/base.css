@@ -1,14 +1,25 @@
 /* base.css */
+:root {
+    --bg-0: #FDFBF7; /* Cream White */
+    --bg-1: #F5F2EB; /* Slightly darker cream */
+    --surface-0: #FFFFFF;
+    --border-0: #000000;
+    --text-0: #000000;
+    --text-1: #333333;
+    --network-node: rgba(0, 0, 0, 0.8);
+    --network-link: rgba(0, 0, 0, 0.2);
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', 'Poppins', sans-serif;
-    background-color: #0a192f;
-    color: #e6f1ff;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--bg-0);
+    color: var(--text-0);
     line-height: 1.7;
     overflow-y: auto;
     scroll-snap-type: y mandatory;
-    background: linear-gradient(165deg, #0a192f 0%, #0d1b2a 100%);
+    background: var(--bg-0);
 }
 
 html {
@@ -17,13 +28,14 @@ html {
 }
 
 a {
-    color: #64ffda;
+    color: var(--text-0);
     text-decoration: none;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 a:hover {
-    color: #00b4d8;
+    text-decoration: underline;
+    color: var(--text-0);
 }
 
 .skip-to-content {
@@ -60,7 +72,7 @@ section[id] {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 0;
     opacity: 0.15;
     pointer-events: none;
 }

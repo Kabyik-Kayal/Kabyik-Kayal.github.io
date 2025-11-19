@@ -68,7 +68,8 @@ export function convertToLazyImages() {
             img.hasAttribute('data-skip-lazy') ||
             img.classList.contains('profile-image') ||
             img.closest('#hero') ||
-            img.closest('header')
+            img.closest('header') ||
+            img.closest('.skill-icon')
         ) {
             // Ensure native lazy attribute isn't forced on critical ones
             if (img.getAttribute('loading') === 'lazy') img.removeAttribute('loading');

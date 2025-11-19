@@ -5,10 +5,12 @@ section {
     flex-direction: column;
     justify-content: center;
     padding: 60px 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .card-section {
-    padding: 0 20px;
+    padding: 40px 20px;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -19,60 +21,21 @@ section {
 .card-section h2 {
     font-size: 4.2em;
     margin-bottom: 3rem;
-    background: linear-gradient(
-        to right,
-        #64ffda,
-        #00b4d8,
-        #64ffda,
-        #00b4d8,
-        #64ffda
-    );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #000;
     position: relative;
     padding-bottom: 1.5rem;
     font-weight: 800;
-    letter-spacing: -1px;
-    animation: gradient-shift 5s ease-in-out infinite alternate;
-    text-shadow: 0 0 20px rgba(100, 255, 218, 0.1);
-    transition: all 0.3s ease;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+    text-shadow: 4px 4px 0px #ccc;
+    background: none;
+    -webkit-text-fill-color: #000;
 }
 
 .card-section h2:hover {
-    animation-play-state: paused;
-    text-shadow: 0 0 30px rgba(100, 255, 218, 0.2);
-    transform: translateY(-2px);
-}
-
-@keyframes gradient-shift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes text-glow {
-    from {
-        text-shadow: 0 0 20px rgba(100, 255, 218, 0.1),
-                     0 0 40px rgba(0, 180, 216, 0.1);
-    }
-    to {
-        text-shadow: 0 0 30px rgba(100, 255, 218, 0.2),
-                     0 0 50px rgba(0, 180, 216, 0.2);
-    }
-}
-
-.card-section h2 i {
-    font-size: 0.7em;
-    margin-right: 0.8rem;
-    vertical-align: middle;
+    transform: translate(-2px, -2px);
+    text-shadow: 6px 6px 0px #ccc;
 }
 
 .card-section h2::after {
@@ -83,17 +46,9 @@ section {
     transform: translateX(-50%);
     width: 120px;
     height: 4px;
-    background: linear-gradient(
-        to right,
-        #64ffda,
-        #00b4d8,
-        #64ffda,
-        #00b4d8
-    );
-    background-size: 200% 100%;
-    border-radius: 3px;
-    animation: line-shift 6s ease infinite;
-    box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+    background: #000;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 @keyframes line-shift {

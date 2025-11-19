@@ -46,8 +46,6 @@
     <link rel="stylesheet" href="css/mobile-projects.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/toast.css">
-    <!-- Load theme overrides last -->
-    <link rel="stylesheet" href="/css/modern-dark.css">
 </head>
 <body>
     <canvas id="network-bg"></canvas>
@@ -114,11 +112,8 @@
         <!-- Projects Section -->
         <section id="projects" class="card-section">
             <h2><i class="fas fa-project-diagram"></i> Projects</h2>
-            <div class="projects-container auto-slider">
-                <div class="slider-nav">
-                    <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-                    <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
-                </div>
+            <div class="projects-container">
+                <button class="slider-btn prev-btn" aria-label="Previous Project"><i class="fas fa-chevron-left"></i></button>
                 <div class="project-grid">
                     <div class="project-card">
                         <div class="project-image-container">
@@ -305,7 +300,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="slider-dots"></div>
+                <button class="slider-btn next-btn" aria-label="Next Project"><i class="fas fa-chevron-right"></i></button>
             </div>
         </section>
 
@@ -605,7 +600,8 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; <span id="year"></span> Kabyik. All rights reserved.</p>
+        <p>NO RIGHTS RESERVED. COPYLEFT <span id="year"></span> KABYIK.</p>
+        <p class="sarcasm">(Steal this site, I dare you)</p>
     </footer>
 
     <!-- Toast Notification -->

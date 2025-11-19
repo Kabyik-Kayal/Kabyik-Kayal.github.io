@@ -1,67 +1,40 @@
-/* modern-dark.css — site-wide dark canvas + grain theme overrides */
+/* Minimalist Brutalist Theme Overrides */
 
-/* Theme variables */
 :root {
-    --bg-0: #090b12;
-    --bg-1: #0b1018;
-    --surface-0: rgba(13, 16, 24, 0.62);
-    --surface-1: rgba(18, 22, 32, 0.58);
-    --border-0: rgba(100, 255, 218, 0.10);
-    --border-1: rgba(100, 255, 218, 0.16);
-    --text-0: #e6f1ff;
-    --text-1: #a7b0c6;
-    --accent-0: #64ffda;
-    --accent-1: #00b4d8;
+    --bg-0: #FDFBF7; /* Cream White */
+    --bg-1: #F5F2EB; /* Slightly darker cream */
+    --surface-0: #FDFBF7;
+    --surface-1: #FFFFFF;
+    --border-0: #000000;
+    --border-1: #000000;
+    --text-0: #000000;
+    --text-1: #333333;
+    --accent-0: #000000;
+    --accent-1: #333333;
 
-    /* Network canvas colors (read by JS) */
-    --network-node: rgba(100, 255, 218, 0.28);
-    --network-link: rgba(0, 180, 216, 0.13);
+    /* Network canvas colors */
+    --network-node: rgba(0, 0, 0, 0.8);
+    --network-link: rgba(0, 0, 0, 0.2);
 }
 
-/* Rich dark background with subtle vignettes */
+/* Reset Backgrounds */
 html, body {
-    background: radial-gradient(1000px 600px at 20% 10%, rgba(13, 20, 32, 0.9), transparent 60%),
-                radial-gradient(900px 600px at 85% -10%, rgba(10, 16, 28, 0.8), transparent 60%),
-                linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
-    color: var(--text-0);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    background: var(--bg-0) !important;
+    color: var(--text-0) !important;
 }
 
-/* Put the procedural grain under the network canvas but above the page background */
+/* Remove Grain */
 body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -2; /* under #network-bg (-1) */
-    opacity: 0.05; /* subtle grain */
-    /* SVG fractal noise for crisp, lightweight grain */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 220px 220px;
-    image-rendering: pixelated;
-    animation: grainShift 8s steps(8) infinite;
+    display: none;
 }
 
-@keyframes grainShift {
-    0% { background-position: 0 0; }
-    100% { background-position: 220px 220px; }
-}
-
-/* Enhance the existing network canvas appearance */
+/* Network Canvas */
 #network-bg {
-    opacity: 0.28 !important; /* more visible */
-    mix-blend-mode: normal; /* avoid blending that can dim on some backgrounds */
-    z-index: 0; /* above body::before grain (-2), below content (1) */
+    opacity: 0.1 !important;
+    mix-blend-mode: multiply;
 }
 
-/* Ensure content paints above the canvas (exclude header so it stays fixed from header.css) */
-main, footer, section {
-    position: relative;
-    z-index: 1;
-}
-
-/* Glassy surfaces with unified tone */
+/* Brutalist Components */
 .about-text,
 .resume-container,
 .skill-category,
@@ -75,63 +48,394 @@ main, footer, section {
 .project-links,
 .project-links .btn,
 .read-more-btn,
-.view-all-btn {
+.view-all-btn,
+.download-resume {
     background: var(--surface-0) !important;
-    border: 1px solid var(--border-0) !important;
-    backdrop-filter: blur(12px) saturate(110%);
-    -webkit-backdrop-filter: blur(12px) saturate(110%);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border: 2px solid var(--border-0) !important;
+    border-radius: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: 4px 4px 0px var(--border-0) !important;
+    color: var(--text-0) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    will-change: transform, box-shadow;
 }
 
-/* Slightly stronger emphasis for active/hovered pieces */
-.project-card.active,
+/* Hover Effects */
+.project-card:hover,
 .skill-category:hover,
-.blog-content:hover,
+.blog-content:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 12px 12px 0px var(--border-0) !important;
+}
+
+.about-text:hover,
+.resume-container:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 12px 12px 0px var(--border-0) !important;
+    background: var(--border-0) !important;
+    border-color: var(--bg-0) !important;
+}
+
+.about-text:hover p {
+    color: var(--bg-0) !important;
+    border-left-color: var(--bg-0) !important;
+}
+
+.about-text:hover p strong,
+.resume-container:hover h3,
+.resume-container:hover p,
+.resume-container:hover .resume-icon {
+    color: var(--bg-0) !important;
+}
+
 .social-links a:hover,
-.social-btn:hover {
-    border-color: var(--border-1) !important;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
-}
-
-/* Header refinement */
-header {
-    background: rgba(9, 12, 18, 0.78) !important;
-    border-bottom: 1px solid var(--border-0) !important;
-    backdrop-filter: blur(10px) saturate(120%);
-}
-
-nav ul li a { color: #c9d5f3; }
-nav ul li a:hover, nav ul li a.active { color: var(--accent-0); }
-
-/* Buttons and tags */
-.tech-tag {
-    background: rgba(100, 255, 218, 0.12) !important;
-    color: var(--accent-0) !important;
-}
-
-.project-links .btn,
-.read-more-btn,
-.view-all-btn {
-    background: rgba(18, 22, 32, 0.85) !important;
-    border-color: var(--border-0) !important;
-    color: var(--accent-0) !important;
-}
-
 .project-links .btn:hover,
 .read-more-btn:hover,
-.view-all-btn:hover {
-    background: rgba(100, 255, 218, 0.08) !important;
-    border-color: var(--accent-0) !important;
+.view-all-btn:hover,
+.download-resume:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--border-0) !important;
+    background: var(--border-0) !important;
+    color: var(--bg-0) !important;
+    border-color: var(--bg-0) !important;
 }
 
-/* Footer tone */
+.project-links .btn:hover i,
+.read-more-btn:hover i,
+.view-all-btn:hover i,
+.social-links a:hover i,
+.download-resume:hover i {
+    color: var(--bg-0) !important;
+}
+
+/* Header */
+header {
+    background: var(--bg-0) !important;
+    border-bottom: 3px solid var(--border-0) !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+nav ul li a { 
+    color: var(--text-0) !important;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+nav ul li a.active { 
+    color: var(--text-0) !important;
+    border-bottom: 3px solid var(--border-0) !important;
+}
+
+nav ul li a:hover,
+nav ul li a.active:hover {
+    background: var(--border-0) !important;
+    color: var(--bg-0) !important;
+    border: 2px solid var(--bg-0) !important;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3) !important;
+    transform: translate(-2px, -2px) !important;
+}
+
+nav ul li a:hover i,
+nav ul li a.active:hover i {
+    color: var(--bg-0) !important;
+}
+
+nav ul li a::after {
+    background: var(--text-0) !important;
+    height: 3px !important;
+}
+
+/* Buttons and Tags */
+.tech-tag {
+    background: transparent !important;
+    border: 1px solid var(--border-0) !important;
+    color: var(--text-0) !important;
+    border-radius: 0 !important;
+    font-weight: bold;
+}
+
+/* Footer */
 footer {
-    background: #0f1724 !important;
+    background: var(--bg-0) !important;
+    color: var(--text-0) !important;
+    border-top: 3px solid var(--border-0) !important;
+}
+
+/* Hero Section */
+section#hero .hero-cta .static-btn {
+    background: var(--bg-0) !important;
+    border: 2px solid var(--border-0) !important;
+    color: var(--text-0) !important;
+    border-radius: 0 !important;
+    box-shadow: 4px 4px 0px var(--border-0) !important;
+}
+
+section#hero .hero-cta .static-btn:hover {
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 6px 6px 0px var(--border-0) !important;
+    background: var(--border-0) !important;
+    color: var(--bg-0) !important;
+    border-color: var(--bg-0) !important;
+}
+
+section#hero .hero-cta .static-btn:hover span {
+    color: var(--bg-0) !important;
+}
+
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-0) !important;
+    font-family: 'Courier New', Courier, monospace; /* Brutalist font vibe */
+    letter-spacing: -1px;
+}
+
+p {
     color: var(--text-1) !important;
 }
 
-/* Hero tweaks */
-section#hero .hero-cta .static-btn {
-    background: rgba(14, 18, 26, 0.92) !important;
-    border-color: var(--border-0) !important;
+/* Remove gradients from text */
+.gradient-text, .hero-text h1 {
+    background: none !important;
+    -webkit-text-fill-color: var(--text-0) !important;
+    color: var(--text-0) !important;
 }
+
+.hero-text h1 span {
+    color: var(--text-0) !important;
+    text-decoration: underline;
+}
+
+/* Profile Image */
+.profile-container {
+    border: 3px solid var(--border-0) !important;
+    border-radius: 0 !important;
+    box-shadow: 8px 8px 0px var(--border-0) !important;
+}
+
+.profile-container:hover {
+    box-shadow: 12px 12px 0px var(--border-0) !important;
+}
+
+/* Icons */
+i {
+    color: var(--text-0) !important;
+}
+
+/* Skill Cards Overrides */
+.skill-card {
+    background: var(--surface-0) !important;
+    border: 2px solid var(--border-0) !important;
+    border-radius: 0 !important;
+    box-shadow: 4px 4px 0px var(--border-0) !important;
+    backdrop-filter: none !important;
+}
+
+.skill-card:hover {
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 6px 6px 0px var(--border-0) !important;
+    background: var(--border-0) !important;
+    border-color: var(--bg-0) !important;
+}
+
+.skill-card::before, .skill-card::after {
+    display: none !important;
+}
+
+.skill-card i, .skill-card span {
+    color: var(--text-0) !important;
+    text-shadow: none !important;
+}
+
+.skill-card:hover i, .skill-card:hover span {
+    color: var(--surface-0) !important;
+}
+
+.skill-card:hover .svg-icon,
+.skill-card:hover .skill-icon img {
+    filter: invert(100%) !important;
+}
+
+/* Reset Icon Filters */
+.skill-icon img, .svg-icon {
+    filter: grayscale(100%) brightness(0) !important; /* Make icons black */
+    fill: var(--text-0) !important;
+}
+
+/* Mobile Menu */
+@media (max-width: 968px) {
+    nav ul {
+        background: var(--bg-0) !important;
+        border-left: 3px solid var(--border-0) !important;
+    }
+    
+    .mobile-menu-btn {
+        border: 2px solid var(--border-0) !important;
+        color: var(--text-0) !important;
+        border-radius: 0 !important;
+    }
+    
+    .mobile-menu-btn:hover,
+    .mobile-menu-btn:active {
+        background: var(--border-0) !important;
+        color: var(--bg-0) !important;
+        transform: translate(-2px, -2px) !important;
+        box-shadow: 6px 6px 0px var(--border-0) !important;
+        border-color: var(--bg-0) !important;
+    }
+    
+    .mobile-menu-btn:hover i,
+    .mobile-menu-btn:active i {
+        color: var(--bg-0) !important;
+    }
+    
+    nav ul li a:hover {
+        border: 2px solid var(--bg-0) !important;
+        background: var(--border-0) !important;
+        color: var(--bg-0) !important;
+        box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2) !important;
+        transform: translate(-2px, -2px) !important;
+    }
+    
+    nav ul li a:hover i {
+        color: var(--bg-0) !important;
+    }
+}
+
+/* Project Card Specifics */
+.project-card, .project-image-container, .tech-tag, .project-links .btn, .slider-btn {
+    border-radius: 0 !important;
+}
+
+.project-header, .project-content, .project-links {
+    background: transparent !important;
+    backdrop-filter: none !important;
+}
+
+.project-header h3 {
+    color: var(--text-0) !important;
+}
+
+.project-content p {
+    color: var(--text-1) !important;
+}
+
+.slider-btn {
+    background: var(--bg-0) !important;
+    border: 2px solid var(--border-0) !important;
+    color: var(--text-0) !important;
+    box-shadow: 4px 4px 0px var(--border-0) !important;
+}
+
+.slider-btn:hover {
+    transform: translate(-2px, -2px) scale(1.1) !important;
+    box-shadow: 6px 6px 0px var(--border-0) !important;
+    background: var(--surface-1) !important;
+}
+
+/* Blog Overrides */
+.blog-content, .read-more-btn, .view-all-btn {
+    border-radius: 0 !important;
+}
+
+.blog-text h3 {
+    color: var(--text-0) !important;
+}
+
+.blog-text p {
+    color: var(--text-1) !important;
+}
+
+.blog-meta {
+    color: var(--text-0) !important;
+}
+
+/* Contact Form Overrides */
+.social-links a, .social-btn, .glass-form, .form-group input, .form-group textarea, .submit-btn {
+    border-radius: 0 !important;
+}
+
+.social-btn {
+    background: var(--bg-0) !important;
+    border: 2px solid var(--border-0) !important;
+    color: var(--text-0) !important;
+    box-shadow: 4px 4px 0px var(--border-0) !important;
+}
+
+.social-btn:hover {
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 6px 6px 0px var(--border-0) !important;
+    background: var(--border-0) !important;
+    text-decoration: none !important;
+    border-color: var(--bg-0) !important;
+}
+
+.social-btn span, .social-btn i {
+    color: var(--text-0) !important;
+}
+
+.social-btn:hover span, .social-btn:hover i {
+    color: var(--bg-0) !important;
+}
+
+.glass-form {
+    background: var(--surface-0) !important;
+    border: 2px solid var(--border-0) !important;
+    box-shadow: 4px 4px 0px var(--border-0) !important;
+}
+
+.form-group input, .form-group textarea {
+    background: var(--bg-0) !important;
+    border: 2px solid var(--border-0) !important;
+    color: var(--text-0) !important;
+    box-shadow: inset 2px 2px 0px rgba(0,0,0,0.1) !important;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    outline: none !important;
+    border-color: var(--border-0) !important;
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 6px 6px 0px var(--border-0) !important;
+    background: var(--bg-0) !important;
+    color: var(--text-0) !important;
+}
+
+.form-group label {
+    color: var(--text-0) !important;
+    font-weight: bold !important;
+}
+
+.submit-btn {
+    background: var(--bg-0) !important;
+    color: var(--text-0) !important;
+    border: 2px solid var(--border-0) !important;
+    box-shadow: 4px 4px 0px var(--border-0) !important;
+    font-weight: bold !important;
+}
+
+.submit-btn:hover {
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 6px 6px 0px var(--border-0) !important;
+    background: var(--border-0) !important;
+    color: var(--bg-0) !important;
+    border-color: var(--bg-0) !important;
+}
+
+.submit-btn i {
+    color: inherit !important;
+}
+
+/* Toast Notification */
+.toast-notification {
+    background-color: var(--text-0) !important;
+    color: var(--bg-0) !important;
+    border-radius: 0 !important;
+    border: 2px solid var(--border-0) !important;
+    box-shadow: 4px 4px 0px var(--border-0) !important;
+}
+
+.toast-notification i {
+    color: var(--bg-0) !important;
+}
+

@@ -1,14 +1,7 @@
-/* skills.css */
-/* Skill Cards – Modern glossy redesign */
+/* skills.css - Minimalist Brutalist */
 :root {
-    /* Tunables for skill cards */
     --skill-size: 112px;
     --skill-icon-size: 34px;
-    --skill-shadow:
-        0 10px 20px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.25);
-    --skill-glow: 0 0 0 1px rgba(100, 255, 218, 0.10), 0 8px 24px rgba(100, 255, 218, 0.15);
 }
 
 .skills-container {
@@ -28,30 +21,35 @@
 
 .skill-category {
     flex: 1;
-    background: rgba(17, 34, 64, 0.8);
-    border: 1px solid rgba(100, 255, 218, 0.1);
-    border-radius: 16px;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 0;
     padding: 1.5rem;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    box-shadow: 6px 6px 0px #000;
 }
 
 .skill-category:hover {
-    border-color: #64ffda;
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(100, 255, 218, 0.1);
+    border-color: #000;
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #000;
 }
 
 .skill-category h3 {
-    color: #64ffda;
+    color: #000;
     font-size: 1.3rem;
     margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
     gap: 0.8rem;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
 .skill-category h3 i {
     font-size: 1.2rem;
+    color: #000;
 }
 
 .skill-category .skills-grid {
@@ -68,10 +66,6 @@
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    /* Performance: isolate grid and skip offscreen rendering */
-    contain: content;
-    content-visibility: auto;
-    contain-intrinsic-size: auto 260px; /* approximate row height to avoid reflow */
 }
 
 .skill-card {
@@ -79,101 +73,73 @@
     aspect-ratio: 1;
     width: var(--skill-size);
     height: var(--skill-size);
-    border-radius: 50%;
+    border-radius: 0;
     padding: 1rem;
     text-align: center;
-    border: 1px solid rgba(100, 255, 218, 0.12);
+    border: 2px solid #000;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    background:
-        radial-gradient(120% 120% at 30% 20%, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0) 60%),
-        linear-gradient(180deg, rgba(20, 28, 42, 0.95), rgba(11, 16, 26, 0.92));
-    box-shadow: var(--skill-shadow);
-    backdrop-filter: blur(10px) saturate(115%);
-    -webkit-backdrop-filter: blur(10px) saturate(115%);
-    transition: transform 280ms ease, box-shadow 280ms ease, border-color 200ms ease, background 300ms ease;
+    background: #fff;
+    box-shadow: 6px 6px 0px #000;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     overflow: hidden;
-    backface-visibility: hidden;
-    /* Contain paints and skip offscreen rendering for perf without visual change */
-    contain: paint;
-    content-visibility: auto;
-    contain-intrinsic-size: var(--skill-size) var(--skill-size);
 }
 
-/* Neon ring glow */
-/* Defer heavy glow layer creation until interaction */
-.skill-card::after {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    border-radius: 50%;
-    background: conic-gradient(from 120deg, rgba(100,255,218,0.0), rgba(0,180,216,0.3), rgba(100,255,218,0.0) 65%);
-    filter: blur(14px);
-    opacity: 0;
-    transition: opacity 280ms ease;
-    pointer-events: none;
-    display: none; /* not rendered until hover/focus */
+/* Remove complex effects */
+.skill-card::after,
+.skill-card::before,
+.skill-card .sheen {
+    display: none;
 }
 
-/* Glossy top highlight */
-.skill-card::before {
-    content: "";
-    position: absolute;
-    top: -15%;
-    left: -15%;
-    width: 130%;
-    height: 60%;
-    border-radius: 50% 50% 40% 40%;
-    background: radial-gradient(80% 120% at 50% 20%, rgba(255,255,255,0.18), rgba(255,255,255,0.06) 45%, rgba(255,255,255,0) 70%);
-    transform: rotate(-8deg);
-    pointer-events: none;
+.skill-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #000;
+    background: #000;
 }
 
-.skill-card:hover,
-.skill-card:focus-visible {
-    transform: translateY(-6px) scale(1.04);
-    border-color: #64ffda;
-    box-shadow: var(--skill-shadow), var(--skill-glow);
-    will-change: transform, box-shadow; /* hint only during interaction */
+.skill-card:hover span,
+.skill-card:hover i {
+    color: #fff;
 }
 
-.skill-card:hover::after,
-.skill-card:focus-visible::after {
-    display: block;
-    opacity: 1;
+.skill-card:hover .svg-icon,
+.skill-card:hover .skill-icon img {
+    filter: invert(100%) !important;
 }
 
 .skill-card i,
 .skill-card .skill-icon {
     font-size: calc(var(--skill-icon-size));
-    color: #64ffda;
+    color: #000;
     margin-bottom: 0.45rem;
     height: calc(var(--skill-icon-size) + 2px);
     display: flex;
     align-items: center;
     justify-content: center;
-    text-shadow: 0 0 12px rgba(100,255,218,0.25);
-    transform: translateZ(8px);
+    text-shadow: none;
 }
 
 .skill-card span {
     font-size: 0.82rem;
-    color: #cfe9ff;
-    font-weight: 600;
+    color: #000;
+    font-weight: 700;
     letter-spacing: 0.2px;
-    opacity: 0.85;
+    opacity: 1;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
 }
 
 /* SVG Icon Styles */
 .svg-icon {
     width: calc(var(--skill-icon-size) + 2px);
     height: calc(var(--skill-icon-size) + 2px);
-    fill: #64ffda;
+    fill: #000;
     margin-bottom: 0.35rem;
-    filter: drop-shadow(0 0 8px rgba(100,255,218,0.18));
+    filter: none;
 }
 
 .skill-icon {
@@ -184,16 +150,9 @@
     margin-bottom: 0.25rem;
 }
 
-#tensorflow-icon img, 
-#mlflow-icon img,
-#machine-learning-icon img,
-#zenml-icon img,
-#dvc-icon img,
-#keras-icon img,
-#scikit-learn-icon img,
-#SVM-icon img,
-#mlops-icon img {
-    filter: invert(81%) sepia(90%) saturate(300%) hue-rotate(110deg) brightness(88%) contrast(90%);
+/* Force all icons to black */
+.skill-icon img {
+    filter: grayscale(100%) brightness(0);
 }
 
 /* Adding specific size for scikit-learn icon */
@@ -212,17 +171,14 @@
 #Jenkins-icon img {
     width: 50px;
     height: 50px;
-    filter: invert(81%) sepia(90%) saturate(300%) hue-rotate(110deg) brightness(88%) contrast(90%);
 }
 #AWS-icon img {
     width: 35px;
     height: 35px;
-    filter: invert(81%) sepia(90%) saturate(300%) hue-rotate(110deg) brightness(88%) contrast(90%);
 }
 #GCP-icon img {
     width: 35px;
     height: 35px;
-    filter: invert(81%) sepia(90%) saturate(300%) hue-rotate(110deg) brightness(88%) contrast(80%);
 }
 
 @media screen and (min-width: 969px) {
@@ -261,23 +217,3 @@
 
     :root { --skill-size: 100px; --skill-icon-size: 30px; }
 }
-
-/* Sheen sweep on hover for flashy vibe */
-.skill-card .sheen { display: none; }
-.skill-card:hover .sheen { display: block; }
-
-.skill-card:hover::before { animation: sheenSlide 900ms ease forwards; }
-
-@keyframes sheenSlide {
-    0% { transform: translateX(-20%) rotate(-8deg); opacity: 1; }
-    80% { transform: translateX(10%) rotate(-8deg); opacity: 0.9; }
-    100% { transform: translateX(20%) rotate(-8deg); opacity: 0; }
-}
-
-/* Motion safety */
-@media (prefers-reduced-motion: reduce) {
-    .skill-card, .skill-card::after, .skill-card::before { transition: none; animation: none; }
-}
-
-/* Avoid persistent will-change from generic animation classes on cards */
-.skills-grid .skill-card.scale-in { will-change: auto; }

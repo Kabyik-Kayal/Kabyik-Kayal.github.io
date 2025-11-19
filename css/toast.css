@@ -3,20 +3,21 @@
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: rgba(17, 34, 64, 0.9);
-    color: #64ffda;
+    background-color: #000;
+    color: #fff;
     padding: 15px 25px;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 0;
+    box-shadow: 8px 8px 0px #ccc;
     display: flex;
     align-items: center;
     gap: 10px;
     z-index: 1000;
     transform: translateY(100px);
     opacity: 0;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(100, 255, 218, 0.2);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    border: 2px solid #000;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
 }
 
 .toast-notification.show {
@@ -25,6 +26,6 @@
 }
 
 .toast-notification i {
-    color: #64ffda;
+    color: #fff;
     font-size: 1.2rem;
 }
