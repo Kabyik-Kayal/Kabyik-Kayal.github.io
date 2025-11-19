@@ -8,18 +8,33 @@
     margin: 0 auto;
 }
 
+/* Desktop specific fixes */
+@media (min-width: 769px) {
+    .blogs-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+    
+    .blog-image-container {
+        height: 200px;
+    }
+}
+
 /* Blog Card Styles */
 .blog-content {
     display: flex;
     flex-direction: column;
-    height: 400px;
-    max-width: 300px;
+    height: 100%;
+    width: 100%;
     margin: 0 auto;
     background: rgba(17, 34, 64, 0.8);
     border: 1px solid rgba(100, 255, 218, 0.1);
     border-radius: 16px;
     transition: all 0.3s ease;
     overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 }
 
 .blog-content:hover {
@@ -33,13 +48,16 @@
     width: 100%;
     height: 200px;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .blog-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     transition: transform 0.3s ease;
+    display: block;
 }
 
 .blog-content:hover .blog-image {
@@ -52,6 +70,11 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+/* Prevent content from squishing */
+.blog-text > * {
+    flex-shrink: 0;
 }
 
 .blog-text h3 {
@@ -105,27 +128,6 @@
     transition: all 0.3s ease;
 }
 
-/* Read More Button */
-.read-more-btn {
-    margin-top: auto;
-    padding: 0.6rem 1.2rem;
-    background: rgba(17, 34, 64, 0.9);
-    border: 1px solid rgba(100, 255, 218, 0.3);
-    border-radius: 8px;
-    color: #64ffda;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-    align-self: flex-start;
-}
-
-.read-more-btn:hover {
-    background: rgba(100, 255, 218, 0.1);
-    border-color: #64ffda;
-    transform: translateY(-2px);
-}
-
 /* Blog Navigation */
 .blog-navigation {
     display: flex;
@@ -140,22 +142,36 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.6rem 1.2rem;
-    background: rgba(17, 34, 64, 0.9);
-    border: 1px solid rgba(100, 255, 218, 0.3);
-    border-radius: 8px;
-    color: #64ffda;
-    transition: all 0.3s ease;
+    padding: 1rem 2rem;
+    background: #FDFBF7;
+    border: 2px solid #000;
+    border-radius: 0;
+    color: #000;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    will-change: transform, box-shadow;
+    box-shadow: 4px 4px 0px #000;
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+    text-decoration: none !important;
 }
 
 .blog-nav-btn:hover {
-    background: rgba(100, 255, 218, 0.1);
-    border-color: #64ffda;
-    transform: translateY(-2px);
+    background: #000;
+    color: #FDFBF7;
+    border-color: #FDFBF7;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #000;
+    text-decoration: none !important;
+}
+
+.blog-nav-btn:hover i {
+    color: #FDFBF7 !important;
 }
 
 .blog-nav-btn i {
     font-size: 0.9rem;
+    transition: color 0.2s ease;
 }
 
 /* Responsive Styles */
@@ -198,48 +214,30 @@
         padding: 0.8rem;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        gap: 0; /* Reset gap for mobile */
+        justify-content: flex-start;
     }
     
     .blog-text h3 {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         margin-bottom: 0.5rem;
     }
     
     .blog-text p {
-        font-size: 0.85rem;
-    line-clamp: 2;
+        font-size: 1.05rem;
+        line-clamp: 2;
         -webkit-line-clamp: 2;
         margin-bottom: 0.75rem;
     }
     
     .blog-meta {
-        font-size: 0.75rem;
+        font-size: 0.95rem;
         margin-bottom: 0.3rem;
     }
     
     .tech-tag {
         padding: 0.2rem 0.6rem;
-        font-size: 0.75rem;
-    }
-    
-    .read-more-btn {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.8rem;
-        width: auto;
-        min-width: 120px;
-        justify-content: center;
-        margin-top: 0.5rem;
-        gap: 0.3rem;
-    }
-    
-    .read-more-btn i {
-        font-size: 0.8rem;
-    }
-    
-    .read-more-btn span {
-        white-space: nowrap;
-        font-size: 0.8rem;
+        font-size: 0.95rem;
     }
     
     .blog-tags {
