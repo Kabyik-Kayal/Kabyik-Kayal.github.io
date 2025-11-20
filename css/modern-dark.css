@@ -159,8 +159,10 @@ nav ul li a::after {
 /* Footer */
 footer {
     background: var(--bg-0) !important;
-    color: var(--text-0) !important;
-    border-top: 3px solid var(--border-0) !important;
+}
+
+.footer-text {
+    color: #e7e8e9f8 !important;
 }
 
 /* Hero Section */

@@ -20,11 +20,17 @@ body {
     overflow-y: auto;
     scroll-snap-type: y mandatory;
     background: var(--bg-0);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 html {
     scroll-behavior: smooth;
     scroll-snap-type: y mandatory;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 a {
@@ -52,6 +58,7 @@ a:hover {
 /* Account for fixed header height */
 main {
     padding-top: 80px; /* header height from header.css */
+    flex: 1;
 }
 
 /* Smooth anchor jumps with fixed header */
