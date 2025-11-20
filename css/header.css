@@ -13,13 +13,163 @@ header {
     justify-content: space-between;
     border-bottom: 3px solid #000;
     box-shadow: none;
+    overflow: hidden;
 }
+
+/* Butterflies Container */
+.butterflies-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Butterfly Base Styles */
+.butterfly {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+    will-change: transform, left, top;
+    transition: filter 0.3s ease;
+}
+
+/* Butterfly Body */
+.butterfly-body {
+    position: absolute;
+    width: 3px;
+    height: 18px;
+    background: linear-gradient(to bottom, #1a1a1a, #000);
+    border-radius: 2px;
+    z-index: 3;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    --body-color: #000;
+}
+
+.butterfly-body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 5px;
+    background: var(--body-color, #000);
+    border-radius: 50%;
+}
+
+/* Butterfly Antennas */
+.butterfly-antenna {
+    position: absolute;
+    top: -4px;
+    width: 1px;
+    height: 6px;
+    background: #000;
+}
+
+.butterfly-antenna::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 2px;
+    background: #000;
+    border-radius: 50%;
+}
+
+.butterfly-antenna-left {
+    left: -2px;
+    transform: rotate(-25deg);
+}
+
+.butterfly-antenna-left::after {
+    left: -1px;
+}
+
+.butterfly-antenna-right {
+    right: -2px;
+    transform: rotate(25deg);
+}
+
+.butterfly-antenna-right::after {
+    right: -1px;
+}
+
+/* Butterfly Wings Container */
+.butterfly-wings {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    justify-content: center;
+}
+
+.butterfly-wing {
+    width: 14px;
+    height: 20px;
+    background: #000;
+    position: relative;
+    border-radius: 60% 40% 40% 60%;
+}
+
+.butterfly-wing::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    width: 10px;
+    height: 12px;
+    background: #000;
+    border-radius: 50% 40% 60% 50%;
+}
+
+.butterfly-wing-left {
+    transform-origin: right center;
+    transition: transform 0.15s ease-in-out;
+}
+
+.butterfly-wing-left::before {
+    right: 0;
+}
+
+.butterfly-wing-right {
+    transform-origin: left center;
+    transition: transform 0.15s ease-in-out;
+}
+
+.butterfly-wing-right::before {
+    left: 0;
+}
+
+/* Wing Pattern Details */
+.wing-pattern {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    opacity: 0.3;
+}
+
+
 
 nav {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 /* Logo styles */
