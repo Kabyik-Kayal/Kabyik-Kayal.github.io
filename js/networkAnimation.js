@@ -4,62 +4,123 @@ export function initializeNetworkAnimation() {
     const canvas = document.getElementById('network-bg');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    const cs = getComputedStyle(document.documentElement);
-    const nodeColor = cs.getPropertyValue('--network-node')?.trim() || 'rgba(100,255,218,0.35)';
-    const linkColor = cs.getPropertyValue('--network-link')?.trim() || 'rgba(0,180,216,0.18)';
 
-    let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let w, h, pts; let N = 60;
+    // Get theme colors
+    const cs = getComputedStyle(document.documentElement);
+    const meteorColor = cs.getPropertyValue('--network-node')?.trim() || 'rgba(0, 0, 0, 0.8)';
+    
+    let width, height;
+    let meteors = [];
 
     const resize = () => {
-        w = canvas.width = Math.floor(window.innerWidth * dpr);
-        h = canvas.height = Math.floor(window.innerHeight * dpr);
-        canvas.style.width = window.innerWidth + 'px';
-        canvas.style.height = window.innerHeight + 'px';
-        // Adjust number of points based on viewport area for better coverage
-        const area = window.innerWidth * window.innerHeight;
-        const scale = Math.sqrt(area / (1280 * 720));
-        N = Math.max(50, Math.min(120, Math.round(60 * scale)));
-        pts = new Array(N).fill(0).map(() => ({
-            x: Math.random() * w, y: Math.random() * h,
-            vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25
-        }));
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
     };
 
-    window.addEventListener('resize', resize);
-    resize();
-
-    const tick = () => {
-        ctx.clearRect(0, 0, w, h);
-        ctx.fillStyle = nodeColor;
-        const radius = 2.2; // larger for visibility
-        for (const p of pts) {
-            p.x += p.vx; p.y += p.vy;
-            if (p.x < 0 || p.x > w) p.vx *= -1;
-            if (p.y < 0 || p.y > h) p.vy *= -1;
-            // subtle glow
-            ctx.save();
-            ctx.shadowBlur = 4;
-            ctx.shadowColor = nodeColor;
-            ctx.beginPath(); ctx.arc(p.x, p.y, radius, 0, Math.PI * 2); ctx.fill();
-            ctx.restore();
+    class Meteor {
+        constructor() {
+            this.reset(true);
         }
-        ctx.strokeStyle = linkColor;
-        ctx.lineWidth = Math.max(0.8, 0.8 * dpr);
-        const threshold = 160 * dpr; // connect over slightly longer distances
-        for (let i = 0; i < pts.length; i++) {
-            for (let j = i + 1; j < pts.length; j++) {
-                const a = pts[i], b = pts[j];
-                const dx = a.x - b.x, dy = a.y - b.y; const d = Math.hypot(dx, dy);
-                if (d < threshold) {
-                    ctx.globalAlpha = 1 - d / threshold;
-                    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-                    ctx.globalAlpha = 1;
+
+        reset(initial = false) {
+            this.len = Math.random() * 200 + 100; 
+            this.speed = Math.random() * 6 + 3; 
+            this.size = Math.random() * 1 + 0.5; // Reduced size
+            this.angle = Math.PI / 4; 
+            this.opacity = Math.random() * 0.5 + 0.5; 
+            
+            // Increased delay for reduced occurrence
+            this.delay = initial ? 0 : Math.random() * 400 + 200; 
+
+            if (initial) {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+            } else {
+                // Start from top-left corner area only
+                if (Math.random() < 0.5) {
+                    // Top edge (restricted to left half)
+                    this.x = Math.random() * (width * 0.5);
+                    this.y = -this.len;
+                } else {
+                    // Left edge (restricted to top half)
+                    this.x = -this.len;
+                    this.y = Math.random() * (height * 0.5);
                 }
             }
         }
-        requestAnimationFrame(tick);
+
+        update() {
+            if (this.delay > 0) {
+                this.delay--;
+                return;
+            }
+
+            this.x += this.speed * Math.cos(this.angle);
+            this.y += this.speed * Math.sin(this.angle);
+
+            if (this.x > width + this.len || this.y > height + this.len) {
+                this.reset();
+            }
+        }
+
+        draw() {
+            if (this.delay > 0) return;
+
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.angle);
+            
+            const gradient = ctx.createLinearGradient(0, 0, -this.len, 0);
+            gradient.addColorStop(0, meteorColor);
+            gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+            
+            ctx.globalAlpha = this.opacity;
+            ctx.fillStyle = gradient;
+            
+            // Draw tail
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(-this.len, -this.size);
+            ctx.lineTo(-this.len, this.size);
+            ctx.closePath();
+            ctx.fill();
+
+            // Draw glowing head
+            ctx.shadowBlur = 11;
+            ctx.shadowColor = meteorColor;
+            ctx.fillStyle = meteorColor;
+            ctx.beginPath();
+            ctx.arc(0, 0, this.size * 1.5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.restore();
+        }
+    }
+
+    const initMeteors = () => {
+        meteors = [];
+        // Adjust density based on screen size
+        const count = Math.floor((width * height) /40000); 
+        for (let i = 0; i < count; i++) {
+            meteors.push(new Meteor());
+        }
     };
 
-    tick();
+    const animate = () => {
+        ctx.clearRect(0, 0, width, height);
+        meteors.forEach(m => {
+            m.update();
+            m.draw();
+        });
+        requestAnimationFrame(animate);
+    };
+
+    window.addEventListener('resize', () => {
+        resize();
+        initMeteors();
+    });
+
+    resize();
+    initMeteors();
+    animate();
 }

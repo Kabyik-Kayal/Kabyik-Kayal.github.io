@@ -315,6 +315,14 @@ section {
         min-height: 45px;
     }
 
+    .hero-cta {
+        left: 0 !important;
+        transform: none !important;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
     .profile-container {
         width: 140px;
         height: 140px;
