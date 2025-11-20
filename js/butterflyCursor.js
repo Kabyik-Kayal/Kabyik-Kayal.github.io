@@ -208,8 +208,8 @@ class ButterflyMouse {
     }
     
     animate() {
-        // Smooth follow with easing
-        const speed = 0.15;
+        // Smooth follow with easing - increased speed for less latency
+        const speed = .90;
         this.cursorX += (this.mouseX - this.cursorX) * speed;
         this.cursorY += (this.mouseY - this.cursorY) * speed;
         

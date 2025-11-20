@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/modern-dark.css">
     <link rel="stylesheet" href="blog_styles.css">
+    <link rel="stylesheet" href="../css/cursor.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -30,6 +31,7 @@
     
     <!-- Header Section -->
     <header>
+        <div class="butterflies-container"></div>
         <nav>
             <a href="../index.html" class="logo"><span class="k-left">K</span><span class="k-right">K</span></a>
             <button class="mobile-menu-btn" aria-label="Toggle menu">
@@ -70,11 +72,28 @@
 
     <!-- Footer -->
     <footer>
-        <p>NO RIGHTS RESERVED. COPYLEFT <span id="year"></span> KABYIK.</p>
-        <p class="sarcasm">(Steal this site, I dare you)</p>
+        <div class="waves-container">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="wave-parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(20,20,20,0.7)" />
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(15,15,15,0.5)" />
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(10,10,10,0.3)" />
+                    <use xlink:href="#gentle-wave" x="48" y="7" fill="#0a0a0a" />
+                </g>
+            </svg>
+        </div>
+        <div class="footer-content">
+            <p class="footer-text">NO RIGHTS RESERVED. COPYLEFT <span id="year"></span> KABYIK.</p>
+            <p class="footer-text sarcasm">(Steal this site, I dare you)</p>
+        </div>
     </footer>
 
     <!-- Scripts -->
+    <script src="../js/butterflies.js" defer></script>
+    <script src="../js/butterflyCursor.js" defer></script>
     <script src="../script.js" defer></script>
     <script src="blog_script.js" defer></script>
 </body>

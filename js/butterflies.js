@@ -24,7 +24,7 @@ class Butterfly {
         this.color = colors[Math.floor(Math.random() * colors.length)];
         
         // Reduce speed on mobile devices
-        const speedMultiplier = isMobile ? 0.5 : 0.7; // Reduced desktop speed from 1.0 to 0.7
+        const speedMultiplier = isMobile ? 0.5 : 0.5; // Further reduced desktop speed to match mobile
         this.baseSpeed = (0.3 + Math.random() * 0.4) * speedMultiplier;
         this.speed = this.baseSpeed;
         
