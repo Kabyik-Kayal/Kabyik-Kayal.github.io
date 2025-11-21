@@ -1,11 +1,12 @@
-/* footer.css - Animated Wave Footer */
+/* footer.css - Canvas Wave Footer */
 footer {
     position: relative;
     width: 100%;
     background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
     color: #ffffff;
     text-align: center;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
     min-height: 150px;
     display: flex;
     flex-direction: column;
@@ -24,58 +25,14 @@ main {
     padding-bottom: 0;
 }
 
-.waves-container {
+.waves-canvas {
     position: absolute;
-    inset: 0;
-    width: 100%;
+    top: 0;
+    left: -10px;
+    width: calc(100vw + 20px);
     height: 100%;
-    overflow: hidden;
-    line-height: 0;
     pointer-events: none;
-}
-
-.waves {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin-bottom: -7px;
-}
-
-.wave-parallax > use {
-    animation: wave-motion 25s cubic-bezier(.55,.5,.45,.5) infinite;
-}
-
-.wave-parallax > use:nth-child(1) {
-    animation-delay: -1s;
-    animation-duration: 8s;
-    fill: rgba(30,30,30,0.7);
-}
-
-.wave-parallax > use:nth-child(2) {
-    animation-delay: -2s;
-    animation-duration: 12s;
-    fill: rgba(20,20,20,0.5);
-}
-
-.wave-parallax > use:nth-child(3) {
-    animation-delay: -3s;
-    animation-duration: 15s;
-    fill: rgba(15,15,15,0.3);
-}
-
-.wave-parallax > use:nth-child(4) {
-    animation-delay: -4s;
-    animation-duration: 20s;
-    fill: #0a0a0a;
-}
-
-@keyframes wave-motion {
-    0% {
-        transform: translate3d(-90px, 0, 0);
-    }
-    100% {
-        transform: translate3d(85px, 0, 0);
-    }
+    z-index: 1;
 }
 
 .footer-content {
@@ -141,29 +98,46 @@ footer a:hover {
         padding-bottom: 0;
     }
     
-    .waves-container {
-        height: 100%;
-        bottom: 0;
-    }
-    
     footer {
-        min-height: 100px;
-        margin: 0;
+        min-height: 120px;
         padding: 0;
         overflow: hidden;
     }
     
     .footer-content {
-        padding: 10px 15px;
+        padding: 15px 10px;
         margin: 0;
+        position: relative;
+        z-index: 10;
     }
     
     .footer-text {
-        font-size: 0.75em;
-        margin: 5px 0;
+        font-size: 0.7em;
+        margin: 8px 0;
+        line-height: 1.4;
     }
     
-    .waves {
-        margin-bottom: 0;
+    .sarcasm {
+        font-size: 0.65em;
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        min-height: 100px;
+    }
+    
+    .footer-content {
+        padding: 12px 8px;
+    }
+    
+    .footer-text {
+        font-size: 0.65em;
+        margin: 6px 0;
+    }
+    
+    .sarcasm {
+        font-size: 0.6em;
     }
 }
