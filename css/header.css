@@ -169,7 +169,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     position: relative;
-    z-index: 2;
+    z-index: 0;
 }
 
 /* Logo styles - Brutalist Design */
@@ -180,6 +180,7 @@ header .logo {
     text-decoration: none;
     transition: all 0.3s ease;
     position: relative;
+    z-index: 0;
 }
 
 header .logo:hover {
@@ -351,6 +352,11 @@ body.nav-open::after {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+}
+
+/* Lower butterflies z-index when mobile menu is open so they appear behind the menu but above header background */
+body.nav-open .butterflies-container {
+    z-index: 0;
 }
 
 /* Ensure touch target is large enough on mobile */
