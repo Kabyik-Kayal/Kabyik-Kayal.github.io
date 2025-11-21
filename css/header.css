@@ -172,32 +172,71 @@ nav {
     z-index: 2;
 }
 
-/* Logo styles */
+/* Logo styles - Brutalist Design */
 header .logo {
-    font-size: 2em;
-    font-weight: 700;
-    color: #000;
-    letter-spacing: -1px;
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: -2px;
     text-decoration: none;
-    transition: transform 0.2s ease;
-    font-family: 'Courier New', Courier, monospace;
+    transition: all 0.3s ease;
+    position: relative;
 }
 
 header .logo:hover {
-    transform: scale(1.05);
+    transform: translate(-2px, -2px);
+}
+
+.logo-box {
+    width: 48px;
+    height: 48px;
+    background: #000;
+    border: 3px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+.logo-box:first-child {
+    background: #000;
+    border: 3px solid #FDFBF7;
+    z-index: 2;
+}
+
+.logo-box:last-child {
+    background: #FDFBF7;
+    margin-left: -6px;
+    z-index: 1;
+}
+
+header .logo:hover .logo-box:first-child {
+    transform: rotate(-5deg);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.4);
+}
+
+header .logo:hover .logo-box:last-child {
+    transform: rotate(5deg);
+    box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.4);
+}
+
+header .logo .k-left,
+header .logo .k-right {
+    font-size: 2em;
+    font-weight: 900;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 0;
+    line-height: 1;
+    text-transform: uppercase;
 }
 
 header .logo .k-left {
-    transform: none;
-    display: inline-block;
+    color: #FDFBF7;
 }
 
 header .logo .k-right {
-    transform: none;
-    display: inline-block;
+    color: #000;
 }
 
 /* Navigation styles */
@@ -318,6 +357,23 @@ body.nav-open::after {
 @media (max-width: 968px) {
     .mobile-menu-btn {
         display: flex;
+    }
+
+    /* Reduce logo size on mobile */
+    .logo-box {
+        width: 36px;
+        height: 36px;
+        box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+    }
+
+    header .logo .k-left,
+    header .logo .k-right {
+        font-size: 1.5em;
+    }
+
+    header .logo:hover .logo-box:first-child,
+    header .logo:hover .logo-box:last-child {
+        box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
     }
 
     nav ul {
