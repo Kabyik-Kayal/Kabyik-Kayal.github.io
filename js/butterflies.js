@@ -169,7 +169,9 @@ class Butterfly {
                 wing.style.transform = `rotateY(${rotateY}deg) rotateZ(${baseRotate + (flapState ? flapRotate : 0)}deg)`;
             });
             
-            setTimeout(flap, this.flapSpeed);
+            // Use slower flapping speed when paused (3x slower)
+            const currentFlapSpeed = this.isPaused ? this.flapSpeed * 3 : this.flapSpeed;
+            setTimeout(flap, currentFlapSpeed);
         };
         
         flap();

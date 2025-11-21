@@ -65,13 +65,13 @@ body::before {
 .project-card:hover,
 .skill-category:hover,
 .blog-content:hover {
-    transform: translate(-2px, -2px);
+    transform: translate3d(-2px, -2px, 0);
     box-shadow: 12px 12px 0px var(--border-0) !important;
 }
 
 .about-text:hover,
 .resume-container:hover {
-    transform: translate(-2px, -2px);
+    transform: translate3d(-2px, -2px, 0);
     box-shadow: 12px 12px 0px var(--border-0) !important;
     background: var(--border-0) !important;
     border-color: var(--bg-0) !important;
