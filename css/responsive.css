@@ -484,15 +484,19 @@ section {
 
     /* Section Headers - Reduced size for mobile */
     .card-section h2 {
-        font-size: 2.7em; /* Reduced from 4.2em */
+        font-size: 2.8em; /* Reduced from 4.5em */
         margin-bottom: 2rem; /* Reduced from 3rem */
         padding-bottom: 1rem; /* Reduced from 1.5rem */
-        letter-spacing: -0.5px; /* Adjusted for smaller size */
+        letter-spacing: 0.05em; /* Adjusted for smaller size */
     }
     
     .card-section h2::after {
-        width: 80px; /* Reduced from 120px */
-        height: 3px; /* Reduced from 4px */
+        width: 60px; /* Reduced from 80px */
+        height: 2px; /* Reduced from 3px */
+    }
+
+    .card-section h2:hover::after {
+        width: 100px;
     }
 
     .card-section h2 i {

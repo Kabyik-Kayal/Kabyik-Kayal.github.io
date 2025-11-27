@@ -36,8 +36,11 @@ header {
     align-items: center;
     justify-content: center;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
-    will-change: transform, left, top;
-    transition: filter 0.3s ease;
+    will-change: transform, left, top, opacity;
+    transition: filter 0.5s ease;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
 }
 
 /* Butterfly Body */
@@ -118,6 +121,9 @@ header {
     background: #000;
     position: relative;
     border-radius: 60% 40% 40% 60%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
 }
 
 .butterfly-wing::before {
@@ -128,11 +134,13 @@ header {
     height: 12px;
     background: #000;
     border-radius: 50% 40% 60% 50%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .butterfly-wing-left {
     transform-origin: right center;
-    transition: transform 0.15s ease-in-out;
+    /* Smooth CSS transition as fallback, JS handles main animation */
 }
 
 .butterfly-wing-left::before {
@@ -141,7 +149,7 @@ header {
 
 .butterfly-wing-right {
     transform-origin: left center;
-    transition: transform 0.15s ease-in-out;
+    /* Smooth CSS transition as fallback, JS handles main animation */
 }
 
 .butterfly-wing-right::before {

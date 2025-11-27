@@ -284,3 +284,39 @@
     top: 0;
     left: 4px;
 }
+
+/* Pollen Trail Effect - Brutalist Style */
+.pollen-grain {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    border-radius: 0; /* Sharp corners for brutalist look */
+    animation: pollenFall 1.2s ease-out forwards;
+    opacity: 0;
+    outline: 0.5px solid rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pollenFall {
+    0% {
+        opacity: 0.8;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    20% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.35;
+        transform: translate(calc(var(--drift-x) * 0.5), calc(var(--drift-y) * 0.5)) scale(0.8) rotate(45deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--drift-x), var(--drift-y)) scale(0.2) rotate(90deg);
+    }
+}
+
+/* Hide pollen on touch devices */
+@media (pointer: coarse) {
+    .pollen-grain {
+        display: none;
+    }
+}

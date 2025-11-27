@@ -19,23 +19,27 @@ section {
 }
 
 .card-section h2 {
-    font-size: 4.2em;
+    font-size: 4.5em;
     margin-bottom: 3rem;
     color: #000;
     position: relative;
     padding-bottom: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -2px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    font-family: 'Courier New', monospace;
-    text-shadow: 4px 4px 0px #ccc;
-    background: none;
-    -webkit-text-fill-color: #000;
+    font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #000 0%, #333 50%, #000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .card-section h2:hover {
-    transform: translate(-2px, -2px);
-    text-shadow: 6px 6px 0px #ccc;
+    transform: scale(1.02);
+    letter-spacing: 0.12em;
+    text-shadow: none;
 }
 
 .card-section h2::after {
@@ -44,11 +48,16 @@ section {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 120px;
-    height: 4px;
-    background: #000;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #000, transparent);
     border-radius: 0;
     box-shadow: none;
+    transition: width 0.3s ease;
+}
+
+.card-section h2:hover::after {
+    width: 150px;
 }
 
 @keyframes line-shift {

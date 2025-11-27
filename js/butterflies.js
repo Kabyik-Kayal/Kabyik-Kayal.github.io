@@ -6,82 +6,116 @@ class Butterfly {
         this.element = this.createButterfly();
         
         this.position = { x: 0, y: 0 };
+        this.targetPosition = { x: 0, y: 0 };
         this.velocity = { x: 0, y: 0 };
         this.rotation = 0;
+        this.targetRotation = 0;
         
         // Check if mobile once
         const isMobile = window.innerWidth <= 968;
         
-        // Adjust scale range based on device - remove very small butterflies on desktop
-        this.scale = isMobile ? (0.6 + Math.random() * 0.8) : (0.85 + Math.random() * 0.55); // Desktop: 0.85 to 1.4, Mobile: 0.6 to 1.4
+        // Adjust scale range based on device
+        this.scale = isMobile ? (0.6 + Math.random() * 0.8) : (0.85 + Math.random() * 0.55);
         
         // Color palette: pure black and cool dark grays
         const colors = [
-            '#000000', '#000000', '#000000', // 60% pure black
-            '#0a0a0a', '#141414', // 20% very dark gray
-            '#1a1a1a', '#1f1f1f', // 20% dark gray
+            '#000000', '#000000', '#000000',
+            '#0a0a0a', '#141414',
+            '#1a1a1a', '#1f1f1f',
         ];
         this.color = colors[Math.floor(Math.random() * colors.length)];
         
-        // Reduce speed on mobile devices
-        const speedMultiplier = isMobile ? 0.5 : 0.5; // Further reduced desktop speed to match mobile
-        this.baseSpeed = (0.3 + Math.random() * 0.4) * speedMultiplier;
+        // Smoother, slower movement
+        const speedMultiplier = isMobile ? 0.4 : 0.35;
+        this.baseSpeed = (0.2 + Math.random() * 0.3) * speedMultiplier;
         this.speed = this.baseSpeed;
         
-        // Randomize wave pattern parameters for unique paths
-        this.waveAmplitude = 10 + Math.random() * 40; // 10 to 50 - wider range
-        this.waveFrequency = 0.01 + Math.random() * 0.04; // 0.01 to 0.05 - wider range
-        this.secondaryWaveAmplitude = 5 + Math.random() * 15; // Secondary wave for complexity
-        this.secondaryWaveFrequency = 0.03 + Math.random() * 0.05; // Different frequency
-        this.verticalOffset = Math.random() * 100; // Random vertical starting position
-        this.horizontalOffset = Math.random() * 100; // Random horizontal starting position
-        this.phase = Math.random() * Math.PI * 2; // Random phase for wave
-        this.secondaryPhase = Math.random() * Math.PI * 2; // Secondary phase
+        // Gentler wave pattern parameters for smoother paths
+        this.waveAmplitude = 8 + Math.random() * 25; // Reduced amplitude for smoother waves
+        this.waveFrequency = 0.008 + Math.random() * 0.015; // Lower frequency for longer, smoother waves
+        this.secondaryWaveAmplitude = 3 + Math.random() * 10;
+        this.secondaryWaveFrequency = 0.015 + Math.random() * 0.02;
+        this.tertiaryWaveAmplitude = 2 + Math.random() * 5; // Third wave for extra organic feel
+        this.tertiaryWaveFrequency = 0.025 + Math.random() * 0.03;
+        // Distribute butterflies across different vertical zones to prevent cluttering
+        const verticalZones = [15, 25, 35, 45, 55, 65, 75, 85];
+        const zoneIndex = id % verticalZones.length;
+        this.verticalOffset = verticalZones[zoneIndex] + (Math.random() * 8 - 4); // Small variation within zone
+        this.horizontalOffset = Math.random() * 100;
+        this.phase = Math.random() * Math.PI * 2;
+        this.secondaryPhase = Math.random() * Math.PI * 2;
+        this.tertiaryPhase = Math.random() * Math.PI * 2;
         
-        // Random speed variations during flight
-        this.speedVariation = 0.5 + Math.random() * 0.5; // 0.5 to 1.0
-        this.speedChangeRate = 0.001 + Math.random() * 0.003; // How fast speed changes
+        // Smoother speed variations
+        this.speedVariation = 0.3 + Math.random() * 0.4;
+        this.speedChangeRate = 0.0005 + Math.random() * 0.001; // Slower speed changes
         
-        // Random pausing behavior
+        // Interpolation factors for smoothness
+        this.positionLerp = 0.08 + Math.random() * 0.04; // How smoothly position follows target
+        this.rotationLerp = 0.06 + Math.random() * 0.03; // How smoothly rotation follows target
+        
+        // Random pausing behavior - longer, more graceful pauses
         this.isPaused = false;
         this.pauseDuration = 0;
-        this.nextPauseTime = (1000 + Math.random() * 4000) + (id * 300); // Stagger initial pause times
-        this.pauseCounter = Math.random() * 500; // Random starting counter to prevent sync
-        this.flapSpeed = 150 + Math.random() * 100; // 150-250ms flap speed
-        this.bobSpeed = 1500 + Math.random() * 1000; // 1.5-2.5s bob cycle
+        this.nextPauseTime = (3000 + Math.random() * 6000) + (id * 500);
+        this.pauseCounter = Math.random() * 1000;
+        this.pauseTransition = 0; // For smooth pause/resume transitions
+        this.flapSpeed = 120 + Math.random() * 80; // Slightly faster flapping for more life
+        this.bobSpeed = 2000 + Math.random() * 1500;
         this.trail = [];
         this.maxTrailLength = 8;
         
+        // Wing animation state
+        this.wingAngle = 0;
+        this.targetWingAngle = 0;
+        
         this.setInitialPosition();
         this.applyColor();
-        this.setupFlapAnimation();
-        this.setupBobAnimation();
+        this.setupSmoothFlapAnimation();
+        this.setupSmoothBobAnimation();
         this.container.appendChild(this.element);
         
-        // Reduced initial delay for faster appearance
-        setTimeout(() => this.animate(), Math.random() * 2000);
+        // Staggered appearance with fade-in
+        this.element.style.opacity = 0;
+        setTimeout(() => {
+            this.element.style.transition = 'opacity 0.8s ease-out';
+            this.element.style.opacity = 1;
+            this.animate();
+        }, 300 + Math.random() * 1500);
     }
     
     setInitialPosition() {
-        // Only left-to-right and right-to-left
-        const rand = Math.random();
-        if (rand < 0.5) {
+        // Alternate directions based on butterfly ID to spread them out
+        const isEvenId = this.id % 2 === 0;
+        
+        // Calculate horizontal offset to spread butterflies across the screen
+        // This prevents them from all starting at the edge
+        const containerWidth = this.container.offsetWidth || window.innerWidth;
+        const horizontalSpread = (this.id / 8) * containerWidth; // Spread across width based on ID
+        const randomOffset = Math.random() * (containerWidth * 0.3); // Add some randomness
+        
+        if (isEvenId) {
             this.direction = 0; // Left to right
+            // Start at different points along the left portion or even mid-screen
+            this.position.x = -50 + (horizontalSpread * 0.5) + randomOffset;
+            // Keep within bounds
+            if (this.position.x > containerWidth * 0.4) {
+                this.position.x = -50 - (Math.random() * 100);
+            }
         } else {
             this.direction = 1; // Right to left
+            // Start at different points along the right portion
+            this.position.x = containerWidth + 50 - (horizontalSpread * 0.5) - randomOffset;
+            // Keep within bounds
+            if (this.position.x < containerWidth * 0.6) {
+                this.position.x = containerWidth + 50 + (Math.random() * 100);
+            }
+            this.speed = -this.speed;
         }
         
-        switch(this.direction) {
-            case 0: // Left to right
-                this.position.x = -50;
-                this.position.y = this.verticalOffset;
-                break;
-            case 1: // Right to left
-                this.position.x = this.container.offsetWidth + 50;
-                this.position.y = this.verticalOffset;
-                this.speed = -this.speed;
-                break;
-        }
+        this.position.y = this.verticalOffset;
+        this.targetPosition.x = this.position.x;
+        this.targetPosition.y = this.position.y;
     }
     
     createButterfly() {
@@ -154,41 +188,47 @@ class Butterfly {
         }
     }
     
-    setupFlapAnimation() {
+    setupSmoothFlapAnimation() {
         const wings = this.element.querySelectorAll('.butterfly-wing');
-        let flapState = 0;
+        let flapPhase = Math.random() * Math.PI * 2; // Random starting phase
         
         const flap = () => {
-            flapState = 1 - flapState;
+            // Smooth sinusoidal flapping instead of binary states
+            flapPhase += 0.10; // Controls flap speed
+            const flapAmount = Math.sin(flapPhase);
+            
+            // Slower flapping when paused (gentle hovering)
+            const flapIntensity = this.isPaused ? 0.4 : 1.0;
+            const smoothFlapAmount = flapAmount * flapIntensity;
+            
             wings.forEach((wing, index) => {
                 const isLeft = index === 0;
-                const baseRotate = isLeft ? -3 : 3;
-                const flapRotate = isLeft ? -8 : 8;
-                const rotateY = flapState ? (isLeft ? -60 : 60) : 0;
+                const baseRotateZ = isLeft ? -2 : 2;
                 
-                wing.style.transform = `rotateY(${rotateY}deg) rotateZ(${baseRotate + (flapState ? flapRotate : 0)}deg)`;
+                // Smooth rotation values
+                const rotateY = smoothFlapAmount * (isLeft ? -55 : 55);
+                const rotateZ = baseRotateZ + smoothFlapAmount * (isLeft ? -6 : 6);
+                
+                wing.style.transform = `rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
             });
             
-            // Use slower flapping speed when paused (3x slower)
-            const currentFlapSpeed = this.isPaused ? this.flapSpeed * 3 : this.flapSpeed;
-            setTimeout(flap, currentFlapSpeed);
+            requestAnimationFrame(flap);
         };
         
         flap();
     }
     
-    setupBobAnimation() {
-        let bobOffset = 0;
-        let bobDirection = 1;
-        const bobAmount = 10;
+    setupSmoothBobAnimation() {
+        let bobPhase = Math.random() * Math.PI * 2;
+        const bobAmount = 6 + Math.random() * 4; // Gentler bobbing
         
         const bob = () => {
-            bobOffset += bobDirection * 0.5;
-            if (Math.abs(bobOffset) >= bobAmount) {
-                bobDirection *= -1;
-            }
+            bobPhase += 0.03; // Slower, smoother bob
+            // Combine two sine waves for more organic movement
+            const primaryBob = Math.sin(bobPhase) * bobAmount;
+            const secondaryBob = Math.sin(bobPhase * 1.7) * (bobAmount * 0.3);
             
-            this.bobOffset = bobOffset;
+            this.bobOffset = primaryBob + secondaryBob;
             requestAnimationFrame(bob);
         };
         
@@ -202,65 +242,98 @@ class Butterfly {
         
         const update = () => {
             timeCounter += 1;
-            this.pauseCounter += 1;
+            this.pauseCounter += 16; // Approximate ms per frame
             
-            // Check if it's time to pause
+            // Smooth pause transition
             if (!this.isPaused && this.pauseCounter >= this.nextPauseTime) {
                 this.isPaused = true;
-                this.pauseDuration = 500 + Math.random() * 2500; // Pause for 0.5-3 seconds
+                this.pauseDuration = 1000 + Math.random() * 3000; // Longer, more graceful pauses
                 this.pauseCounter = 0;
             }
             
-            // Check if pause is over
             if (this.isPaused && this.pauseCounter >= this.pauseDuration) {
                 this.isPaused = false;
-                this.nextPauseTime = 2000 + Math.random() * 5000; // Next pause in 2-7 seconds, more varied
+                this.nextPauseTime = 4000 + Math.random() * 8000; // Longer intervals between pauses
                 this.pauseCounter = 0;
             }
             
-            // Add random speed variations
-            const speedMod = Math.sin(timeCounter * this.speedChangeRate) * this.speedVariation;
-            const currentSpeed = this.isPaused ? 0 : this.speed * (1 + speedMod * 0.3);
+            // Smooth pause transition (0 = moving, 1 = paused)
+            const targetPauseTransition = this.isPaused ? 1 : 0;
+            this.pauseTransition += (targetPauseTransition - this.pauseTransition) * 0.02;
             
-            // Horizontal movement (left-right or right-left)
-            this.position.x += currentSpeed;
+            // Gentle speed variations using multiple sine waves
+            const speedMod1 = Math.sin(timeCounter * this.speedChangeRate) * this.speedVariation;
+            const speedMod2 = Math.sin(timeCounter * this.speedChangeRate * 0.7 + 1.5) * this.speedVariation * 0.5;
+            const combinedSpeedMod = (speedMod1 + speedMod2) * 0.5;
             
-            // Complex wave pattern with two overlapping sine waves
-            const primaryWave = Math.sin(Math.abs(this.position.x) * this.waveFrequency + this.phase) * this.waveAmplitude;
-            const secondaryWave = Math.sin(Math.abs(this.position.x) * this.secondaryWaveFrequency + this.secondaryPhase) * this.secondaryWaveAmplitude;
-            this.position.y = this.verticalOffset + primaryWave + secondaryWave;
+            // Smoothly reduce speed when pausing
+            const pauseMultiplier = 1 - this.pauseTransition;
+            const currentSpeed = this.speed * (1 + combinedSpeedMod * 0.2) * pauseMultiplier;
             
-            // Calculate rotation based on direction
-            const dx = Math.abs(currentSpeed);
-            const dy = (Math.cos(Math.abs(this.position.x) * this.waveFrequency + this.phase) * this.waveAmplitude * this.waveFrequency) +
-                      (Math.cos(Math.abs(this.position.x) * this.secondaryWaveFrequency + this.secondaryPhase) * this.secondaryWaveAmplitude * this.secondaryWaveFrequency);
-            const baseRotation = Math.atan2(dy, dx) * (180 / Math.PI) * 0.3;
+            // Calculate target position with complex wave pattern
+            const targetX = this.targetPosition.x + currentSpeed;
+            this.targetPosition.x = targetX;
             
-            // Add some rotation variation
-            const rotationVariation = Math.sin(Math.abs(this.position.x) * 0.05) * 2;
+            // Three overlapping sine waves for organic vertical movement
+            const primaryWave = Math.sin(Math.abs(targetX) * this.waveFrequency + this.phase) * this.waveAmplitude;
+            const secondaryWave = Math.sin(Math.abs(targetX) * this.secondaryWaveFrequency + this.secondaryPhase) * this.secondaryWaveAmplitude;
+            const tertiaryWave = Math.sin(Math.abs(targetX) * this.tertiaryWaveFrequency + this.tertiaryPhase) * this.tertiaryWaveAmplitude;
+            this.targetPosition.y = this.verticalOffset + primaryWave + secondaryWave + tertiaryWave;
+            
+            // Smoothly interpolate actual position towards target (creates fluid motion)
+            this.position.x += (this.targetPosition.x - this.position.x) * this.positionLerp;
+            this.position.y += (this.targetPosition.y - this.position.y) * this.positionLerp;
+            
+            // Calculate smooth rotation based on movement direction
+            const dx = currentSpeed;
+            const dy = (Math.cos(Math.abs(targetX) * this.waveFrequency + this.phase) * this.waveAmplitude * this.waveFrequency) +
+                      (Math.cos(Math.abs(targetX) * this.secondaryWaveFrequency + this.secondaryPhase) * this.secondaryWaveAmplitude * this.secondaryWaveFrequency);
+            
+            // Gentler rotation that follows the path
+            this.targetRotation = Math.atan2(dy, Math.abs(dx) + 0.1) * (180 / Math.PI) * 0.4;
+            
+            // Add subtle rotation variation
+            const rotationVariation = Math.sin(Math.abs(targetX) * 0.02) * 3;
+            this.targetRotation += rotationVariation;
             
             // Flip rotation for right-to-left movement
-            this.rotation = this.speed < 0 ? -baseRotation - rotationVariation : baseRotation + rotationVariation;
-            
-            // Reset when off screen
-            if ((this.speed > 0 && this.position.x > headerWidth + 50) || (this.speed < 0 && this.position.x < -50)) {
-                this.position.x = this.speed > 0 ? -50 : headerWidth + 50;
-                this.verticalOffset = Math.random() * 80 + 10; // 10% to 90%
-                this.phase = Math.random() * Math.PI * 2;
-                this.secondaryPhase = Math.random() * Math.PI * 2;
-                this.waveAmplitude = 10 + Math.random() * 40;
-                this.waveFrequency = 0.01 + Math.random() * 0.04;
-                this.secondaryWaveAmplitude = 5 + Math.random() * 15;
-                this.secondaryWaveFrequency = 0.03 + Math.random() * 0.05;
+            if (this.speed < 0) {
+                this.targetRotation = -this.targetRotation;
             }
             
-            // Apply transformations
+            // Smoothly interpolate rotation
+            this.rotation += (this.targetRotation - this.rotation) * this.rotationLerp;
+            
+            // Reset when off screen with smooth new parameters
+            if ((this.speed > 0 && this.position.x > headerWidth + 60) || (this.speed < 0 && this.position.x < -60)) {
+                this.targetPosition.x = this.speed > 0 ? -60 : headerWidth + 60;
+                this.position.x = this.targetPosition.x;
+                
+                // Pick a new vertical zone different from current to spread out
+                const verticalZones = [15, 25, 35, 45, 55, 65, 75, 85];
+                const newZoneIndex = Math.floor(Math.random() * verticalZones.length);
+                this.verticalOffset = verticalZones[newZoneIndex] + (Math.random() * 8 - 4);
+                
+                // Randomize wave parameters for variety on next pass
+                this.phase = Math.random() * Math.PI * 2;
+                this.secondaryPhase = Math.random() * Math.PI * 2;
+                this.tertiaryPhase = Math.random() * Math.PI * 2;
+                this.waveAmplitude = 8 + Math.random() * 25;
+                this.waveFrequency = 0.008 + Math.random() * 0.015;
+                this.secondaryWaveAmplitude = 3 + Math.random() * 10;
+                this.secondaryWaveFrequency = 0.015 + Math.random() * 0.02;
+                this.tertiaryWaveAmplitude = 2 + Math.random() * 5;
+                this.tertiaryWaveFrequency = 0.025 + Math.random() * 0.03;
+            }
+            
+            // Apply transformations with smooth bob offset
             const finalY = this.position.y + (this.bobOffset || 0);
             const scaleX = this.speed < 0 ? -this.scale : this.scale;
+            
+            // Use transform3d for GPU acceleration and smoother rendering
             this.element.style.left = `${this.position.x}px`;
             this.element.style.top = `${finalY}%`;
-            this.element.style.transform = `scale(${scaleX}, ${this.scale}) rotate(${this.rotation}deg)`;
-            this.element.style.opacity = 1;
+            this.element.style.transform = `scale3d(${scaleX}, ${this.scale}, 1) rotate(${this.rotation}deg)`;
             
             requestAnimationFrame(update);
         };
@@ -290,30 +363,25 @@ class ButterflyManager {
         // Clear existing butterflies
         this.container.innerHTML = '';
         
-        // Create new butterflies with reduced stagger time
+        // Create new butterflies with staggered timing to spread them out
         for (let i = 0; i < this.count; i++) {
             setTimeout(() => {
                 this.butterflies.push(new Butterfly(this.container, i + 1));
-            }, i * 400); // Reduced from 1200ms to 400ms
+            }, i * 800); // Increased stagger time for better distribution
         }
     }
     
     setupInteraction() {
-        let isHovering = false;
-        
-        // Pause/slow down on hover
+        // Smooth hover effects
         this.container.parentElement.addEventListener('mouseenter', () => {
-            isHovering = true;
             this.butterflies.forEach(butterfly => {
                 if (butterfly.element) {
-                    butterfly.element.style.transition = 'filter 0.3s ease';
-                    butterfly.element.style.filter = 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5)) brightness(1.1)';
+                    butterfly.element.style.filter = 'drop-shadow(0 3px 10px rgba(0, 0, 0, 0.5)) brightness(1.1)';
                 }
             });
         });
         
         this.container.parentElement.addEventListener('mouseleave', () => {
-            isHovering = false;
             this.butterflies.forEach(butterfly => {
                 if (butterfly.element) {
                     butterfly.element.style.filter = 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))';
