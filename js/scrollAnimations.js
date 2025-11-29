@@ -156,9 +156,15 @@ export function addScrollAnimations() {
     
     // Blog content
     const blogContents = document.querySelectorAll('.blog-content');
-    blogContents.forEach(blog => {
+    blogContents.forEach((blog, index) => {
         blog.classList.add('slide-up');
     });
+    
+    // View all button in blogs section
+    const viewAllBtn = document.querySelector('.blogs-container .view-all-btn');
+    if (viewAllBtn) {
+        viewAllBtn.classList.add('slide-up');
+    }
     
     // Contact section
     const socialRows = document.querySelectorAll('.social-row');

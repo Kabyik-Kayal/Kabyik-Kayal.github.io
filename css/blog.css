@@ -14,12 +14,23 @@
     border: 2px solid #000;
     border-radius: 0;
     overflow: hidden;
-    transition: all 0.2s ease;
+    /* Separate transitions: longer for opacity (scroll animation), shorter for box-shadow (hover) */
+    transition: 
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease;
     box-shadow: 8px 8px 0px #000;
-    transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    will-change: opacity, transform;
+}
+
+/* Override transition only when animation is complete for snappy hover */
+.blog-content.animate {
+    transition: 
+        transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease;
 }
 
 .blog-content:hover {

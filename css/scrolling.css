@@ -150,6 +150,56 @@
     filter: none;
 }
 
+/* ===== Skill Category Card Scroll Animations ===== */
+
+/* Skill category initial state */
+.skill-category.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 
+        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+/* Skill category animated state */
+.skill-category.fade-in.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered skill category animations - first row */
+.skills-row:nth-child(1) .skill-category:nth-child(1) {
+    transition-delay: 0s;
+}
+
+.skills-row:nth-child(1) .skill-category:nth-child(2) {
+    transition-delay: 0.12s;
+}
+
+/* Staggered skill category animations - second row */
+.skills-row:nth-child(2) .skill-category:nth-child(1) {
+    transition-delay: 0.08s;
+}
+
+.skills-row:nth-child(2) .skill-category:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.skills-row:nth-child(2) .skill-category:nth-child(3) {
+    transition-delay: 0.32s;
+}
+
+/* After animation completes, use snappy hover transition */
+.skill-category.fade-in.animate:hover {
+    transform: translate(-2px, -2px);
+    transition: 
+        transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .skills-grid.staggered-container > .skill-card,
     .skills-grid.staggered-container > .skill-card.animate {
@@ -157,5 +207,237 @@
         opacity: 1 !important;
         transform: none !important;
         filter: none !important;
+    }
+}
+
+/* ===== Lazy Loading Image Animations ===== */
+
+/* Base state for lazy loaded images */
+img[data-src],
+img.lazy-image {
+    opacity: 0;
+    filter: blur(10px);
+    transform: scale(1.02);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                filter 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, filter, transform;
+}
+
+/* Loaded state - smooth fade in with blur removal */
+img.loaded,
+img.lazy-loaded {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+}
+
+/* Progressive loading placeholder shimmer effect */
+.lazy-placeholder {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, 
+        var(--bg-1, #F5F2EB) 0%, 
+        var(--bg-0, #FDFBF7) 50%, 
+        var(--bg-1, #F5F2EB) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Container for lazy images to prevent layout shift */
+.lazy-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.lazy-image-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.lazy-image-container.image-loaded::before {
+    opacity: 0;
+}
+
+/* Project image specific lazy loading */
+.project-image-container img[data-src],
+.project-image-container img.lazy-image {
+    opacity: 0;
+    filter: blur(8px) grayscale(100%);
+    transform: scale(1.05);
+    transition: opacity 0.5s ease-out,
+                filter 0.5s ease-out,
+                transform 0.5s ease-out;
+}
+
+.project-image-container img.loaded {
+    opacity: 1;
+    filter: blur(0) grayscale(100%);
+    transform: scale(1);
+}
+
+.project-card:hover .project-image-container img.loaded {
+    filter: blur(0) grayscale(0%);
+}
+
+/* Blog image specific lazy loading */
+.blog-image-container img[data-src],
+.blog-image-container img.lazy-image {
+    opacity: 0;
+    filter: blur(8px) grayscale(100%);
+    transform: scale(1.05);
+    transition: opacity 0.5s ease-out,
+                filter 0.5s ease-out,
+                transform 0.5s ease-out;
+}
+
+.blog-image-container img.loaded {
+    opacity: 1;
+    filter: blur(0) grayscale(100%);
+    transform: scale(1);
+}
+
+.blog-content:hover .blog-image-container img.loaded {
+    filter: blur(0) grayscale(0%);
+    transform: scale(1.1);
+}
+
+/* ===== Blog Card Scroll Animations ===== */
+
+/* Blog card initial state */
+.blog-content.slide-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease;
+}
+
+/* Blog card animated state */
+.blog-content.slide-up.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered blog card animations */
+.blogs-container .blog-content:nth-child(1) {
+    transition-delay: 0s;
+}
+
+.blogs-container .blog-content:nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+.blogs-container .blog-content:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.blogs-container .blog-content:nth-child(4) {
+    transition-delay: 0.45s;
+}
+
+/* After animation completes, use snappy hover transition */
+.blog-content.slide-up.animate:hover {
+    transform: translate3d(-4px, -4px, 0);
+    transition: 
+        transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease;
+}
+
+/* View all button animation */
+.view-all-btn {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 
+        opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.blogs-container .view-all-btn {
+    transition-delay: 0.5s;
+}
+
+.view-all-btn.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Background image lazy loading */
+[data-background] {
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-background].loaded {
+    opacity: 1;
+}
+
+/* Skeleton loading for images */
+.skeleton-image {
+    position: relative;
+    background: var(--bg-1, #F5F2EB);
+    overflow: hidden;
+}
+
+.skeleton-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent);
+    animation: skeleton-wave 1.6s linear infinite;
+}
+
+@keyframes skeleton-wave {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Reduced motion preference for lazy loading */
+@media (prefers-reduced-motion: reduce) {
+    img[data-src],
+    img.lazy-image,
+    img.loaded,
+    img.lazy-loaded {
+        transition: none !important;
+        filter: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+    
+    .lazy-placeholder,
+    .lazy-image-container::before,
+    .skeleton-image::after {
+        animation: none !important;
     }
 }
