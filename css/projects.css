@@ -194,7 +194,7 @@ section#projects {
     justify-content: center;
     font-size: 1.2rem;
     color: #000;
-    transition: all 0.2s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 
 .slider-btn:hover {
@@ -205,8 +205,9 @@ section#projects {
 }
 
 .slider-btn:active {
-    transform: translateY(-50%) translate(2px, 2px);
-    box-shadow: 3px 3px 0px #000;
+    transform: translateY(-50%) translate(3px, 3px) scale(0.9);
+    box-shadow: 2px 2px 0px #000;
+    transition: transform 0.05s ease, box-shadow 0.05s ease;
 }
 
 .prev-btn {

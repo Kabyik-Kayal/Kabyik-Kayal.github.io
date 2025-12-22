@@ -61,6 +61,18 @@ body::before {
     will-change: transform, box-shadow;
 }
 
+.slider-btn {
+    background: var(--surface-0) !important;
+    border: 2px solid var(--border-0) !important;
+    border-radius: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: 4px 4px 0px var(--border-0) !important;
+    color: var(--text-0) !important;
+    transition: none !important;
+    will-change: transform, box-shadow;
+}
+
 /* Hover Effects */
 .project-card:hover,
 .skill-category:hover,
@@ -323,17 +335,35 @@ i {
     color: var(--text-1) !important;
 }
 
-.slider-btn {
-    background: var(--bg-0) !important;
-    border: 2px solid var(--border-0) !important;
+.slider-btn i {
     color: var(--text-0) !important;
-    box-shadow: 4px 4px 0px var(--border-0) !important;
+    transition: color 0.15s ease !important;
 }
 
 .slider-btn:hover {
-    transform: translate(-2px, -2px) scale(1.1) !important;
-    box-shadow: 6px 6px 0px var(--border-0) !important;
-    background: var(--surface-1) !important;
+    transform: translateY(-50%) translate(-2px, -2px) !important;
+    box-shadow: 8px 8px 0px var(--border-0) !important;
+    background: var(--border-0) !important;
+    color: #FFFFFF !important;
+    border: 2px solid #FFFFFF !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border 0.15s ease !important;
+}
+
+.slider-btn:hover i {
+    color: #FFFFFF !important;
+}
+
+.slider-btn:active {
+    transform: translateY(-50%) translate(3px, 3px) scale(0.92) !important;
+    box-shadow: 2px 2px 0px var(--border-0) !important;
+    background: var(--border-0) !important;
+    color: #FFFFFF !important;
+    border: 2px solid #FFFFFF !important;
+    transition: transform 0.05s ease, box-shadow 0.05s ease !important;
+}
+
+.slider-btn:active i {
+    color: #FFFFFF !important;
 }
 
 /* Blog Overrides */
