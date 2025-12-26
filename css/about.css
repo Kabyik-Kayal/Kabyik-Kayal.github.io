@@ -1,12 +1,12 @@
 /* about.css */
 .about-content {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     display: flex;
-    gap: 3rem;
+    gap: 1.5rem;
     align-items: stretch;
     justify-content: space-between;
-    padding: 0 2rem;
+    padding: 0 0.5rem;
 }
 
 .about-text {
@@ -17,7 +17,7 @@
     text-align: left;
     background: #fff;
     border-radius: 0;
-    padding: 3rem 2.5rem;
+    padding: 2rem 1.2rem;
     border: 2px solid #000;
     min-height: 400px;
     box-shadow: 12px 12px 0px #000;
@@ -27,24 +27,27 @@
     color: #000;
     font-size: 1.1rem;
     line-height: 1.8;
-    margin: 0;
+    margin: 0 0 1.5rem 0;
     position: relative;
     padding-left: 1.5rem;
     border-left: 4px solid #000;
     font-family: 'Courier New', monospace;
 }
 
+.about-text p:last-child {
+    margin-bottom: 0;
+}
+
 .about-text p strong {
     color: #000;
     font-weight: 700;
-    text-decoration: underline;
 }
 
 .resume-container {
     flex: 1;
     background: #fff;
     border-radius: 0;
-    padding: 3rem 2.5rem;
+    padding: 2rem 1.5rem;
     border: 2px solid #000;
     display: flex;
     align-items: center;
