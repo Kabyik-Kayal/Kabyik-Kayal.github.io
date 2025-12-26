@@ -82,19 +82,59 @@
     <main>
         <!-- Hero Section -->
         <section id="hero">
+            <!-- Decorative Elements -->
+            <div class="hero-decorations">
+                <div class="deco-shape deco-1"></div>
+                <div class="deco-shape deco-2"></div>
+                <div class="deco-shape deco-3"></div>
+                <div class="deco-line deco-line-1"></div>
+                <div class="deco-line deco-line-2"></div>
+            </div>
+            
             <div class="hero-content">
-                <div class="profile-container parallax" data-speed="0.1">
-                    <img src="assets/portfolio.jpg" alt="Kabyik" class="profile-image">
+                <div class="profile-wrapper">
+                    <div class="profile-frame">
+                        <div class="profile-container parallax" data-speed="0.1">
+                            <img src="assets/portfolio.jpg" alt="Kabyik" class="profile-image">
+                        </div>
+                    </div>
+                    <div class="profile-label">
+                        <span class="label-text">Creative Developer</span>
+                    </div>
                 </div>
                 <div class="hero-text">
-                    <h1 class="gradient-text">Hi, I'm <span>Kabyik</span></h1>
+                    <div class="hero-greeting">
+                        <span class="greeting-line"></span>
+                        <span class="greeting-text">Welcome to my world</span>
+                    </div>
+                    <h1 class="gradient-text">
+                        <span class="name-intro">I'm</span>
+                        <span class="name-main">Kabyik</span>
+                        <span class="name-accent">Kayal</span>
+                    </h1>
                     <p id="role" class="role"></p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number">ML</span>
+                            <span class="stat-label">Specialist</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number">IIT</span>
+                            <span class="stat-label">Madras BS</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="hero-cta">
                 <a href="#projects" class="btn static-btn">
-                    <span>View My Work</span>
-                    <div class="liquid"></div>
+                    <span class="btn-text">View My Work</span>
+                    <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
                 </a>
             </div>
         </section>
