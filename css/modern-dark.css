@@ -111,6 +111,7 @@ body::before {
     background: var(--border-0) !important;
     color: var(--bg-0) !important;
     border-color: var(--bg-0) !important;
+    text-decoration: none !important;
 }
 
 .project-links .btn:hover i,
@@ -194,7 +195,8 @@ section#hero .hero-cta .static-btn:hover {
     border-color: var(--bg-0) !important;
 }
 
-section#hero .hero-cta .static-btn:hover span {
+section#hero .hero-cta .static-btn:hover span,
+section#hero .hero-cta .static-btn:hover i {
     color: var(--bg-0) !important;
 }
 
