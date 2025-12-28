@@ -279,6 +279,15 @@ i {
     fill: var(--text-0) !important;
 }
 
+/* HuggingFace SVG - preserve natural colors */
+#huggingface-icon img {
+    filter: none !important;
+}
+
+.skill-card:hover #huggingface-icon img {
+    filter: invert(100%) !important;
+}
+
 /* Mobile Menu */
 @media (max-width: 968px) {
     nav ul {

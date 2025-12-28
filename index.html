@@ -50,6 +50,7 @@
     <link rel="stylesheet" href="css/toast.css">
     <link rel="stylesheet" href="css/cursor.css">
     <link rel="stylesheet" href="css/creative-hero.css">
+    <link rel="stylesheet" href="css/bgm-toggle.css">
     <noscript>
         <style>
             body.hero-waiting .hero-content .profile-wrapper,
@@ -67,6 +68,17 @@
     </noscript>
 </head>
 <body class="hero-waiting">
+    <!-- Background Music -->
+    <audio id="bgm-audio" loop autoplay>
+        <source src="assets/bgm.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <!-- BGM Toggle Button -->
+    <button id="bgm-toggle" aria-label="Toggle background music">
+        <i class="fas fa-volume-up"></i>
+    </button>
+    
     <script src="js/creative-hero.js"></script>
     <canvas id="network-bg"></canvas>
     <script type="module" src="./js/main.js" defer></script>
@@ -445,7 +457,82 @@
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3><i class="fas fa-tools"></i> MLOps</h3>
+                        <h3><i class="fas fa-chart-line"></i> Data Visualization</h3>
+                        <div class="skills-grid">
+                            <div class="skill-card">
+                                <div class="skill-icon" id="powerbi-icon">
+                                    <img src="assets/skills/power-bi.svg" alt="PowerBI" class="svg-icon">
+                                </div>
+                                <span>Power BI</span>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon" id="tableau-icon">
+                                    <img src="assets/skills/tableau.svg" alt="Tableau" class="svg-icon">
+                                </div>
+                                <span>Tableau</span>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon" id="matplotlib-icon">
+                                    <img src="assets/skills/Matplotlib.svg" alt="Matplotlib" class="svg-icon">
+                                </div>
+                                <span>Matplotlib</span>
+                            </div>
+                            <div class="skill-card">
+                                <i class="fas fa-chart-pie"></i>
+                                <span>Plotly</span>
+                            </div>
+                            <div class="skill-card">
+                                <i class="fas fa-file-excel"></i>
+                                <span>Excel</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-row">
+                    <div class="skill-category">
+                        <h3><div class="skill-icon" id="aiml-cat-icon"><img src="assets/skills/machine-learning.svg" alt="AI/ML" class="svg-icon"></div> AI / ML</h3>
+                        <div class="skills-grid aiml-grid">
+                            <!-- Machine Learning -->
+                            <div class="skill-card">
+                                <div class="skill-icon" id="scikit-learn-icon">
+                                    <img src="assets/skills/scikit-learn.svg" alt="Scikit-learn" class="svg-icon">
+                                </div>
+                                <span>Scikit-Learn</span>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon" id="mlflow-icon">
+                                    <img src="assets/skills/mlflow.svg" alt="MLFlow" class="svg-icon">
+                                </div>
+                                <span>MLFlow</span>
+                            </div>
+                            <!-- Deep Learning -->
+                            <div class="skill-card">
+                                <div class="skill-icon" id="pytorch-icon">
+                                    <img src="assets/skills/pytorch.svg" alt="PyTorch" class="svg-icon">
+                                </div>
+                                <span>PyTorch</span>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon" id="tensorflow-icon">
+                                    <img src="assets/skills/tensorflow.svg" alt="TensorFlow" class="svg-icon">
+                                </div>
+                                <span>TensorFlow</span>
+                            </div>
+                            <!-- Generative AI -->
+                            <div class="skill-card">
+                                <i class="fas fa-link"></i>
+                                <span>LangChain</span>
+                            </div>
+                            <div class="skill-card">
+                                <div class="skill-icon" id="huggingface-icon">
+                                    <img src="assets/skills/huggingface.svg" alt="HuggingFace" class="svg-icon">
+                                </div>
+                                <span>HuggingFace</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3><div class="skill-icon" id="mlops-cat-icon"><img src="assets/skills/mlops.svg" alt="MLOps" class="svg-icon"></div> MLOps</h3>
                         <div class="skills-grid mlops-grid">
                             <div class="skill-card">
                                 <i class="fab fa-git-alt"></i>
@@ -462,7 +549,7 @@
                                 <span>Docker</span>
                             </div>
                             <div class="skill-card">
-                                <div class="skill-icon" id="mlflow-icon">
+                                <div class="skill-icon" id="zenml-icon">
                                     <img src="assets/skills/zenml.svg" alt="ZenML" class="svg-icon">
                                 </div>
                                 <span>ZenML</span>
@@ -485,11 +572,15 @@
                                 <span>AWS</span>
                             </div>
                             <div class="skill-card">
-                                <i class="fas fa-sync-alt"></i>
+                                <div class="skill-icon" id="circleci-icon">
+                                    <img src="assets/skills/circleci.svg" alt="Circle CI" class="svg-icon">
+                                </div>
                                 <span>Circle CI</span>
                             </div>
                             <div class="skill-card">
-                                <i class="fas fa-chart-bar"></i>
+                                <div class="skill-icon" id="prometheus-icon">
+                                    <img src="assets/skills/Prometheus.svg" alt="Prometheus" class="svg-icon">
+                                </div>
                                 <span>Prometheus</span>
                             </div>
                             <div class="skill-card">
@@ -506,90 +597,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="skills-row">
-                    <div class="skill-category">
-                        <h3><i class="fas fa-brain"></i> Machine Learning</h3>
-                        <div class="skills-grid">
-                            <div class="skill-card">
-                                <div class="skill-icon" id="scikit-learn-icon">
-                                    <img src="assets/skills/scikit-learn.svg" alt="TensorFlow" class="svg-icon">
-                                </div>
-                                <span>Scikit learn</span>
-                            </div>
-                            <div class="skill-card">
-                                <div class="skill-icon" id="tensorflow-icon">
-                                    <img src="assets/skills/mlflow.svg" alt="TensorFlow" class="svg-icon">
-                                </div>
-                                <span>MLFlow</span>
-                            </div>
-                            <div class="skill-card">
-                                <i class="fas fa-robot"></i>
-                                <span>XGBoost</span>
-                            </div>
-                            <div class="skill-card">
-                                <div class="skill-icon" id="SVM-icon">
-                                    <img src="assets/skills/SVM.svg" alt="TensorFlow" class="svg-icon">
-                                </div>
-                                <span>SVM</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-chart-line"></i> Data Visualization</h3>
-                        <div class="skills-grid">
-                            <div class="skill-card">
-                                <div class="skill-icon" id="tensorflow-icon">
-                                    <img src="assets/skills/power-bi.svg" alt="TensorFlow" class="svg-icon">
-                                </div>
-                                <span>PowerBI</span>
-                            </div>
-                            <div class="skill-card">
-                                <div class="skill-icon" id="tensorflow-icon">
-                                    <img src="assets/skills/tableau.svg" alt="TensorFlow" class="svg-icon">
-                                </div>
-                                <span>Tableau</span>
-                            </div>
-                            <div class="skill-card">
-                                <div class="skill-icon" id="tensorflow-icon">
-                                    <img src="assets/skills/Matplotlib.svg" alt="TensorFlow" class="svg-icon">
-                                </div>
-                                <span>Matplotlib</span>
-                            </div>
-                            <div class="skill-card">
-                                <i class="fas fa-chart-pie"></i>
-                                <span>Plotly</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-network-wired"></i> Deep Learning</h3>
-                        <div class="skills-grid">
-                            <div class="skill-card">
-                                <div class="skill-icon" id="tensorflow-icon">
-                                    <img src="assets/skills/pytorch.svg" alt="TensorFlow" class="svg-icon">
-                                </div>
-                                <span>PyTorch</span>
-                            </div>
-                            <div class="skill-card">
-                                <div class="skill-icon" id="tensorflow-icon">
-                                    <img src="assets/skills/tensorflow.svg" alt="TensorFlow" class="svg-icon">
-                                </div>
-                                <span>TensorFlow</span>
-                            </div>
-                            <div class="skill-card">
-                                <div class="skill-icon" id="keras-icon">
-                                    <img src="assets/skills/keras.svg" alt="TensorFlow" class="svg-icon">
-                                </div>
-                                <span>Keras</span>
-                            </div>
-                            <div class="skill-card">
-                                <i class="fas fa-microchip"></i>
-                                <span>CNN</span>
-                            </div>
-                        </div>
-                    </div>
-                    
                 </div>
             </div>
         </section>

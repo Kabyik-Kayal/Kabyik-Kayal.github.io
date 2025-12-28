@@ -122,7 +122,7 @@
 
 .skill-card:hover .svg-icon,
 .skill-card:hover .skill-icon img {
-    filter: invert(100%) !important;
+    filter: brightness(0) invert(100%) !important;
 }
 
 .skill-card i,
@@ -167,6 +167,7 @@
 /* Force all icons to black */
 .skill-icon img {
     filter: grayscale(100%) brightness(0);
+    transition: filter 0.2s ease;
 }
 
 /* Adding specific size for scikit-learn icon */
@@ -174,13 +175,9 @@
     width: 47px;
     height: 47px;
 }
-#SVM-icon img {
-    width: 24px;
-    height: 24px;
-}
-#keras-icon img {
-    width: 24px;
-    height: 24px;
+#huggingface-icon img {
+    width: 45px;
+    height: 45px;
 }
 #Jenkins-icon img {
     width: 50px;
@@ -194,15 +191,65 @@
     width: 35px;
     height: 35px;
 }
+#dvc-icon img {
+    width: 32px;
+    height: 32px;
+}
+#circleci-icon img {
+    width: 40px;
+    height: 40px;
+}
+#prometheus-icon img {
+    width: 40px;
+    height: 40px;
+}
+#mlflow-icon img {
+    width: 35px;
+    height: 35px;
+}
+#zenml-icon img {
+    width: 35px;
+    height: 35px;
+}
+#powerbi-icon img {
+    width: 30px;
+    height: 30px;
+}
+#tableau-icon img {
+    width: 32px;
+    height: 32px;
+}
+#matplotlib-icon img {
+    width: 35px;
+    height: 35px;
+}
+#pytorch-icon img {
+    width: 32px;
+    height: 32px;
+}
+#tensorflow-icon img {
+    width: 32px;
+    height: 32px;
+}
+
+.skill-category h3 .skill-icon {
+    margin-bottom: 0;
+    height: 24px;
+}
+
+#mlops-cat-icon img, #ml-cat-icon img, #aiml-cat-icon img {
+    width: 24px;
+    height: 24px;
+}
 
 @media screen and (min-width: 969px) {
-    .mlops-grid {
-        grid-template-columns: repeat(4, 1fr) !important;
+    .mlops-grid, .aiml-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
     }
 }
 
 @media screen and (max-width: 968px) and (min-width: 481px) {
-    .mlops-grid {
+    .mlops-grid, .aiml-grid {
         grid-template-columns: repeat(3, 1fr) !important;
         gap: 15px !important;
         justify-items: center;
@@ -210,7 +257,7 @@
 }
 
 @media screen and (max-width: 480px) {
-    .mlops-grid {
+    .mlops-grid, .aiml-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 10px !important;
         justify-items: center;

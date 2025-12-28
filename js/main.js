@@ -6,6 +6,7 @@ import { initializeNetworkAnimation } from './networkAnimation.js';
 import { initializeYear, initializeRole } from './utils.js';
 import { initializeMobileOptimizations, applyMobileSkillCards } from './mobileOptimizations.js';
 import { initializeScrollAnimations, addScrollAnimations, initializeSmoothScroll } from './scrollAnimations.js';
+import { initializeBGM } from './bgmControl.js';
 // Ensure lazy loading is active and convert existing <img> to lazy-loaded variants
 import { convertToLazyImages } from './image-lazy-loader.js';
 
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeMobileNav();
     initializeMobileOptimizations();
     applyMobileSkillCards();
+    initializeBGM();
     
     // Set up scroll animations
     addScrollAnimations();
