@@ -8,9 +8,11 @@
         const statNumbers = document.querySelectorAll('.stat-number');
         statNumbers.forEach(stat => {
             const text = stat.innerText;
-            // Target the "15+" statistic
-            if (text.includes('15+')) {
-                const target = 15;
+            // Target statistics that end with "+"
+            if (text.includes('+')) {
+                const target = parseInt(text);
+                if (isNaN(target)) return;
+
                 const duration = 2000; // 2 seconds for the count
                 const startTime = performance.now();
                 
@@ -21,8 +23,8 @@
                     const elapsed = currentTime - startTime;
                     const progress = Math.min(elapsed / duration, 1);
                     
-                    // Easing function for smooth deceleration (easeOutExpo)
-                    const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                    // Easing function for smooth deceleration (easeOutCubic)
+                    const ease = 1 - Math.pow(1 - progress, 3);
                     
                     const current = Math.floor(ease * target);
                     stat.innerText = current + '+';
@@ -55,8 +57,8 @@
                 document.body.classList.add('hero-animate');
                 
                 // Start counter animation after the stats container starts revealing
-                // The stats container has a 0.9s delay in CSS
-                setTimeout(animateCounter, 900);
+                // The stats container has a 1.4s delay in CSS
+                setTimeout(animateCounter, 1500);
             });
         };
 

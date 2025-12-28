@@ -61,9 +61,61 @@ body.hero-animate .hero-cta {
 body.hero-animate .hero-content .profile-wrapper { transition-delay: 0.1s; }
 body.hero-animate .hero-content .hero-text .hero-greeting { transition-delay: 0.3s; }
 body.hero-animate .hero-content .hero-text h1 { transition-delay: 0.5s; }
-body.hero-animate .hero-content .hero-text .role { transition-delay: 0.7s; }
-body.hero-animate .hero-content .hero-text .hero-stats { transition-delay: 0.9s; }
-body.hero-animate .hero-cta { transition-delay: 1.1s; }
+
+/* Staggered delays for name parts - Creative Brutalist Reveal */
+.hero-text h1 span {
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    display: block;
+}
+
+/* I'm - Slide from left mask */
+.hero-text h1 .name-intro {
+    transform: translateX(-30px);
+    clip-path: inset(0 100% 0 0);
+}
+
+/* Kabyik - Vertical stretch reveal */
+.hero-text h1 .name-main {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    filter: brightness(2);
+}
+
+/* Kayal - Letter spacing collapse */
+.hero-text h1 .name-accent {
+    letter-spacing: 30px;
+    transform: translateY(10px);
+    filter: blur(5px);
+}
+
+/* Animate States */
+body.hero-animate .hero-text h1 span {
+    opacity: 1;
+}
+
+body.hero-animate .hero-text h1 .name-intro {
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+    transition-delay: 0.5s;
+}
+
+body.hero-animate .hero-text h1 .name-main {
+    transform: scaleY(1);
+    filter: brightness(1);
+    transition-delay: 0.7s;
+}
+
+body.hero-animate .hero-text h1 .name-accent {
+    letter-spacing: 2px;
+    transform: translateY(0);
+    filter: blur(0);
+    transition-delay: 0.9s;
+}
+
+body.hero-animate .hero-content .hero-text .role { transition-delay: 1.2s; }
+body.hero-animate .hero-content .hero-text .hero-stats { transition-delay: 1.4s; }
+body.hero-animate .hero-cta { transition-delay: 1.6s; }
 
 /* Special Image Reveal Effect */
 .profile-container {
@@ -179,3 +231,25 @@ body.hero-animate .greeting-text {
         clip-path: inset(0 0 0 0);
     }
 }
+
+/* Decorative Shapes Reveal - Drawn from corners */
+body.hero-waiting .deco-shape {
+    opacity: 0;
+    visibility: hidden;
+}
+
+body.hero-waiting .deco-1 { clip-path: inset(0 100% 100% 0); }
+body.hero-waiting .deco-2 { clip-path: inset(0 0 100% 100%); }
+body.hero-waiting .deco-3 { clip-path: inset(100% 100% 0 0); }
+
+body.hero-animate .deco-shape {
+    opacity: 1;
+    visibility: visible;
+    clip-path: inset(0 0 0 0);
+    transition: opacity 0.8s ease, 
+                clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+body.hero-animate .deco-1 { transition-delay: 0.6s; }
+body.hero-animate .deco-2 { transition-delay: 0.8s; }
+body.hero-animate .deco-3 { transition-delay: 1.0s; }
