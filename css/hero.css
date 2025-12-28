@@ -341,26 +341,64 @@ section#hero {
 }
 
 .hero-cta .static-btn {
-    background: var(--border-0);
-    color: var(--bg-0);
+    position: relative;
+    background: var(--bg-0);
+    color: var(--border-0);
+    border: 2px solid var(--border-0);
     box-shadow: 4px 4px 0px var(--border-0);
+    overflow: hidden;
+    isolation: isolate;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: btn-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 0.5s;
+}
+
+.hero-cta .static-btn .btn-text {
+    position: relative;
+    display: inline-block;
+    z-index: 3;
+    color: var(--border-0);
+    clip-path: inset(0 100% 0 0);
+    animation: text-reveal 0.6s ease-out forwards 1.0s;
+}
+
+.hero-cta .static-btn .btn-icon {
+    position: relative;
+    display: inline-block;
+    z-index: 3;
+    color: var(--border-0);
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: arrow-move 0.6s ease-out forwards 1.0s;
+    transition: transform 0.3s ease;
+}
+
+@keyframes btn-pop {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes text-reveal {
+    to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes arrow-move {
+    0% { opacity: 1; transform: translateX(-30px); }
+    100% { opacity: 1; transform: translateX(0); }
 }
 
 .hero-cta .static-btn:hover {
-    background: var(--bg-0);
-    color: var(--border-0);
+    background: var(--border-0);
+    color: var(--bg-0);
     transform: translate(-2px, -2px);
     box-shadow: 6px 6px 0px var(--border-0);
 }
 
-.hero-cta .static-btn .btn-text,
-.hero-cta .static-btn .btn-icon {
-    position: relative;
-    z-index: 1;
-}
-
-.hero-cta .static-btn .btn-icon {
-    transition: transform 0.3s ease;
+.hero-cta .static-btn:hover .btn-text,
+.hero-cta .static-btn:hover .btn-icon {
+    color: var(--bg-0);
 }
 
 .hero-cta .static-btn:hover .btn-icon {

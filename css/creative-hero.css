@@ -1,0 +1,181 @@
+/* creative-hero.css */
+
+/* Base transition styles */
+.hero-content .profile-wrapper,
+.hero-content .hero-text .hero-greeting,
+.hero-content .hero-text h1,
+.hero-content .hero-text .role,
+.hero-content .hero-text .hero-stats,
+.hero-cta {
+    transition: opacity 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000), 
+                transform 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+
+/* Initial hidden state for hero elements */
+body.hero-waiting .hero-content .profile-wrapper,
+body.hero-waiting .hero-content .hero-text .hero-greeting,
+body.hero-waiting .hero-content .hero-text h1,
+body.hero-waiting .hero-content .hero-text .role,
+body.hero-waiting .hero-content .hero-text .hero-stats {
+    opacity: 0;
+    transform: translateY(30px);
+    visibility: hidden;
+}
+
+/* Special handling for CTA to maintain centering */
+body.hero-waiting .hero-cta {
+    opacity: 0;
+    transform: translate(-50%, 30px);
+    visibility: hidden;
+}
+
+/* Loaded state - when .hero-waiting is removed or .hero-animate is added */
+body.hero-animate .hero-content .profile-wrapper,
+body.hero-animate .hero-content .hero-text .hero-greeting,
+body.hero-animate .hero-content .hero-text h1,
+body.hero-animate .hero-content .hero-text .role,
+body.hero-animate .hero-content .hero-text .hero-stats {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+body.hero-animate .hero-cta {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    visibility: visible;
+}
+
+/* Mobile overrides to match hero.css responsive styles */
+@media (max-width: 768px) {
+    body.hero-waiting .hero-cta {
+        transform: translateY(30px);
+    }
+    
+    body.hero-animate .hero-cta {
+        transform: translateY(0);
+    }
+}
+
+/* Staggered delays */
+body.hero-animate .hero-content .profile-wrapper { transition-delay: 0.1s; }
+body.hero-animate .hero-content .hero-text .hero-greeting { transition-delay: 0.3s; }
+body.hero-animate .hero-content .hero-text h1 { transition-delay: 0.5s; }
+body.hero-animate .hero-content .hero-text .role { transition-delay: 0.7s; }
+body.hero-animate .hero-content .hero-text .hero-stats { transition-delay: 0.9s; }
+body.hero-animate .hero-cta { transition-delay: 1.1s; }
+
+/* Special Image Reveal Effect */
+.profile-container {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Brutalist Reveal Overlay */
+.profile-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--border-0, #000);
+    transform: translateY(0);
+    z-index: 10;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* When animated, slide the overlay up */
+body.hero-animate .profile-container::before {
+    transform: translateY(-100%);
+    transition-delay: 0.1s;
+}
+
+/* Image scale effect */
+.profile-image {
+    transform: scale(1.2);
+    transition: transform 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s ease;
+}
+
+body.hero-animate .profile-image {
+    transform: scale(1);
+}
+
+/* Glitch effect on load */
+@keyframes glitch-anim {
+    0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
+    20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
+    40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
+    60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+    80% { clip-path: inset(10% 0 60% 0); transform: translate(-1px, 1px); }
+    100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+}
+
+body.hero-animate .profile-image {
+    animation: glitch-anim 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation-delay: 0.2s;
+}
+
+/* Custom Animation for "Welcome to my world" */
+/* Override layout to support the animation */
+.hero-content .hero-text .hero-greeting {
+    display: block !important;
+    position: relative;
+    padding-left: 55px; /* Space for the final horizontal line */
+    overflow: visible;
+}
+
+/* Initial state for the line */
+.greeting-line {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    left: auto;
+    width: 2px;
+    height: 20px; /* Vertical bar height */
+    background: var(--border-0);
+    /* Ensure it overrides default static styles */
+}
+
+/* Initial state for the text */
+.greeting-text {
+    display: block;
+    clip-path: inset(0 0 0 100%); /* Hidden from left */
+}
+
+/* Animation Triggers */
+body.hero-animate .greeting-line {
+    animation: moveLineLeft 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    animation-delay: 0.5s;
+}
+
+body.hero-animate .greeting-text {
+    animation: revealTextFromRight 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    animation-delay: 0.5s;
+}
+
+/* Keyframes */
+@keyframes moveLineLeft {
+    0% {
+        left: calc(100% - 2px);
+        width: 2px;
+        height: 20px;
+    }
+    80% {
+        left: 0;
+        width: 2px;
+        height: 20px;
+    }
+    100% {
+        left: 0;
+        width: 40px; /* Final horizontal width */
+        height: 2px; /* Final horizontal height */
+    }
+}
+
+@keyframes revealTextFromRight {
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}

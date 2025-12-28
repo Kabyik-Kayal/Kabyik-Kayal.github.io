@@ -49,8 +49,24 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/toast.css">
     <link rel="stylesheet" href="css/cursor.css">
+    <link rel="stylesheet" href="css/creative-hero.css">
+    <noscript>
+        <style>
+            body.hero-waiting .hero-content .profile-wrapper,
+            body.hero-waiting .hero-content .hero-text .hero-greeting,
+            body.hero-waiting .hero-content .hero-text h1,
+            body.hero-waiting .hero-content .hero-text .role,
+            body.hero-waiting .hero-content .hero-text .hero-stats,
+            body.hero-waiting .hero-cta {
+                opacity: 1 !important;
+                transform: none !important;
+                visibility: visible !important;
+            }
+        </style>
+    </noscript>
 </head>
-<body>
+<body class="hero-waiting">
+    <script src="js/creative-hero.js"></script>
     <canvas id="network-bg"></canvas>
     <script type="module" src="./js/main.js" defer></script>
     <!-- Header Section -->
