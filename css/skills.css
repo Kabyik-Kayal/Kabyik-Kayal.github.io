@@ -243,21 +243,29 @@
 }
 
 @media screen and (min-width: 969px) {
-    .mlops-grid, .aiml-grid {
+    .aiml-grid, .dataviz-grid {
         grid-template-columns: repeat(3, 1fr) !important;
+    }
+    .mlops-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
     }
 }
 
 @media screen and (max-width: 968px) and (min-width: 481px) {
-    .mlops-grid, .aiml-grid {
+    .aiml-grid, .dataviz-grid {
         grid-template-columns: repeat(3, 1fr) !important;
+        gap: 15px !important;
+        justify-items: center;
+    }
+    .mlops-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
         gap: 15px !important;
         justify-items: center;
     }
 }
 
 @media screen and (max-width: 480px) {
-    .mlops-grid, .aiml-grid {
+    .mlops-grid, .aiml-grid, .dataviz-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 10px !important;
         justify-items: center;
