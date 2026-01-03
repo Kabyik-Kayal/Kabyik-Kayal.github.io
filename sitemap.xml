@@ -9,22 +9,26 @@
 
 <url>
   <loc>https://www.kabyik.me/</loc>
-  <lastmod>2025-12-25T00:00:00+00:00</lastmod>
+  <lastmod>2025-12-29T00:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://www.kabyik.me/assets/resume.pdf</loc>
-  <lastmod>2025-12-25T00:00:00+00:00</lastmod>
+  <lastmod>2025-12-29T00:00:00+00:00</lastmod>
+  <changefreq>yearly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.kabyik.me/blogs/blogs_page.html</loc>
-  <lastmod>2025-12-25T00:00:00+00:00</lastmod>
+  <lastmod>2025-12-29T00:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.kabyik.me/index.html</loc>
-  <lastmod>2025-12-25T00:00:00+00:00</lastmod>
+  <lastmod>2025-12-29T00:00:00+00:00</lastmod>
+  <changefreq>monthly</changefreq>
   <priority>0.90</priority>
 </url>
 
