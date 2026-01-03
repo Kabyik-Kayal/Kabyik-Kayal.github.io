@@ -1,4 +1,4 @@
-# https://www.kabyik.me
+# https://www.kabyik.dev
 
 Welcome to my portfolio website! I'm Kabyik Kayal
 
