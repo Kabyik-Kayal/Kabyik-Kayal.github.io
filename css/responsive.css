@@ -109,11 +109,12 @@ section {
 }
 
 @media (max-width: 768px) {
-    /* Fix horizontal scrolling */
+    /* Fix horizontal scrolling and enable mobile scrolling */
     body, html {
         overflow-x: hidden;
         width: 100%;
         position: relative;
+        scroll-snap-type: none; /* Disable scroll-snap on mobile for smooth touch scrolling */
     }
 
     main, section, .container {
