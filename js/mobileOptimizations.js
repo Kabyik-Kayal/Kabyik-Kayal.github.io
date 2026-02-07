@@ -1,10 +1,11 @@
 // mobileOptimizations.js
 export function initializeMobileOptimizations() {
     if (window.innerWidth <= 480) {
-        document.addEventListener('gesturestart', (e) => e.preventDefault());
+        // Set custom viewport height for mobile (accounts for browser chrome)
         const vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
-        document.body.style.overscrollBehaviorY = 'none';
+        // Note: Removed gesturestart preventDefault and overscrollBehaviorY 
+        // as they were blocking natural mobile scrolling
     }
 }
 

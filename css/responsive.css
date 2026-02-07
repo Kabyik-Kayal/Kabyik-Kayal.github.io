@@ -5,7 +5,8 @@
 }
 
 /* Base Container Settings */
-html, body {
+html,
+body {
     overflow-x: hidden;
     width: 100%;
     max-width: 100%;
@@ -36,26 +37,29 @@ section {
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
     }
-    
+
     .mlops-grid {
         grid-template-columns: repeat(3, 1fr) !important;
     }
-    
+
     .projects-container {
         padding: 0 80px;
     }
 }
 
 @media (max-width: 968px) {
+
     /* Header */
     .mobile-menu-btn {
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    
+
     /* Reduce top padding to match shorter header on tablet */
-    main { padding-top: 60px; }
+    main {
+        padding-top: 60px;
+    }
 
     /* Mobile menu styles are handled in header.css */
 
@@ -77,22 +81,25 @@ section {
         gap: 2rem;
     }
 
-    .about-text, .resume-container {
+    .about-text,
+    .resume-container {
         width: 100%;
     }
 
     .about-text {
         padding: 2rem;
     }
-    
+
     .about-text p {
         font-size: 1rem;
         padding-left: 1rem;
-    }    /* Skills */
+    }
+
+    /* Skills */
     .skills-row {
         flex-direction: column;
     }
-    
+
     /* MLOps Grid - 3 columns for tablet view */
     .mlops-grid {
         grid-template-columns: repeat(3, 1fr) !important;
@@ -104,28 +111,38 @@ section {
 
 @media (min-width: 769px) {
     .hero-cta {
-        bottom: 5rem; /* Move up from 3rem to 5rem */
+        bottom: 5rem;
+        /* Move up from 3rem to 5rem */
     }
 }
 
 @media (max-width: 768px) {
+
     /* Fix horizontal scrolling and enable mobile scrolling */
-    body, html {
+    body,
+    html {
         overflow-x: hidden;
         width: 100%;
         position: relative;
-        scroll-snap-type: none; /* Disable scroll-snap on mobile for smooth touch scrolling */
+        scroll-snap-type: none;
+        /* Disable scroll-snap on mobile for smooth touch scrolling */
     }
 
-    main, section, .container {
+    main,
+    section,
+    .container {
         width: 100%;
         max-width: 100%;
         overflow-x: hidden;
     }
-    
+
     /* Additional fix for mobile containers */
-    .container, .about-content, .projects-container, 
-    .blogs-container, .skills-container, .contact-container {
+    .container,
+    .about-content,
+    .projects-container,
+    .blogs-container,
+    .skills-container,
+    .contact-container {
         width: 100% !important;
         max-width: 100% !important;
         padding-left: 15px !important;
@@ -134,7 +151,7 @@ section {
         margin-left: 0 !important;
         margin-right: 0 !important;
     }
-    
+
     /* Header */
     header {
         padding: 0 20px;
@@ -142,7 +159,9 @@ section {
         width: 100%;
     }
 
-    main { padding-top: 60px; }
+    main {
+        padding-top: 60px;
+    }
 
     .logo {
         font-size: 1.5em;
@@ -171,7 +190,9 @@ section {
         right: auto;
         margin-top: 2rem;
         text-align: center;
-    }    /* Skills */
+    }
+
+    /* Skills */
     .skills-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
@@ -226,12 +247,14 @@ section {
         padding: 0 20px;
         width: 100%;
         max-width: 100%;
-        overflow-x: auto; /* Allow horizontal scroll */
+        overflow-x: auto;
+        /* Allow horizontal scroll */
     }
 
     .project-card {
         width: 300px;
-        min-width: 300px; /* Ensure cards don't shrink */
+        min-width: 300px;
+        /* Ensure cards don't shrink */
         height: auto;
     }
 
@@ -262,18 +285,27 @@ section {
 
 /* All 480px and below media queries combined */
 @media (max-width: 480px) {
+
     /* Base */
     html {
         font-size: 12px;
+        scroll-snap-type: none;
+        /* Disable scroll-snap for smooth mobile scrolling */
     }
 
     body {
         overflow-x: hidden;
         width: 100vw;
         max-width: 100%;
+        scroll-snap-type: none;
+        /* Disable scroll-snap for smooth mobile scrolling */
+        touch-action: auto;
+        /* Ensure touch scrolling is enabled */
     }
 
-    main, section, .container {
+    main,
+    section,
+    .container {
         width: 100%;
         max-width: 100%;
         overflow-x: hidden;
@@ -287,7 +319,9 @@ section {
         width: 100%;
     }
 
-    main { padding-top: 56px; }
+    main {
+        padding-top: 56px;
+    }
 
     .logo {
         font-size: 1.2em;
@@ -338,7 +372,8 @@ section {
         overflow: visible;
     }
 
-    .about-text, .resume-container {
+    .about-text,
+    .resume-container {
         padding: 1.2rem;
         min-height: unset;
         width: 100%;
@@ -358,7 +393,9 @@ section {
         padding-left: 1rem;
         border-left: 4px solid #000;
         margin: 0;
-    }    /* Skills */
+    }
+
+    /* Skills */
     .skills-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
@@ -443,16 +480,16 @@ section {
         max-width: 100%;
         overflow-x: hidden;
     }
-    
+
     .slider-btn {
         width: 40px;
         height: 40px;
     }
-    
+
     .slider-btn.prev-btn {
         left: 10px;
     }
-    
+
     .slider-btn.next-btn {
         right: 10px;
     }
@@ -485,15 +522,21 @@ section {
 
     /* Section Headers - Reduced size for mobile */
     .card-section h2 {
-        font-size: 2.8em; /* Reduced from 4.5em */
-        margin-bottom: 2rem; /* Reduced from 3rem */
-        padding-bottom: 1rem; /* Reduced from 1.5rem */
-        letter-spacing: 0.05em; /* Adjusted for smaller size */
+        font-size: 2.8em;
+        /* Reduced from 4.5em */
+        margin-bottom: 2rem;
+        /* Reduced from 3rem */
+        padding-bottom: 1rem;
+        /* Reduced from 1.5rem */
+        letter-spacing: 0.05em;
+        /* Adjusted for smaller size */
     }
-    
+
     .card-section h2::after {
-        width: 60px; /* Reduced from 80px */
-        height: 2px; /* Reduced from 3px */
+        width: 60px;
+        /* Reduced from 80px */
+        height: 2px;
+        /* Reduced from 3px */
     }
 
     .card-section h2:hover::after {
@@ -501,8 +544,10 @@ section {
     }
 
     .card-section h2 i {
-        font-size: 0.8em; /* Adjusted icon size */
-        margin-right: 0.6rem; /* Reduced from 0.8rem */
+        font-size: 0.8em;
+        /* Adjusted icon size */
+        margin-right: 0.6rem;
+        /* Reduced from 0.8rem */
     }
 
     /* Footer */
