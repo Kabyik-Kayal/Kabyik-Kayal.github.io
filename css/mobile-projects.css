@@ -76,17 +76,17 @@
         height: 40px;
         font-size: 1rem;
     }
-    
+
     .prev-btn {
         left: 0.5rem !important;
     }
-    
+
     .next-btn {
         right: 0.5rem !important;
     }
 
     .project-header h3 {
-        font-size: 1.1rem;
+        font-size: 1rem;
         margin-bottom: 0.5rem;
     }
 }
