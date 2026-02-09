@@ -57,7 +57,7 @@
 }
 
 .social-btn {
-    width: 200px;
+    width: 240px;
     height: 60px;
     border-radius: 0;
     display: flex;
@@ -90,8 +90,15 @@
 }
 
 .social-btn:hover span,
-.social-btn:hover i {
+.social-btn:hover i,
+.social-btn:hover .social-icon {
     color: #fff;
+}
+
+.social-icon {
+    width: 1.4rem;
+    height: 1.4rem;
+    flex-shrink: 0;
 }
 
 /* Form container adjustments */
@@ -159,7 +166,7 @@
     box-shadow: 6px 6px 0px #000;
 }
 
-.form-group input:focus, 
+.form-group input:focus,
 .form-group textarea:focus {
     outline: none;
     transform: translate(-2px, -2px);
@@ -207,7 +214,7 @@
         max-width: 950px;
         padding: 0.4rem;
     }
-    
+
     .social-links {
         flex-direction: row;
         justify-content: space-between;
@@ -215,20 +222,20 @@
         padding: 1rem;
         gap: 1.5rem;
     }
-    
+
     /* Container for all social buttons */
-    .social-links > div:not(.contact-form-container) {
+    .social-links>div:not(.contact-form-container) {
         display: flex;
         flex-direction: column;
         width: 28%;
     }
-    
+
     /* Remove any space between social rows */
-    .social-links > div.social-row {
+    .social-links>div.social-row {
         margin: 0;
         padding: 0;
     }
-    
+
     /* Force all social rows into a single column */
     .social-row {
         flex-direction: column;
@@ -236,25 +243,25 @@
         gap: 1rem;
         margin: 0;
     }
-    
+
     /* Arrange the first and second social-row to be in a single column */
-    .social-links > div:first-child {
+    .social-links>div:first-child {
         margin-bottom: 0;
     }
-    
+
     /* Keep contact form on the right */
     .contact-form-container {
         width: 68%;
         margin-top: 0;
         padding: 1rem;
     }
-    
+
     /* Social buttons stacked vertically */
     .social-btn {
         width: 100%;
-        max-width: 200px;
+        max-width: 240px;
     }
-    
+
     /* Further reduce form element spacing */
     .contact-form {
         gap: 0.8rem;

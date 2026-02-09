@@ -508,9 +508,19 @@ section {
     }
 
     .social-btn {
-        width: 100px;
-        height: 32px;
+        width: 140px;
+        height: 40px;
         padding: 0 10px;
+        font-size: 0.85rem;
+    }
+
+    .social-btn span {
+        font-size: 0.85rem;
+    }
+
+    .social-btn i,
+    .social-btn .social-icon {
+        font-size: 1.1rem;
     }
 
     /* Blog */
