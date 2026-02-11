@@ -211,7 +211,7 @@
 /* Desktop layout - form on right, social links on left */
 @media (min-width: 768px) {
     .contact-container {
-        max-width: 950px;
+        max-width: 1100px;
         padding: 0.4rem;
     }
 
@@ -251,7 +251,7 @@
 
     /* Keep contact form on the right */
     .contact-form-container {
-        width: 68%;
+        width: 75%;
         margin-top: 0;
         padding: 1rem;
     }
@@ -265,5 +265,11 @@
     /* Further reduce form element spacing */
     .contact-form {
         gap: 0.8rem;
+    }
+
+    /* Reduce send button size for desktop */
+    .submit-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
     }
 }
