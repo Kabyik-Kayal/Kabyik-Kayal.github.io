@@ -4,12 +4,8 @@ export const CONFIG = {
     scrollOffset: 50,
     roleOptions: {
         strings: [
-            'Data Scientist ^1000',
-            'ML Engineer ^1000',
-            'Technical Writer ^1000',
-            'MLOps Engineer ^1000',
-            'AI Engineer ^1000',
-            'Data Analyst ^1000'
+            'AI Platform Engineer ^1000',
+            'Technical Writer ^1000'
         ],
         typeSpeed: 50,
         backSpeed: 30,
